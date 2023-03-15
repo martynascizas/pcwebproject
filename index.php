@@ -22,9 +22,27 @@
     // Check if a monitoriai was deleted
     if (isset($_POST['delete'])) {
         $id = $_POST['id'];
+
+        // Get the filenames of the photos for the monitor
+        $sql = "SELECT `filename` FROM `monitoriai_photos` WHERE `monitoriai_id` = '$id'";
+        $result = mysqli_query($conn, $sql);
+
+        // Delete the monitoriai and monitoriai_photos from the database
         $sql = "DELETE FROM `monitoriai` WHERE `id` = '$id'";
         mysqli_query($conn, $sql);
+        $sql = "DELETE FROM `monitoriai_photos` WHERE `monitoriai_id` = '$id'";
+        mysqli_query($conn, $sql);
+
+        // Delete the photo files from the server
+        while ($row = mysqli_fetch_assoc($result)) {
+            $filename = $row['filename'];
+            $filepath = "uploads/" . $filename;
+            if (file_exists($filepath)) {
+                unlink($filepath);
+            }
+        }
     }
+
 
     // Retrieve monitoriai data from the database
     // $sql = "SELECT * FROM `monitoriai`";
