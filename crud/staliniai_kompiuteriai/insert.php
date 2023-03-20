@@ -1,12 +1,12 @@
 <?php
 // Connect to the database
-require 'db.php';
+require '../../db.php';
 
 // Check for errors
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-// MONITORIAI
+
 // Get form data
 $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
 $ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
