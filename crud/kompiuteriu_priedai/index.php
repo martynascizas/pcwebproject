@@ -12,6 +12,8 @@
 <body>
     <!-- KOMPIUTERIU PRIEDAI -->
     <div>
+        <a href="../index.html">ATGAL</a>
+        <br>
         <?php
         // Connect to the database
         require '../../db.php';
