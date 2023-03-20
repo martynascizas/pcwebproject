@@ -9,7 +9,10 @@ if (!$conn) {
 
 // Get form data
 $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
-$ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
+$procesorius = mysqli_real_escape_string($conn, $_POST['procesorius']);
+$vaizdo_plokste = mysqli_real_escape_string($conn, $_POST['vaizdo_plokste']);
+$ram = mysqli_real_escape_string($conn, $_POST['ram']);
+$hdd = mysqli_real_escape_string($conn, $_POST['hdd']);
 $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
 
 // Check if a photo was uploaded
@@ -21,9 +24,9 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     // Move file to uploads directory
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
         // Insert data into table
-        $sql = "INSERT INTO `monitoriai` (`gamintojas`, `ekrano_istrizaine`, `kaina`, `photo`) VALUES ('$gamintojas', $ekrano_istrizaine, $kaina, '$filename')";
+        $sql = "INSERT INTO `staliniai_kompiuteriai` (`gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES ('$gamintojas', $kaina, '$filename')";
         if (mysqli_query($conn, $sql)) {
-            echo "New monitor added successfully.";
+            echo "New staliniai_kompiuteriai added successfully.";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -32,15 +35,15 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     }
 } else {
     // Insert data into table without photo
-    $sql = "INSERT INTO `monitoriai` (`gamintojas`, `ekrano_istrizaine`, `kaina`) VALUES ('$gamintojas', $ekrano_istrizaine, $kaina)";
+    $sql = "INSERT INTO `staliniai_kompiuteriai` (`gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES ('$gamintojas', '$procesorius', '$vaizdo_plokste', $ram, '$hdd', $kaina, '$filename')";
     if (mysqli_query($conn, $sql)) {
-        $monitor_id = mysqli_insert_id($conn); // Get the ID of the inserted monitor
-        // Insert photos into `monitoriai_photos` table
+        $staliniai_kompiuteriai_id = mysqli_insert_id($conn); // Get the ID of the inserted staliniai_kompiuteriai
+        // Insert photos into `staliniai_kompiuteriai_photos` table
         foreach ($_FILES['photo']['name'] as $i => $filename) {
             if ($_FILES['photo']['error'][$i] == 0) {
                 $filepath = "uploads/" . basename($filename);
                 if (move_uploaded_file($_FILES['photo']['tmp_name'][$i], $filepath)) {
-                    $sql = "INSERT INTO `monitoriai_photos` (`monitoriai_id`, `filename`) VALUES ($monitor_id, '$filename')";
+                    $sql = "INSERT INTO `staliniai_kompiuteriai_photos` (`staliniai_kompiuteriai_id`, `filename`) VALUES ($staliniai_kompiuteriai_id, '$filename')";
                     mysqli_query($conn, $sql);
                     echo "New photo uploaded successfully.";
                 } else {
@@ -48,8 +51,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
                 }
             }
         }
-        echo "New monitor added successfully.";
-        // Redirect back to the monitoriai list
+        echo "New item to staliniai_kompiuteriai added successfully.";
+        // Redirect back to the staliniai_kompiuteriai list
         header("Location: index.php");
         exit();
     } else {

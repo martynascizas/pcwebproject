@@ -96,7 +96,7 @@
         <!-- crud monitorius -->
         <h1>Add Product To Kompiuteriu Priedai</h1>
         <form action="insert.php" method="POST" enctype="multipart/form-data">
-            <label for="pavadinimas">pavadinimas:</label>
+            <label for="pavadinimas">Pavadinimas:</label>
             <input type="text" id="pavadinimas" name="pavadinimas" required><br><br>
 
             <label for="aprasymas">Aprasymas:</label>
