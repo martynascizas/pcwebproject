@@ -14,6 +14,23 @@
     <div>
         <a href="../index.html">ATGAL</a>
         <br>
+        <!-- crud monitorius -->
+        <h1>Add Product To Monitors</h1>
+        <form action="insert.php" method="POST" enctype="multipart/form-data">
+            <label for="gamintojas">Gamintojas:</label>
+            <input type="text" id="gamintojas" name="gamintojas" required><br><br>
+
+            <label for="ekrano_istrizaine">Ekrano išmatavimas (coliais):</label>
+            <input type="number" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required><br><br>
+
+            <label for="kaina">Kaina:</label>
+            <input type="number" id="kaina" name="kaina" min="0.01" step="0.01" required><br><br>
+
+            <label for="photo">Photo:</label>
+            <input type="file" name="photo[]" multiple><br><br>
+
+            <input type="submit" value="Add">
+        </form>
         <?php
         // Connect to the database
         require '../../db.php';
@@ -93,23 +110,7 @@
         mysqli_close($conn);
         ?>
 
-        <!-- crud monitorius -->
-        <h1>Add Product To Monitors</h1>
-        <form action="insert.php" method="POST" enctype="multipart/form-data">
-            <label for="gamintojas">Gamintojas:</label>
-            <input type="text" id="gamintojas" name="gamintojas" required><br><br>
 
-            <label for="ekrano_istrizaine">Ekrano išmatavimas (coliais):</label>
-            <input type="number" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required><br><br>
-
-            <label for="kaina">Kaina:</label>
-            <input type="number" id="kaina" name="kaina" min="0.01" step="0.01" required><br><br>
-
-            <label for="photo">Photo:</label>
-            <input type="file" name="photo[]" multiple><br><br>
-
-            <input type="submit" value="Add">
-        </form>
     </div>
 </body>
 

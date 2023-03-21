@@ -14,6 +14,35 @@
     <div>
         <a href="../index.html">ATGAL</a>
         <br>
+        <!-- crud nesiojami_kompiuteriaiius -->
+        <h1>Add Product To Nesiojami Kompiuteriai</h1>
+        <form action="insert.php" method="POST" enctype="multipart/form-data">
+            <label for="gamintojas">Gamintojas:</label>
+            <input type="text" id="gamintojas" name="gamintojas" required><br><br>
+
+            <label for="ekrano_istrizaine">Ekrano išmatavimas (coliais):</label>
+            <input type="number" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required><br><br>
+
+            <label for="procesorius">Procesorius:</label>
+            <input type="text" id="procesorius" name="procesorius" required><br><br>
+
+            <label for="vaizdo_plokste">vaizdo_plokste:</label>
+            <input type="text" id="vaizdo_plokste" name="vaizdo_plokste" required><br><br>
+
+            <label for="ram">ram:</label>
+            <input type="text" id="ram" name="ram" required><br><br>
+
+            <label for="hdd">hdd:</label>
+            <input type="text" id="hdd" name="hdd" required><br><br>
+
+            <label for="kaina">Kaina:</label>
+            <input type="number" id="kaina" name="kaina" min="0.01" step="0.01" required><br><br>
+
+            <label for="photo">Photo:</label>
+            <input type="file" name="photo[]" multiple><br><br>
+
+            <input type="submit" value="Add">
+        </form>
         <?php
         // Connect to the database
         require '../../db.php';
@@ -93,35 +122,7 @@
         mysqli_close($conn);
         ?>
 
-        <!-- crud nesiojami_kompiuteriaiius -->
-        <h1>Add Product To Nesiojami Kompiuteriai</h1>
-        <form action="insert.php" method="POST" enctype="multipart/form-data">
-            <label for="gamintojas">Gamintojas:</label>
-            <input type="text" id="gamintojas" name="gamintojas" required><br><br>
 
-            <label for="ekrano_istrizaine">Ekrano išmatavimas (coliais):</label>
-            <input type="number" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required><br><br>
-
-            <label for="procesorius">Procesorius:</label>
-            <input type="text" id="procesorius" name="procesorius" required><br><br>
-
-            <label for="vaizdo_plokste">vaizdo_plokste:</label>
-            <input type="text" id="vaizdo_plokste" name="vaizdo_plokste" required><br><br>
-
-            <label for="ram">ram:</label>
-            <input type="text" id="ram" name="ram" required><br><br>
-
-            <label for="hdd">hdd:</label>
-            <input type="text" id="hdd" name="hdd" required><br><br>
-
-            <label for="kaina">Kaina:</label>
-            <input type="number" id="kaina" name="kaina" min="0.01" step="0.01" required><br><br>
-
-            <label for="photo">Photo:</label>
-            <input type="file" name="photo[]" multiple><br><br>
-
-            <input type="submit" value="Add">
-        </form>
     </div>
 </body>
 
