@@ -55,7 +55,7 @@ $row = mysqli_fetch_assoc($result);
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <label>pavadinimas:</label>
     <input type="text" name="pavadinimas" value="<?php echo $row['pavadinimas']; ?>"><br>
-    <label>Ekrano išmatavimai:</label>
+    <label>Aprašymas:</label>
     <input type="text" name="aprasymas" value="<?php echo $row['aprasymas']; ?>"><br>
     <label>Kaina:</label>
     <input type="text" name="kaina" value="<?php echo $row['kaina']; ?>"><br>

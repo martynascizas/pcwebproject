@@ -58,7 +58,7 @@
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["pavadinimas"] . " " . $row["aprasymas"] . "\" kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>" . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);
