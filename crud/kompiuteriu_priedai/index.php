@@ -5,32 +5,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to Bootstrap CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <title>kompiuteriu_priedai</title>
 </head>
 
 <body>
+    <?php include '../components/header.php'; ?>
     <!-- KOMPIUTERIU PRIEDAI -->
     <div>
-        <a href="../index.html">ATGAL</a>
-        <br>
-        <!-- crud monitorius -->
-        <h1>Add Product To Kompiuteriu Priedai</h1>
-        <form action="insert.php" method="POST" enctype="multipart/form-data">
-            <label for="pavadinimas">Pavadinimas:</label>
-            <input type="text" id="pavadinimas" name="pavadinimas" required><br><br>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
+                    <h1 class="text-center">Kompiuterių Priedai - Įelti naują</h1>
+                    <form action="insert.php" method="POST" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="pavadinimas" class="form-label">Pavadinimas:</label>
+                            <input type="text" class="form-control" id="pavadinimas" name="pavadinimas" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="aprasymas" class="form-label">Aprasymas:</label>
+                            <input type="text" class="form-control" id="aprasymas" name="aprasymas" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="kaina" class="form-label">Kaina:</label>
+                            <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="photo" class="form-label">Photo:</label>
+                            <input type="file" class="form-control" name="photo[]" multiple>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Įkelti</button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
-            <label for="aprasymas">Aprasymas:</label>
-            <input type="text" id="aprasymas" name="aprasymas" required><br><br>
-
-            <label for="kaina">Kaina:</label>
-            <input type="number" id="kaina" name="kaina" min="0.01" step="0.01" required><br><br>
-
-            <label for="photo">Photo:</label>
-            <input type="file" name="photo[]" multiple><br><br>
-
-            <input type="submit" value="Add">
-        </form>
         <?php
         // Connect to the database
         require '../../db.php';
