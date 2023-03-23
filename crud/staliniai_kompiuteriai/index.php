@@ -110,7 +110,6 @@
             echo "</div>";
             echo "<div class=\"col-md-8\">";
             echo "<div class=\"card-body\">";
-            // echo "<h5 class=\"card-title\">" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h5>";
             echo "<form method=\"post\" style=\"display: inline-block;\">";
             echo "<input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">";
             echo "<button type=\"submit\" name=\"delete\" class=\"btn btn-danger\">Pašalinti</button>";

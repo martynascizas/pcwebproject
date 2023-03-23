@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Web</title>
+    <title>devėti.lt</title>
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
                 <!-- <img src="" alt="Logo" width="50" height="50" class="d-inline-block align-text-top"> -->
-                logo
+                devėti.lt
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -48,8 +48,6 @@
         </div>
     </nav>
 
-
-
     <!-- DB CONN -->
     <?php
     require 'db.php';
@@ -74,7 +72,16 @@
 <div class="col-md-4">
   <div class="card mb-3 h-100 d-flex align-items-stretch">
     <div class="card-body d-flex flex-column justify-content-between">
-      <h5>' . "Gamintojas: " . $row["gamintojas"] . " <br> " . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" . "Procesorius: " . $row["procesorius"] . "<br> " . "Vaizdo Plokštė: " . $row["vaizdo_plokste"] . " <br> " . "Atmintis (RAM): " . $row["ram"]  . " <br> " . "Kietasis diskas (HDD): " . $row["hdd"]  . "<br>" . "Kategorija: " . ' Nešiojami Kompiuteriai' . "<br>" .  "Kaina: " . $row["kaina"] . ' EUR</h5>
+      <h5>' .
+                        "Gamintojas: " . $row["gamintojas"] . " <br> " .
+                        "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" .
+                        "Procesorius: " . $row["procesorius"] . "<br> " .
+                        "Vaizdo Plokštė: " . $row["vaizdo_plokste"] . " <br> " .
+                        "Atmintis (RAM): " . $row["ram"]  . " <br> " .
+                        "Kietasis diskas (HDD): " . $row["hdd"]  . "<br>" .
+                        "Prekių Kategorija: " . ' Nešiojami kompiuteriai' . "<br>" .
+                        "Kaina: " . $row["kaina"] . ' EUR
+             </h5>
       <div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
 
                     $photos = explode(",", $row["photos"]);
@@ -111,7 +118,15 @@
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo "<h5>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h5>";
+                    echo "<h5>" .
+                        "Gamintojas: " . $row["gamintojas"] . "<br> " .
+                        "Procesorius: " . $row["procesorius"] . " <br>" .
+                        "Vaizdo Plokštė: " . $row["vaizdo_plokste"] . " <br>" .
+                        "Atmintis (RAM): " . $row["ram"]  . " <br>" .
+                        "Kietasis diskas (HDD): " . $row["hdd"]  . " <br>" .
+                        "Prekių Kategorija: " . " Staliniai kompiuteriai " . " <br>" .
+                        "Kaina: " .  $row["kaina"] . " EUR
+                     </h5>";
                     // Display photos
                     echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
                     $photos = explode(",", $row["photos"]);
@@ -146,7 +161,12 @@
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo '<h5 class="card-title">' . $row["gamintojas"] . ' ' . $row["ekrano_istrizaine"] . '" monitoriai - ' . $row["kaina"] . ' EUR</h5>';
+                    echo '<h5 class="card-title">' .
+                        "Gamintojas: " . $row["gamintojas"] . '<br> ' .
+                        "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" .
+                        "Prekių Kategorija: " . " Monitoriai " . " <br>" .
+                        "Kaina: " . $row["kaina"] . ' EUR
+                    </h5>';
                     // Display photos
                     echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
                     $photos = explode(",", $row["photos"]);
@@ -181,7 +201,12 @@
                     echo '<div class="col-md-4">';
                     echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo '<h5 class="card-title">' . $row["pavadinimas"] . ': ' . $row["aprasymas"]  . ' kompiuteriu_priedai - ' . $row["kaina"] . ' EUR</h5>';
+                    echo '<h5 class="card-title">' .
+                        "Pavadinimas: " . $row["pavadinimas"] . '<br>' .
+                        "Aprašymas: " . $row["aprasymas"] . '<br>' .
+                        "Prekių Kategorija: " . " Kompiuterių priedai " . " <br>" .
+                        "Kaina: " . $row["kaina"] . ' EUR
+                    </h5>';
                     // Display photos
                     echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
                     $photos = explode(",", $row["photos"]);

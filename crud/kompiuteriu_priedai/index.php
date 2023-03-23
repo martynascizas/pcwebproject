@@ -100,14 +100,13 @@
                 echo "</div>";
                 echo "<div class=\"col-md-8\">";
                 echo "<div class=\"card-body\">";
-                // echo "<h5 class=\"card-title\">" . $row["pavadinimas"] . " " . $row["aprasymas"] . "\" monitor - " . $row["kaina"] . " EUR</h5>";
                 echo "<form method=\"post\" style=\"display: inline-block;\">";
                 echo "<input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">";
-                echo "<button type=\"submit\" name=\"delete\" class=\"btn btn-danger\">Delete</button>";
+                echo "<button type=\"submit\" name=\"delete\" class=\"btn btn-danger\">Pašalinti</button>";
                 echo "</form>";
                 echo "<form action=\"edit.php\" method=\"get\" style=\"display: inline-block;\">";
                 echo "<input type=\"hidden\" name=\"id\" value=\"{$row['id']}\">";
-                echo "<button type=\"submit\" class=\"btn btn-primary\">Edit</button>";
+                echo "<button type=\"submit\" class=\"btn btn-primary\">Redaguoti</button>";
                 echo "</form>";
                 echo "</div>";
                 echo "</div>";
