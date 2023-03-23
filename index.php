@@ -74,7 +74,7 @@
 <div class="col-md-4">
   <div class="card mb-3 h-100 d-flex align-items-stretch">
     <div class="card-body d-flex flex-column justify-content-between">
-      <h5>' . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . ' nesiojami_kompiuteriai - ' . $row["kaina"] . ' EUR</h5>
+      <h5>' . "Gamintojas: " . $row["gamintojas"] . " <br> " . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" . "Procesorius: " . $row["procesorius"] . "<br> " . "Vaizdo Plokštė: " . $row["vaizdo_plokste"] . " <br> " . "Atmintis (RAM): " . $row["ram"]  . " <br> " . "Kietasis diskas (HDD): " . $row["hdd"]  . "<br>" . "Kategorija: " . ' Nešiojami Kompiuteriai' . "<br>" .  "Kaina: " . $row["kaina"] . ' EUR</h5>
       <div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
 
                     $photos = explode(",", $row["photos"]);
@@ -89,23 +89,6 @@
     </div>
   </div>
 </div>';
-                    // // Display monitor info
-                    // echo '<div class="col-md-4">';
-                    // echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
-                    // echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    // echo "<h5>" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " nesiojami_kompiuteriai - " . $row["kaina"] . " EUR</h5>";
-                    // // Display photos
-                    // echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
-                    // $photos = explode(",", $row["photos"]);
-                    // echo '<div class="d-flex align-items-center justify-content-center">';
-                    // foreach ($photos as $photo) {
-                    //     echo '<img src="crud/nesiojami_kompiuteriai/uploads/' . $photo . '" class="card-img-top" alt="product image">';
-                    // }
-                    // echo '</div>';
-                    // echo '</div>';
-                    // echo '</div>';
-                    // echo '</div>';
-                    // echo '</div>';
                 }
             } else {
                 echo "<br>nesiojami_kompiuteriai - nerasta";
