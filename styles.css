@@ -1,8 +1,13 @@
 body {
     background: linear-gradient(to bottom, #b2d4fb79, #ffffff);
+    font-family: 'Montserrat', sans-serif;
 }
 
 /* nav stilius */
+
+/* .navbar-brand, .nav-link {
+    font-family: 'Montserrat', sans-serif;
+} */
 
 .navbar-nav {
     display: flex;
