@@ -14,9 +14,10 @@ if (isset($_POST["submit"])) {
     $pavadinimas = $_POST["pavadinimas"];
     $aprasymas = $_POST["aprasymas"];
     $kaina = $_POST["kaina"];
+    $gamintojas = $_POST["gamintojas"];
 
     // Update the kompiuteriu_priedai data
-    $sql = "UPDATE kompiuteriu_priedai SET pavadinimas='$pavadinimas', aprasymas='$aprasymas', kaina='$kaina' WHERE id='$id'";
+    $sql = "UPDATE kompiuteriu_priedai SET pavadinimas='$pavadinimas', gamintojas='$gamintojas', aprasymas='$aprasymas', kaina='$kaina' WHERE id='$id'";
     mysqli_query($conn, $sql);
 
     // Check if new photos were uploaded
@@ -53,6 +54,8 @@ $row = mysqli_fetch_assoc($result);
 <h2>Edit Monitor</h2>
 <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
+    <label>Gamintojas:</label>
+    <input type="text" name="gamintojas" value="<?php echo $row['gamintojas']; ?>"><br>
     <label>pavadinimas:</label>
     <input type="text" name="pavadinimas" value="<?php echo $row['pavadinimas']; ?>"><br>
     <label>Aprašymas:</label>

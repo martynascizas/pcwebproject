@@ -11,6 +11,7 @@ if (!$conn) {
 $pavadinimas = mysqli_real_escape_string($conn, $_POST['pavadinimas']);
 $aprasymas = mysqli_real_escape_string($conn, $_POST['aprasymas']);
 $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
+$gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
 
 // Check if a photo was uploaded
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
@@ -21,7 +22,9 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     // Move file to uploads directory
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
         // Insert data into table
-        $sql = "INSERT INTO `kompiuteriu_priedai` (`pavadinimas`, `aprasymas`, `kaina`, `photo`) VALUES ('$pavadinimas', $aprasymas, $kaina, '$filename')";
+        // $sql = "INSERT INTO `kompiuteriu_priedai` (`pavadinimas`, `aprasymas`, `kaina`, `gamintojas`, `photo`) VALUES ('$pavadinimas', `$gamintojas`, `$aprasymas`, `$kaina`, '$filename')";
+        $sql = "INSERT INTO `kompiuteriu_priedai` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`, `photo`) 
+        VALUES ('$pavadinimas', '$gamintojas', '$aprasymas', $kaina, '$filename')";
         if (mysqli_query($conn, $sql)) {
             echo "New kompiuteriu_priedai added successfully.";
         } else {
@@ -32,7 +35,10 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     }
 } else {
     // Insert data into table without photo
-    $sql = "INSERT INTO `kompiuteriu_priedai` (`pavadinimas`, `aprasymas`, `kaina`) VALUES ('$pavadinimas', '$aprasymas', $kaina)";
+    // $sql = "INSERT INTO `kompiuteriu_priedai` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`) VALUES ('$pavadinimas', `$gamintojas`, '$aprasymas', $kaina)";
+    $sql = "INSERT INTO `kompiuteriu_priedai` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`) 
+        VALUES ('$pavadinimas', '$gamintojas', '$aprasymas', $kaina)";
+
     if (mysqli_query($conn, $sql)) {
         $kompiuteriu_priedai_id = mysqli_insert_id($conn); // Get the ID of the inserted kompiuteriu_priedai
         // Insert photos into `kompiuteriu_priedai_photos` table

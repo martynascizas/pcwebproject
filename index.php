@@ -2,53 +2,14 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Link to Bootstrap CSS file -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>devėti.lt</title>
+    <?php
+    require_once 'components/head.php';
+    ?>
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <!-- <img src="" alt="Logo" width="50" height="50" class="d-inline-block align-text-top"> -->
-                devėti.lt
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#nesiojami_kompiuteriai">Nešiojami Kompiuteriai</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#staliniai_kompiuteriai">Staliniai Kompiuteriai</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#monitoriai">Monitoriai</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#kompiuteriu_priedai">Kompiuterių Priedai</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="crud/index.php">CMS</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- DB CONN -->
+    <!-- db conn -->
     <?php
     require 'db.php';
     if (!$conn) {
@@ -56,7 +17,13 @@
     }
     ?>
 
-    <div class="container">
+    <!-- navbar -->
+    <?php
+    require_once 'components/nav.php';
+    ?>
+
+
+    <div class="container products_section">
         <!-- NESIOJAMI -->
         <h3 id="nesiojami_kompiuteriai" class="text-center mt-5">Nešiojami Kompiuteriai</h3>
         <div class="row justify-content-center">
@@ -190,7 +157,7 @@
         <h3 id="kompiuteriu_priedai" class="text-center mt-5">Kompiuterių priedai</h3>
         <div class="row justify-content-center">
             <?php
-            $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+            $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
     FROM kompiuteriu_priedai m 
     LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id 
     GROUP BY m.id";
@@ -202,6 +169,7 @@
                     echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
                     echo '<h5 class="card-title">' .
+                        "Gamintojas: " . $row["gamintojas"] . '<br>' .
                         "Pavadinimas: " . $row["pavadinimas"] . '<br>' .
                         "Aprašymas: " . $row["aprasymas"] . '<br>' .
                         "Prekių Kategorija: " . " Kompiuterių priedai " . " <br>" .
@@ -228,7 +196,7 @@
         </div>
     </div>
 
-    <!-- CLOSE DB CONN -->
+    <!-- close db conn -->
     <?php
     mysqli_close($conn);
     ?>

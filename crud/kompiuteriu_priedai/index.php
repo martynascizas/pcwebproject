@@ -21,6 +21,10 @@
                 <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
                     <h1 class="text-center">Kompiuterių Priedai - Įelti naują</h1>
                     <form action="insert.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                            <label for="gamintojas" class="form-label">Gamintojas:</label>
+                            <input type="text" class="form-control" id="gamintojas" name="gamintojas" required>
+                        </div>
                         <div class="mb-3">
                             <label for="pavadinimas" class="form-label">Pavadinimas:</label>
                             <input type="text" class="form-control" id="pavadinimas" name="pavadinimas" required>
@@ -78,7 +82,7 @@
 
         // Retrieve kompiuteriu_priedai data from the database
         // $sql = "SELECT * FROM `kompiuteriu_priedai`";
-        $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+        $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
     FROM kompiuteriu_priedai m 
     LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id 
     GROUP BY m.id";
@@ -87,7 +91,7 @@
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>". $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);
