@@ -22,6 +22,13 @@
     require_once 'components/nav.php';
     ?>
 
+    <div class="d-flex align-items-center justify-content-center vh-100" style="background-image: url('assets/img/background.jpg'); background-size: cover; background-position: center;">
+        <div class="text-center text-white">
+            <h1>Lorem Ipsum</h1>
+            <p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, <br> consectetur, adipisci velit..."
+                "There is no one who loves pain itself,<br> who seeks after it and wants to have it, <br> simply because it is pain..."</p>
+        </div>
+    </div>
 
     <div class="container products_section">
         <!-- NESIOJAMI -->
@@ -195,6 +202,10 @@
 
         </div>
     </div>
+    <!-- footer -->
+    <?php
+    require_once 'components/footer.php';
+    ?>
 
     <!-- close db conn -->
     <?php

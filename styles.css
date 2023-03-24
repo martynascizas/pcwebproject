@@ -112,7 +112,12 @@ body {
 
 /* nav fix on scroll */
 
-#nesiojami_kompiuteriai, #staliniai_kompiuteriai, #monitoriai, #kompiuteriu_priedai {
-    padding-top: 80px; /* add 80px of padding to the top of the section */
-    margin-top: -80px; /* offset the section by -80px to compensate for the added padding */
-  }
+#nesiojami_kompiuteriai,
+#staliniai_kompiuteriai,
+#monitoriai,
+#kompiuteriu_priedai {
+    padding-top: 80px;
+    /* add 80px of padding to the top of the section */
+    margin-top: -80px;
+    /* offset the section by -80px to compensate for the added padding */
+}
