@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                <h1 class="text-center">Staliniai Kompiuteriai - Įelti naują</h1>
+                <h1 class="text-center">Staliniai Kompiuteriai - Įkelti naują</h1>
                 <form action="insert.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="gamintojas" class="form-label">Gamintojas:</label>

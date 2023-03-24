@@ -30,7 +30,7 @@
         </div>
     </div>
 
-    <div class="container products_section">
+    <div class="container products_section mb-5">
         <!-- NESIOJAMI -->
         <h3 id="nesiojami_kompiuteriai" class="text-center mt-5">Nešiojami Kompiuteriai</h3>
         <div class="row justify-content-center">
@@ -55,7 +55,7 @@
                         "Kietasis diskas (HDD): " . $row["hdd"]  . "<br>" .
                         "Prekių Kategorija: " . ' Nešiojami kompiuteriai' . "<br>" .
                         "Kaina: " . $row["kaina"] . ' EUR
-             </h5>
+    </h5>
       <div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
 
                     $photos = explode(",", $row["photos"]);

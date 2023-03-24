@@ -8,7 +8,11 @@
     <!-- Link to Bootstrap CSS file -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="script.js"></script>
     <title>nesiojami_kompiuteriai</title>
 </head>
 
@@ -19,7 +23,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                    <h1 class="text-center">Nešiojami Kompiuteriai - Įelti naują</h1>
+                    <h1 class="text-center">Nešiojami Kompiuteriai - Įkelti naują</h1>
                     <form action="insert.php" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="gamintojas" class="form-label">Gamintojas:</label>
@@ -99,7 +103,13 @@
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display nesiojami_kompiuteriai info
-                echo "<h3>" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " nesiojami_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>" .
+                    "Gamintojas: " . $row["gamintojas"] . " <br> " .
+                    "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" .
+                    "Procesorius: " . $row["procesorius"] . " <br>" . " Vaizdo Plokštė: " . $row["vaizdo_plokste"] . "<br> " .
+                    "Atmintis (RAM): " . $row["ram"]  . "<br> " .
+                    "Kiestasis diskas (HDD): " . $row["hdd"]  . "<br> " . "Prekių kategorija: " . " nesiojami_kompiuteriai" . "<br>".
+                    "Kaina: " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);
