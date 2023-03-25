@@ -43,17 +43,16 @@
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo '<div class="col-md-4">';
-                    echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
+                    echo '<div class="card mb-3 h-100 shadow-sm">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo '<h5>Gamintojas: ' . $row["gamintojas"] . '<br>';
-                    echo 'Ekrano Įstrižainė: ' . $row["ekrano_istrizaine"] . '\"<br>';
-                    echo 'Procesorius: ' . $row["procesorius"] . '<br>';
-                    echo 'Vaizdo Plokštė: ' . $row["vaizdo_plokste"] . '<br>';
-                    echo 'Atmintis (RAM): ' . $row["ram"] . '<br>';
-                    echo 'Kietasis diskas (HDD): ' . $row["hdd"] . '<br>';
-                    echo 'Prekių Kategorija: ' . ' Nešiojami kompiuteriai' . '<br>';
-                    echo 'Kaina: ' . $row["kaina"] . ' EUR</h5>';
-                    echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
+                    echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
+                    echo '<p class="card-text">Ekrano Įstrižainė: ' . $row["ekrano_istrizaine"] . '"</p>';
+                    echo '<p class="card-text">Procesorius: ' . $row["procesorius"] . '</p>';
+                    echo '<p class="card-text">Vaizdo Plokštė: ' . $row["vaizdo_plokste"] . '</p>';
+                    echo '<p class="card-text">Atmintis (RAM): ' . $row["ram"] . '</p>';
+                    echo '<p class="card-text">Kietasis diskas (HDD): ' . $row["hdd"] . '</p>';
+                    echo '<p class="card-text">Kaina: ' . $row["kaina"] . ' EUR</p>';
+                    echo '<div class="d-flex align-items-center justify-content-center">';
                     $photos = explode(",", $row["photos"]);
                     echo '<div class="d-flex align-items-center justify-content-center">';
                     foreach ($photos as $photo) {
@@ -66,7 +65,7 @@
                     echo '</div>';
                 }
             } else {
-                echo "<br>nesiojami_kompiuteriai - nerasta";
+                echo "<p class='text-muted'>nesiojami_kompiuteriai - nerasta</p>";
             }
             ?>
         </div>
@@ -82,21 +81,16 @@
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    // Display monitor info
                     echo '<div class="col-md-4">';
-                    echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
+                    echo '<div class="card mb-3 h-100 shadow-sm">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo "<h5>" .
-                        "Gamintojas: " . $row["gamintojas"] . "<br> " .
-                        "Procesorius: " . $row["procesorius"] . " <br>" .
-                        "Vaizdo Plokštė: " . $row["vaizdo_plokste"] . " <br>" .
-                        "Atmintis (RAM): " . $row["ram"]  . " <br>" .
-                        "Kietasis diskas (HDD): " . $row["hdd"]  . " <br>" .
-                        "Prekių Kategorija: " . " Staliniai kompiuteriai " . " <br>" .
-                        "Kaina: " .  $row["kaina"] . " EUR
-                     </h5>";
-                    // Display photos
-                    echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
+                    echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
+                    echo '<p class="card-text">Procesorius: ' . $row["procesorius"] . '</p>';
+                    echo '<p class="card-text">Vaizdo Plokštė: ' . $row["vaizdo_plokste"] . '</p>';
+                    echo '<p class="card-text">Atmintis (RAM): ' . $row["ram"] . '</p>';
+                    echo '<p class="card-text">Kietasis diskas (HDD): ' . $row["hdd"] . '</p>';
+                    echo '<p class="card-text">Kaina: ' . $row["kaina"] . ' EUR</p>';
+                    echo '<div class="d-flex align-items-center justify-content-center">';
                     $photos = explode(",", $row["photos"]);
                     echo '<div class="d-flex align-items-center justify-content-center">';
                     foreach ($photos as $photo) {
@@ -109,7 +103,7 @@
                     echo '</div>';
                 }
             } else {
-                echo "<br>staliniai_kompiuteriai - nerasta";
+                echo "<p class='text-muted'>staliniai_kompiuteriai - nerasta</p>";
             }
             ?>
         </div>
@@ -125,18 +119,14 @@
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    // Display monitor info
                     echo '<div class="col-md-4">';
-                    echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
+                    echo '<div class="card mb-3 h-100 shadow-sm">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo '<h5 class="card-title">' .
-                        "Gamintojas: " . $row["gamintojas"] . '<br> ' .
-                        "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" .
-                        "Prekių Kategorija: " . " Monitoriai " . " <br>" .
-                        "Kaina: " . $row["kaina"] . ' EUR
-                    </h5>';
-                    // Display photos
-                    echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
+                    echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
+                    echo '<p class="card-text">Ekrano Įstrižainė: ' . $row["ekrano_istrizaine"] . '"' . '</p>';
+                    echo '<p class="card-text">Prekių Kategorija: ' . 'Monitoriai' . '</p>';
+                    echo '<p class="card-text">Kaina: ' . $row["kaina"] . ' EUR</p>';
+                    echo '<div class="d-flex align-items-center justify-content-center">';
                     $photos = explode(",", $row["photos"]);
                     echo '<div class="d-flex align-items-center justify-content-center">';
                     foreach ($photos as $photo) {
@@ -149,7 +139,7 @@
                     echo '</div>';
                 }
             } else {
-                echo "<br>monitoriai - nerasta";
+                echo "<p class='text-muted'>monitoriai - nerasta</p>";
             }
             ?>
         </div>
@@ -165,19 +155,19 @@
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    // Display monitor info
+         
+
+
+
                     echo '<div class="col-md-4">';
-                    echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
+                    echo '<div class="card mb-3 h-100 shadow-sm">';
                     echo '<div class="card-body d-flex flex-column justify-content-between">';
-                    echo '<h5 class="card-title">' .
-                        "Gamintojas: " . $row["gamintojas"] . '<br>' .
-                        "Pavadinimas: " . $row["pavadinimas"] . '<br>' .
-                        "Aprašymas: " . $row["aprasymas"] . '<br>' .
-                        "Prekių Kategorija: " . " Kompiuterių priedai " . " <br>" .
-                        "Kaina: " . $row["kaina"] . ' EUR
-                    </h5>';
-                    // Display photos
-                    echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
+                    echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
+                    echo '<p class="card-text">Pavadinimas: ' . $row["pavadinimas"] . '' . '</p>';
+                    echo '<p class="card-text">Aprašymas: ' .  $row["aprasymas"] . '</p>';
+                    echo  "Prekių Kategorija: " . " Kompiuterių priedai " . " </p>";
+                    echo '<p class="card-text">Kaina: ' . $row["kaina"] . ' EUR</p>';
+                    echo '<div class="d-flex align-items-center justify-content-center">';
                     $photos = explode(",", $row["photos"]);
                     echo '<div class="d-flex align-items-center justify-content-center">';
                     foreach ($photos as $photo) {
@@ -188,9 +178,13 @@
                     echo '</div>';
                     echo '</div>';
                     echo '</div>';
+
+
+
+
                 }
             } else {
-                echo "<br> kompiuteriu_priedai nerast- nerasta";
+                echo "<p class='text-muted'>Kompiuterių priedai - nerasta</p>";
             }
             ?>
 
