@@ -74,8 +74,8 @@ $row = mysqli_fetch_assoc($result);
     <label for="kaina">Kaina:</label>
     <input type="number" id="kaina" name="kaina" value="<?php echo $row['kaina']; ?>" min="0.01" step="0.01" required><br><br>
 
-    <label for="photo">Photo:</label>
-    <input type="file" name="photo[]" multiple><br><br>
+    <label for="photos">Photo:</label>
+    <input type="file" name="photos[]" multiple><br><br>
 
     <button type="submit" name="submit">Save Changes</button>
 </form>

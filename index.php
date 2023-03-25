@@ -42,34 +42,28 @@
             $result = mysqli_query($conn, $sql);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo '
-<div class="col-md-4">
-  <div class="card mb-3 h-100 d-flex align-items-stretch">
-    <div class="card-body d-flex flex-column justify-content-between">
-      <h5>' .
-                        "Gamintojas: " . $row["gamintojas"] . " <br> " .
-                        "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" .
-                        "Procesorius: " . $row["procesorius"] . "<br> " .
-                        "Vaizdo Plokštė: " . $row["vaizdo_plokste"] . " <br> " .
-                        "Atmintis (RAM): " . $row["ram"]  . " <br> " .
-                        "Kietasis diskas (HDD): " . $row["hdd"]  . "<br>" .
-                        "Prekių Kategorija: " . ' Nešiojami kompiuteriai' . "<br>" .
-                        "Kaina: " . $row["kaina"] . ' EUR
-    </h5>
-      <div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
-
+                    echo '<div class="col-md-4">';
+                    echo '<div class="card mb-3 h-100 d-flex align-items-stretch">';
+                    echo '<div class="card-body d-flex flex-column justify-content-between">';
+                    echo '<h5>Gamintojas: ' . $row["gamintojas"] . '<br>';
+                    echo 'Ekrano Įstrižainė: ' . $row["ekrano_istrizaine"] . '\"<br>';
+                    echo 'Procesorius: ' . $row["procesorius"] . '<br>';
+                    echo 'Vaizdo Plokštė: ' . $row["vaizdo_plokste"] . '<br>';
+                    echo 'Atmintis (RAM): ' . $row["ram"] . '<br>';
+                    echo 'Kietasis diskas (HDD): ' . $row["hdd"] . '<br>';
+                    echo 'Prekių Kategorija: ' . ' Nešiojami kompiuteriai' . '<br>';
+                    echo 'Kaina: ' . $row["kaina"] . ' EUR</h5>';
+                    echo '<div class="d-flex align-items-center justify-content-center" style="height: 100%;">';
                     $photos = explode(",", $row["photos"]);
                     echo '<div class="d-flex align-items-center justify-content-center">';
                     foreach ($photos as $photo) {
                         echo '<img src="crud/nesiojami_kompiuteriai/uploads/' . $photo . '" class="card-img-top" alt="product image">';
                     }
                     echo '</div>';
-
-                    echo '
-      </div>
-    </div>
-  </div>
-</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
                 }
             } else {
                 echo "<br>nesiojami_kompiuteriai - nerasta";
