@@ -1,12 +1,28 @@
 body {
-    background: linear-gradient(to bottom, #b2d4fb79, #ffffff);
+    background: linear-gradient(to bottom, #ffffff79, #ffffff);
     font-family: 'Montserrat', sans-serif;
     overflow-y: scroll;
 }
 
 ::-webkit-scrollbar {
-    width: 0px; /* Removes the vertical scrollbar */
-  }
+    width: 0px;
+    /* Removes the vertical scrollbar */
+}
+
+/*btn on start page */
+.btn {
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    border: none;
+    padding: 6px 40px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: grey;
+}
 
 /* nav stilius */
 
@@ -78,7 +94,7 @@ body {
     }
 
     .navbar-brand {
-        margin-left: 300px;
+        margin-left: 150px;
     }
 
     .nav-link {
@@ -86,7 +102,7 @@ body {
     }
 
     .navbar-nav {
-        margin-right: 200px;
+        margin-right: 150px;
     }
 }
 
@@ -109,6 +125,33 @@ body {
     .navbar-toggler {
         display: none;
     }
+
+    .second-container {
+        margin-right: 0 !important;
+        text-align: center;
+        padding: 0 15px 0 15px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .d-flex {
+        justify-content: center !important;
+    }
+
+    .text-white {
+        text-align: center !important;
+        margin-right: 0 !important;
+    }
+}
+
+.first-container {
+    background-image: url('assets/img/background.webp');
+    background-size: cover;
+    background-position: center;
+}
+
+.second-container {
+    margin-right: 100px;
 }
 
 /* nav fix on scroll */
@@ -121,4 +164,28 @@ body {
     /* add 80px of padding to the top of the section */
     margin-top: -80px;
     /* offset the section by -80px to compensate for the added padding */
+}
+
+/* Kategorijos styles */
+
+.btn-primary-white {
+    background-color: #fff;
+    color: #333;
+    border-radius: 0;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    outline: none;
+}
+
+.btn-primary-white:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.card-body {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+.custom-container {
+    width: 80%;
 }
