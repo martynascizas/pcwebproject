@@ -145,7 +145,7 @@ body {
 }
 
 .first-container {
-    background-image: url('assets/img/background.webp');
+    background-image: url('assets/img/bg.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -156,10 +156,7 @@ body {
 
 /* nav fix on scroll */
 
-#nesiojami_kompiuteriai,
-#staliniai_kompiuteriai,
-#monitoriai,
-#kompiuteriu_priedai {
+#categorys-container {
     padding-top: 80px;
     /* add 80px of padding to the top of the section */
     margin-top: -80px;
