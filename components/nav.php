@@ -6,7 +6,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto" style="transition: all 0.3s ease-in-out;">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="#nesiojami_kompiuteriai" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Nešiojami Kompiuteriai</a>
                 </li>
                 <li class="nav-item">
@@ -17,10 +17,10 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#kompiuteriu_priedai" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Kompiuterių Priedai</a>
-                </li>
-                <!-- <li>
-                    <a class="nav-link" href="crud/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Admin</a>
                 </li> -->
+                <li>
+                    <a class="nav-link" href="crud/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Admin</a>
+                </li>
             </ul>
         </div>
     </div>

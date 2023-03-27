@@ -31,49 +31,46 @@
     </div>
 
     <!-- Kategorijos -->
-    <div id="categorys-container"class="container mt-3 mb-3 custom-container">
-        <div class="row row-cols-1 row-cols-md-2 g-3">
-            <div class="col-md-5">
-                <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/laptops.jpg'); background-size: cover; border: none;">
-                    <div class="card-body" style="height: 350px;">
-                        <a href="components/nesiojami.php" class="btn btn-primary-white" style="position:absolute; bottom:20px; left:20px;">Nešiojami Kompiuteriai</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/pc.webp'); background-size: cover; border: none;">
-                    <div class="card-body" style="height: 350px;">
-                        <a href="components/staliniai.php" class="btn btn-primary-white" style="position:absolute; bottom:20px; left:20px;">Staliniai Kompiuteriai</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-7">
-                <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/monitor.webp'); background-size: cover; border: none;">
-                    <div class="card-body" style="height: 350px;">
-                        <a href="components/monitoriai.php" class="btn btn-primary-white" style="position:absolute; bottom:20px; left:20px;">Monitoriai</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/accessories.jpg'); background-size: cover; border: none;">
-                    <div class="card-body" style="height: 350px;">
-                        <a href="components/priedai.php" class="btn btn-primary-white" style="position:absolute; bottom:20px; left:20px;">Kompiuterių Priedai</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div>
+        <?php
+        require_once 'components/categorys.php';
+        ?>
     </div>
 
+
+    <!-- Btn arrow -->
+    <button onclick="scrollToTop()" id="scrollToTopBtn" class="scroll-to-top-btn">&#9650;</button>
+
     <!-- footer -->
-    <?php
-    require_once 'components/footer.php';
-    ?>
+    <div>
+        <?php
+        require_once 'components/footer.php';
+        ?>
+    </div>
 
     <!-- close db conn -->
     <?php
     mysqli_close($conn);
     ?>
+    <script>
+        window.onscroll = function() {
+            scrollFunction()
+        };
 
+        function scrollFunction() {
+            var scrollToTopBtn = document.getElementById("scrollToTopBtn");
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        }
+
+        function scrollToTop() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
     <!-- Link to Bootstrap JS and jQuery files -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

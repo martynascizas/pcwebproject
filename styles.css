@@ -2,6 +2,7 @@ body {
     background: linear-gradient(to bottom, #ffffff79, #ffffff);
     font-family: 'Montserrat', sans-serif;
     overflow-y: scroll;
+    height: 100%
 }
 
 ::-webkit-scrollbar {
@@ -9,7 +10,8 @@ body {
     /* Removes the vertical scrollbar */
 }
 
-/*btn on start page */
+/*btn on first div page, divs */
+
 .btn {
     background-color: black;
     color: white;
@@ -22,6 +24,16 @@ body {
 
 .btn:hover {
     background-color: grey;
+}
+
+.first-container {
+    background-image: url('assets/img/bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.second-container {
+    margin-right: 100px;
 }
 
 /* nav stilius */
@@ -69,7 +81,7 @@ body {
     }
 }
 
-/* animacija */
+/* nav animacija */
 @keyframes heightChange {
     from {
         height: 80px;
@@ -131,6 +143,9 @@ body {
         text-align: center;
         padding: 0 15px 0 15px;
     }
+    #categorys-container {
+        min-height: 1470px; /* or any other value that works for your layout */
+    }
 }
 
 @media (max-width: 991.98px) {
@@ -142,25 +157,6 @@ body {
         text-align: center !important;
         margin-right: 0 !important;
     }
-}
-
-.first-container {
-    background-image: url('assets/img/bg.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.second-container {
-    margin-right: 100px;
-}
-
-/* nav fix on scroll */
-
-#categorys-container {
-    padding-top: 80px;
-    /* add 80px of padding to the top of the section */
-    margin-top: -80px;
-    /* offset the section by -80px to compensate for the added padding */
 }
 
 /* Kategorijos styles */
@@ -186,3 +182,60 @@ body {
 .custom-container {
     width: 80%;
 }
+
+/* up btn */
+
+.scroll-to-top-btn {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #3e3e3e;
+    color: #bbbbbb;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    animation-name: bounce;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.container.products_section.mb-5.products-margin {
+    margin-top: 100px;
+}
+
+
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .container {
+    flex-grow: 1;
+  }
+  
+  footer {
+    flex-shrink: 0;
+  }
+
