@@ -22,36 +22,35 @@
     require_once 'components/nav.php';
     ?>
 
-    <div class="first-container d-flex align-items-center justify-content-end vh-100">
-        <div class="second-container text-black">
-            <h1 class="fw-bold mt-5">Lorem Ipsum</h1>
-            <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, <br> consectetur, adipisci velit... There is no one who loves pain itself,<br> who seeks after it and wants to have it, <br> simply because it is pain..."</p>
-            <a href="#categorys-container" class="btn btn-black">Plačiau</a>
-        </div>
-    </div>
+    <!-- first section0 -->
+    <?php
+    require_once 'components/section0.php';
+    ?>
 
-    <!-- Kategorijos -->
-    <div>
-        <?php
-        require_once 'components/categorys.php';
-        ?>
-    </div>
+    <!-- categorys section1 -->
+    <?php
+    require_once 'components/section1.php';
+    ?>
 
+    <!-- latest items section2 -->
+    <?php
+    require_once 'components/section2.php';
+    ?>
 
-    <!-- Btn arrow -->
+    <!-- up button -->
     <button onclick="scrollToTop()" id="scrollToTopBtn" class="scroll-to-top-btn">&#9650;</button>
 
     <!-- footer -->
-    <div>
-        <?php
-        require_once 'components/footer.php';
-        ?>
-    </div>
+    <?php
+    require_once 'components/footer.php';
+    ?>
 
     <!-- close db conn -->
     <?php
     mysqli_close($conn);
     ?>
+
+    <!-- up button script -->
     <script>
         window.onscroll = function() {
             scrollFunction()

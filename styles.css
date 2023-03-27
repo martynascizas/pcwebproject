@@ -5,12 +5,12 @@ body {
     height: 100%
 }
 
+/*isjungiu default skrolinimo juosta*/
 ::-webkit-scrollbar {
     width: 0px;
-    /* Removes the vertical scrollbar */
 }
 
-/*btn on first div page, divs */
+/*first main div*/
 
 .btn {
     background-color: black;
@@ -36,7 +36,7 @@ body {
     margin-right: 100px;
 }
 
-/* nav stilius */
+/*navigacija*/
 
 .navbar-nav {
     display: flex;
@@ -81,7 +81,7 @@ body {
     }
 }
 
-/* nav animacija */
+/*nav animacija*/
 @keyframes heightChange {
     from {
         height: 80px;
@@ -143,8 +143,10 @@ body {
         text-align: center;
         padding: 0 15px 0 15px;
     }
-    #categorys-container {
-        min-height: 1470px; /* or any other value that works for your layout */
+
+    /*category-container fix del aukscio mazuose ekranuose*/
+    #heightfix {
+        min-height: 1570px;
     }
 }
 
@@ -159,7 +161,7 @@ body {
     }
 }
 
-/* Kategorijos styles */
+/*categoriju stiliai, category-container*/
 
 .btn-primary-white {
     background-color: #fff;
@@ -183,7 +185,7 @@ body {
     width: 80%;
 }
 
-/* up btn */
+/*up button*/
 
 .scroll-to-top-btn {
     display: none;
@@ -219,23 +221,29 @@ body {
     }
 }
 
+/*kategoriju stiliai*/
+
 .container.products_section.mb-5.products-margin {
     margin-top: 100px;
 }
-
-
 
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-  }
-  
-  .container {
-    flex-grow: 1;
-  }
-  
-  footer {
-    flex-shrink: 0;
-  }
+}
 
+.container {
+    flex-grow: 1;
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+/*naujausi produktai*/
+
+#latest-products {
+    padding-top: 60px;
+    margin-bottom: 30px;
+}

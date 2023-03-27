@@ -57,7 +57,6 @@
                     echo "<p class='text-muted'>Kompiuterių priedai - nerasta</p>";
                 }
                 ?>
-
             </div>
         </div>
         <!-- footer -->
