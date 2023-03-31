@@ -12,7 +12,7 @@
           <a class="nav-link" href="../nesiojami_kompiuteriai/index.php">Nešiojami Kompiuteriai</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../staliniai_Kompiuteriai/index.php">Staliniai Kompiuteriai</a>
+          <a class="nav-link" href="../staliniai_kompiuteriai/index.php">Staliniai Kompiuteriai</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../monitoriai/index.php">Monitoriai</a>
