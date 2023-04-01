@@ -23,7 +23,7 @@
 
     <div class="wrapper">
         <div class="container products_section mb-5 products-margin">
-            <h3 id="staliniai_kompiuteriai" class="text-center">Staliniai Kompiuteriai</h3>
+            <h3 id="staliniai_kompiuteriai" class="text-center mb-5">Staliniai Kompiuteriai</h3>
             <div class="row justify-content-center mb-5">
                 <?php
                 $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
@@ -33,7 +33,7 @@
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<div class="col-md-4">';
+                        echo '<div class="col-md-4 mb-4">';
                         echo '<div class="card mb-3 h-100 shadow-sm">';
                         echo '<div class="card-body d-flex flex-column justify-content-between">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';

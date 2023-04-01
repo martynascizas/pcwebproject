@@ -34,6 +34,10 @@
                             <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required>
                         </div>
                         <div class="mb-3">
+                            <label for="procesorius" class="form-label">procesorius:</label>
+                            <input type="text" class="form-control" id="procesorius" name="procesorius" min="1" max="100" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="vaizdo_plokste" class="form-label">Vaizdo Plokštė:</label>
                             <input type="text" class="form-control" id="vaizdo_plokste" name="vaizdo_plokste" required>
                         </div>

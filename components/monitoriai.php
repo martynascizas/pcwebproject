@@ -22,17 +22,17 @@
     ?>
     <div class="wrapper">
         <div class="container products_section mb-5 products-margin">
-            <h3 id="monitoriai" class="text-center">Monitoriai</h3>
+            <h3 id="monitoriai" class="text-center mb-5">Monitoriai</h3>
             <div class="row justify-content-center">
                 <?php
-                $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+                $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.rezoliucija, .m.lieciamas_ekranas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
             FROM monitoriai m 
             LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id 
             GROUP BY m.id";
                 $result = mysqli_query($conn, $sql);
                 if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<div class="col-md-4">';
+                        echo '<div class="col-md-4 mb-4">';
                         echo '<div class="card mb-3 h-100 shadow-sm">';
                         echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
                         echo '<div class="carousel-inner">';
@@ -59,9 +59,16 @@
                         echo '</button>';
                         echo '</div>';
                         echo '<div class="card-body d-flex flex-column justify-content-between">';
-                        echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">Ekrano Įstrižainė: ' . $row["ekrano_istrizaine"] . '"' . '</p>';
-                        echo '<p class="card-text">Kaina: ' . $row["kaina"] . ' EUR</p>';
+                        echo '<h5 class="card-title">' .
+                            $row["gamintojas"] . '</h5>';
+                        echo '<p class="card-text">Ekrano Įstrižainė: ' .
+                            $row["ekrano_istrizaine"] . '"' . '</p>';
+                        echo '<p class="card-text">Ekrano Rezoliucija: ' .
+                            $row["rezoliucija"] . '</p>';
+                        echo '<p class="card-text">Lieciamas ekranas: ' .
+                            $row["lieciamas_ekranas"] . '</p>';
+                        echo '<p class="card-text">Kaina: ' .
+                            $row["kaina"] . ' EUR</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';

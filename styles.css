@@ -61,7 +61,7 @@ body {
 .navbar.scrolled .navbar-brand {
     font-size: 1.5rem;
     transition: all 0.3s ease-in-out;
-    margin-top: -7px;
+    margin-top: 0px !important;
 }
 
 .navbar.scrolled .nav-link {
@@ -82,6 +82,7 @@ body {
 }
 
 /*nav animacija*/
+
 @keyframes heightChange {
     from {
         height: 80px;
@@ -186,6 +187,10 @@ body {
 @media only screen and (max-width: 767px) {
     #heightfix {
         min-height: 1420px;
+    }
+
+    .call a {
+        color: red!important;
     }
 }
 

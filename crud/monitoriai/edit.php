@@ -13,10 +13,12 @@ if (isset($_POST["submit"])) {
     $id = $_POST["id"];
     $gamintojas = $_POST["gamintojas"];
     $ekrano_istrizaine = $_POST["ekrano_istrizaine"];
+    $lieciamas_ekranas = mysqli_real_escape_string($conn, $_POST['touchscreen']);
+    $rezoliucija = mysqli_real_escape_string($conn, $_POST['rezoliucija']);
     $kaina = $_POST["kaina"];
 
     // Update the monitoriai data
-    $sql = "UPDATE monitoriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine', kaina='$kaina' WHERE id='$id'";
+    $sql = "UPDATE monitoriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine', lieciamas_ekranas='$lieciamas_ekranas', rezoliucija = '$rezoliucija', kaina='$kaina' WHERE id='$id'";
     mysqli_query($conn, $sql);
 
     // Check if new photos were uploaded
@@ -57,6 +59,15 @@ $row = mysqli_fetch_assoc($result);
     <input type="text" name="gamintojas" value="<?php echo $row['gamintojas']; ?>"><br>
     <label>Ekrano išmatavimai:</label>
     <input type="text" name="ekrano_istrizaine" value="<?php echo $row['ekrano_istrizaine']; ?>"><br>
+    <label for="touchscreen">Liečiamas ekranas:</label>
+    <select id="touchscreen" name="touchscreen">
+        <option value="yes" <?php if ($row['lieciamas_ekranas'] == 'yes') echo ' selected'; ?>>taip</option>
+        <option value="no" <?php if ($row['lieciamas_ekranas'] == 'no') echo ' selected'; ?>>ne</option>
+    </select><br>
+    <div class="mb-3">
+        <label for="rezoliucija" class="form-label">Rezoliucija:</label>
+        <input type="text" class="form-control" id="rezoliucija" name="rezoliucija" value="<?php echo $row['rezoliucija']; ?>">
+    </div>
     <label>Kaina:</label>
     <input type="text" name="kaina" value="<?php echo $row['kaina']; ?>"><br>
     <label>Nuotraukos:</label>

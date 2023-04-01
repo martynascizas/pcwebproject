@@ -25,7 +25,7 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     // Move file to uploads directory
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
         // Insert data into table
-        $sql = "INSERT INTO `nesiojami_kompiuteriai` (`gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES ('$gamintojas', $ekrano_istrizaine, $kaina, '$filename')";
+        $sql = "INSERT INTO `nesiojami_kompiuteriai` (`gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES ('$gamintojas', $ekrano_istrizaine, $procesorius, $kaina, '$filename')";
         if (mysqli_query($conn, $sql)) {
             echo "New nesiojami_kompiuteriai added successfully.";
         } else {
