@@ -143,11 +143,6 @@ body {
         text-align: center;
         padding: 0 15px 0 15px;
     }
-
-    /*category-container fix del aukscio mazuose ekranuose*/
-    #heightfix {
-        min-height: 1420px;
-    }
 }
 
 @media (max-width: 991.98px) {
@@ -186,6 +181,13 @@ body {
 }
 
 /*kategoriju stiliai*/
+
+/*category-container fix del aukscio mazuose ekranuose*/
+@media only screen and (max-width: 767px) {
+    #heightfix {
+        min-height: 1420px;
+    }
+}
 
 .container.products_section.mb-5.products-margin {
     margin-top: 100px;

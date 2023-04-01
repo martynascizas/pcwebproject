@@ -39,7 +39,6 @@
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                         echo '<p class="card-text">Pavadinimas: ' . $row["pavadinimas"] . '' . '</p>';
                         echo '<p class="card-text">Aprašymas: ' .  $row["aprasymas"] . '</p>';
-                        echo  "Prekių Kategorija: " . " Kompiuterių priedai " . " </p>";
                         echo '<p class="card-text">Kaina: ' . $row["kaina"] . ' EUR</p>';
                         echo '<div class="d-flex align-items-center justify-content-center">';
                         $photos = explode(",", $row["photos"]);
