@@ -112,11 +112,9 @@
             <div>
                 <span id="price-range"><?php echo $min_kaina; ?> - <?php echo $max_kaina; ?></span> Eur
             </div>
-            <button type="submit" class="btn btn-primary" name="filter_submit">Filtruoti</button>
-
+            <button type="submit" class="btn btn-primary">Filtruoti</button>
         </form>
     </div>
-
 
     <div class="wrapper">
         <div class="container products_section mb-5 products-margin">
@@ -174,7 +172,7 @@
                 } else {
                     echo "<p class='text-muted'>monitoriai - nerasta</p>";
                 }
-                
+
                 // if (mysqli_num_rows($result) > 0) {
                 //     while ($row = mysqli_fetch_assoc($result)) {
                 //         echo '<div class="col-md-4">';
