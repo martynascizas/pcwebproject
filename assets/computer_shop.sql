@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2023 at 10:24 PM
+-- Generation Time: Apr 02, 2023 at 05:42 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -32,15 +32,17 @@ CREATE TABLE `kompiuteriu_priedai` (
   `pavadinimas` varchar(50) NOT NULL,
   `kaina` decimal(10,2) NOT NULL,
   `aprasymas` text DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `photo` varchar(255) DEFAULT NULL,
+  `gamintojas` varchar(50) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `kompiuteriu_priedai`
 --
 
-INSERT INTO `kompiuteriu_priedai` (`id`, `pavadinimas`, `kaina`, `aprasymas`, `photo`) VALUES
-(2, 'rinkinys edited', '20.00', 'mic, and mouse, edited', NULL);
+INSERT INTO `kompiuteriu_priedai` (`id`, `pavadinimas`, `kaina`, `aprasymas`, `photo`, `gamintojas`, `timestamp`) VALUES
+(15, 'priedas', '20.00', 'Aprašymas', NULL, 'Dellss', '2023-04-01 18:57:05');
 
 -- --------------------------------------------------------
 
@@ -59,7 +61,7 @@ CREATE TABLE `kompiuteriu_priedai_photos` (
 --
 
 INSERT INTO `kompiuteriu_priedai_photos` (`id`, `kompiuteriu_priedai_id`, `filename`) VALUES
-(28, 2, 'priedas0.jpg');
+(43, 15, 'accessories.jpg');
 
 -- --------------------------------------------------------
 
@@ -72,15 +74,18 @@ CREATE TABLE `monitoriai` (
   `gamintojas` varchar(50) NOT NULL,
   `ekrano_istrizaine` int(11) NOT NULL,
   `kaina` decimal(10,2) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `photo` varchar(255) DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `rezoliucija` varchar(50) NOT NULL,
+  `lieciamas_ekranas` enum('Yes','No') NOT NULL DEFAULT 'No'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `monitoriai`
 --
 
-INSERT INTO `monitoriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `kaina`, `photo`) VALUES
-(52, 'Dell', 15, '499.00', NULL);
+INSERT INTO `monitoriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `kaina`, `photo`, `timestamp`, `rezoliucija`, `lieciamas_ekranas`) VALUES
+(64, 'Dell', 19, '499.00', NULL, '2023-04-01 20:54:51', 'full HD', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -99,7 +104,7 @@ CREATE TABLE `monitoriai_photos` (
 --
 
 INSERT INTO `monitoriai_photos` (`id`, `monitoriai_id`, `filename`) VALUES
-(39, 52, 'dell0.jpg');
+(53, 64, 'monitor.webp');
 
 -- --------------------------------------------------------
 
@@ -116,15 +121,16 @@ CREATE TABLE `nesiojami_kompiuteriai` (
   `ram` int(11) NOT NULL,
   `hdd` int(11) NOT NULL,
   `kaina` decimal(10,2) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `photo` varchar(255) DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `nesiojami_kompiuteriai`
 --
 
-INSERT INTO `nesiojami_kompiuteriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES
-(4, 'Mac Pro', 13, 'M2', 'Mseries', 16, 1, '2599.00', '');
+INSERT INTO `nesiojami_kompiuteriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`, `timestamp`) VALUES
+(0, 'Dell', 19, 'I5 8gen', 'AMD', 8, 256, '499.00', '', '2023-04-01 18:53:00');
 
 -- --------------------------------------------------------
 
@@ -143,7 +149,7 @@ CREATE TABLE `nesiojami_kompiuteriai_photos` (
 --
 
 INSERT INTO `nesiojami_kompiuteriai_photos` (`id`, `nesiojami_kompiuteriai_id`, `filename`) VALUES
-(0, 4, 'macbook_pro_13_in_silver_2.jpg');
+(0, 0, 'del lap.jpg');
 
 -- --------------------------------------------------------
 
@@ -159,15 +165,16 @@ CREATE TABLE `staliniai_kompiuteriai` (
   `ram` int(11) NOT NULL,
   `hdd` int(11) NOT NULL,
   `kaina` decimal(10,2) NOT NULL,
-  `photo` varchar(255) DEFAULT NULL
+  `photo` varchar(255) DEFAULT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `staliniai_kompiuteriai`
 --
 
-INSERT INTO `staliniai_kompiuteriai` (`id`, `gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES
-(3, 'Dell works?', 'I5 8gen', 'AMD', 8, 240, '15.00', '');
+INSERT INTO `staliniai_kompiuteriai` (`id`, `gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`, `timestamp`) VALUES
+(0, 'Dell', 'I5 8gen', '3060', 16, 240, '499.00', '', '2023-04-01 18:46:51');
 
 -- --------------------------------------------------------
 
@@ -186,8 +193,7 @@ CREATE TABLE `staliniai_kompiuteriai_photos` (
 --
 
 INSERT INTO `staliniai_kompiuteriai_photos` (`id`, `staliniai_kompiuteriai_id`, `filename`) VALUES
-(0, 2, 'pc.jfif'),
-(0, 3, 'pc.jfif');
+(0, 0, 'pc.jfif');
 
 --
 -- Indexes for dumped tables
@@ -220,18 +226,6 @@ ALTER TABLE `monitoriai_photos`
   ADD KEY `monitoriai_id` (`monitoriai_id`);
 
 --
--- Indexes for table `nesiojami_kompiuteriai`
---
-ALTER TABLE `nesiojami_kompiuteriai`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `staliniai_kompiuteriai`
---
-ALTER TABLE `staliniai_kompiuteriai`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -239,37 +233,25 @@ ALTER TABLE `staliniai_kompiuteriai`
 -- AUTO_INCREMENT for table `kompiuteriu_priedai`
 --
 ALTER TABLE `kompiuteriu_priedai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `kompiuteriu_priedai_photos`
 --
 ALTER TABLE `kompiuteriu_priedai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `monitoriai`
 --
 ALTER TABLE `monitoriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `monitoriai_photos`
 --
 ALTER TABLE `monitoriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
-
---
--- AUTO_INCREMENT for table `nesiojami_kompiuteriai`
---
-ALTER TABLE `nesiojami_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `staliniai_kompiuteriai`
---
-ALTER TABLE `staliniai_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- Constraints for dumped tables

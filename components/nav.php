@@ -4,7 +4,7 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="" id="navbarNav">
+        <div class="navbar-collapse collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto" style="transition: all 0.3s ease-in-out;">
                 <li>
                     <a class="call" href="tel:+3706899999" style="text-decoration: none;">
