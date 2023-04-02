@@ -5,6 +5,19 @@ body {
     height: 100%
 }
 
+.col-md-3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.col-md-9 {
+  margin-left: 25%; /* replace with the width of the fixed left column */
+}
+
+
 /*isjungiu default skrolinimo juosta*/
 ::-webkit-scrollbar {
     width: 0px;
