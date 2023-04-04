@@ -177,6 +177,7 @@
                 FROM monitoriai m 
                 LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
 
+                // Loop all possible conditions
                 $where_conditions = [];
 
                 if (!empty($gamintojas)) {
@@ -193,6 +194,10 @@
 
                 if (!empty($lieciamas_ekranas)) {
                     $where_conditions[] = "lieciamas_ekranas = '$lieciamas_ekranas'";
+                }
+
+                if (!empty($kaina)) {
+                    $where_conditions[] = "kaina <= $kaina";
                 }
 
                 if (!empty($where_conditions)) {
