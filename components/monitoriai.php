@@ -156,7 +156,7 @@
                     </select>
 
                     <label for="kaina" class="form-label">Kaina iki (€)</label>
-                    <input type="number" class="form-control" id="kaina" name="kaina" min="0" max="9999" step="1" value="<?php echo isset($_POST['kaina']) ? $_POST['kaina'] : ''; ?>">
+                    <input type="number" class="form-control" id="kaina" name="kaina" min="0" max="9999" step="30" value="<?php echo isset($_POST['kaina']) ? $_POST['kaina'] : ''; ?>">
 
                 </div>
                 <button type="submit" class="btn btn-primary" name="filter_submit">Filtruoti</button>
@@ -245,6 +245,30 @@
     <?php
     mysqli_close($conn);
     ?>
+    <script>
+  // Select the form and add an event listener to detect changes
+  const form = document.getElementById('filter-form');
+  form.addEventListener('change', handleFormChange);
+
+  function handleFormChange(event) {
+    // Prevent the form from submitting
+    event.preventDefault();
+
+    // Get the form data and send an AJAX request
+    const formData = new FormData(form);
+    fetch('filter.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+      // Update the product list in the DOM with the new data
+      const productList = document.querySelector('.product-list');
+      productList.innerHTML = data;
+    })
+    .catch(error => console.error(error));
+  }
+</script>
 </body>
 
 </html>
