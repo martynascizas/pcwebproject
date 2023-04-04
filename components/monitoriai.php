@@ -173,40 +173,34 @@
                 $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
                 $kaina = $_POST['kaina'];
 
-                // Construct SQL query with the selected gamintojas and ekrano_istrizaine values
                 $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.rezoliucija, m.lieciamas_ekranas, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
-                            FROM monitoriai m 
-                            LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
-                if (!empty($gamintojas) && empty($ekrano_istrizaine) && empty($rezoliucija) && empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE gamintojas = '$gamintojas' GROUP BY m.id";
-                    //gamintojas
-                } else if (empty($gamintojas) && !empty($ekrano_istrizaine) && empty($rezoliucija) && empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE ekrano_istrizaine = '$ekrano_istrizaine' GROUP BY m.id";
-                    //ekrano_istrizaine
-                } else if (empty($gamintojas) && empty($ekrano_istrizaine) && !empty($rezoliucija) && empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE rezoliucija = '$rezoliucija' GROUP BY m.id";
-                    //rezoliucija
-                } else if (empty($gamintojas) && empty($ekrano_istrizaine) && empty($rezoliucija) && !empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE lieciamas_ekranas = '$lieciamas_ekranas' GROUP BY m.id";
-                    //lieciamas_ekranas
-                } else if (!empty($gamintojas) && !empty($ekrano_istrizaine) && empty($rezoliucija) && empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE gamintojas = '$gamintojas' AND ekrano_istrizaine = '$ekrano_istrizaine' GROUP BY m.id";
-                    //gamintojas / ekrano_istrizaine
-                } else if (!empty($gamintojas) && empty($ekrano_istrizaine) && !empty($rezoliucija) && empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE gamintojas = '$gamintojas' AND rezoliucija = '$rezoliucija' GROUP BY m.id";
-                    //gamintojas / rezoliucija
-                } else if (!empty($gamintojas) && empty($ekrano_istrizaine) && empty($rezoliucija) && !empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE gamintojas = '$gamintojas' AND lieciamas_ekranas = '$lieciamas_ekranas' GROUP BY m.id";
-                    //gamintojas / lieciamas_ekranas
-                } else if (!empty($gamintojas) && !empty($ekrano_istrizaine) && !empty($rezoliucija) && empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE gamintojas = '$gamintojas' AND ekrano_istrizaine = '$ekrano_istrizaine' AND rezoliucija = '$rezoliucija' GROUP BY m.id";
-                    //gamintojas /ekrano_istrizaine / rezoliucija
-                } else if (!empty($gamintojas) && !empty($ekrano_istrizaine) && !empty($rezoliucija) && !empty($lieciamas_ekranas)) {
-                    $sql .= " WHERE gamintojas = '$gamintojas' AND ekrano_istrizaine = '$ekrano_istrizaine' AND rezoliucija = '$rezoliucija' AND lieciamas_ekranas = '$lieciamas_ekranas' GROUP BY m.id";
-                    //gamintojas / ekrano_istrizaine / rezoliucija / lieciamas_ekranas
-                } else {
-                    $sql .= " GROUP BY m.id";
+                FROM monitoriai m 
+                LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
+
+                $where_conditions = [];
+
+                if (!empty($gamintojas)) {
+                    $where_conditions[] = "gamintojas = '$gamintojas'";
                 }
+
+                if (!empty($ekrano_istrizaine)) {
+                    $where_conditions[] = "ekrano_istrizaine = '$ekrano_istrizaine'";
+                }
+
+                if (!empty($rezoliucija)) {
+                    $where_conditions[] = "rezoliucija = '$rezoliucija'";
+                }
+
+                if (!empty($lieciamas_ekranas)) {
+                    $where_conditions[] = "lieciamas_ekranas = '$lieciamas_ekranas'";
+                }
+
+                if (!empty($where_conditions)) {
+                    $sql .= " WHERE " . implode(" AND ", $where_conditions);
+                }
+
+                $sql .= " GROUP BY m.id";
+
                 // Execute query and fetch results
                 $result = mysqli_query($conn, $sql);
                 // Display results in HTML table
