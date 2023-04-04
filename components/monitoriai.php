@@ -213,14 +213,14 @@
                     echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<div class="col">';
-                        echo '<div class="card h-100">';
-                        echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
-                        echo '<div class="card-body">';
+                        echo '<div class="card h-100" style="display: flex; flex-direction: column; height: 100%;">';
+                        echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image" style="object-fit: cover; height: 100%;">';
+                        echo '<div class="card-body" style="flex-grow: 1;">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">' . $row["kaina"] . '</p>';
-                        echo '<p class="card-text">' . $row["ekrano_istrizaine"] . '</p>';
-                        echo '<p class="card-text">' . $row["rezoliucija"] . '</p>';
-                        echo '<p class="card-text">' . $row["lieciamas_ekranas"] . '</p>';
+                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["kaina"] . '</p>';
+                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["ekrano_istrizaine"] . '</p>';
+                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["rezoliucija"] . '</p>';
+                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["lieciamas_ekranas"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
                         echo '<small class="text-muted">' . $row["timestamp"] . '</small>';
