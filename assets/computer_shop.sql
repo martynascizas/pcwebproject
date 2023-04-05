@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 02, 2023 at 05:42 PM
+-- Generation Time: Apr 05, 2023 at 09:17 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -85,7 +85,10 @@ CREATE TABLE `monitoriai` (
 --
 
 INSERT INTO `monitoriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `kaina`, `photo`, `timestamp`, `rezoliucija`, `lieciamas_ekranas`) VALUES
-(64, 'Dell', 19, '499.00', NULL, '2023-04-01 20:54:51', 'full HD', 'Yes');
+(70, 'AOC', 27, '199.00', NULL, '2023-04-03 19:28:41', 'Full HD', 'No'),
+(71, 'AOC', 32, '149.00', NULL, '2023-04-03 19:29:39', 'Full HD', 'No'),
+(72, 'DELL', 19, '89.00', NULL, '2023-04-03 19:30:27', 'HD', 'Yes'),
+(73, 'DELL', 32, '329.00', NULL, '2023-04-03 19:31:10', '4K', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -104,7 +107,10 @@ CREATE TABLE `monitoriai_photos` (
 --
 
 INSERT INTO `monitoriai_photos` (`id`, `monitoriai_id`, `filename`) VALUES
-(53, 64, 'monitor.webp');
+(59, 70, 'aoc27.webp'),
+(60, 71, 'aoc27g2spu.jpg'),
+(61, 72, 'dell0.jpg'),
+(62, 73, 'dell2.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,7 +136,7 @@ CREATE TABLE `nesiojami_kompiuteriai` (
 --
 
 INSERT INTO `nesiojami_kompiuteriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`, `timestamp`) VALUES
-(0, 'Dell', 19, 'I5 8gen', 'AMD', 8, 256, '499.00', '', '2023-04-01 18:53:00');
+(0, 'Dell edit', 19, 'I5 8gen', 'AMD', 8, 256, '499.00', '', '2023-04-01 18:53:00');
 
 -- --------------------------------------------------------
 
@@ -245,13 +251,13 @@ ALTER TABLE `kompiuteriu_priedai_photos`
 -- AUTO_INCREMENT for table `monitoriai`
 --
 ALTER TABLE `monitoriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT for table `monitoriai_photos`
 --
 ALTER TABLE `monitoriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- Constraints for dumped tables
