@@ -14,8 +14,8 @@
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
     ?>
+
     <!-- navbar -->
     <?php
     require_once 'prodnav.php';
@@ -32,136 +32,138 @@
                     AS photos
                     FROM monitoriai m 
                     LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
-
                     if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($rezoliucija) || !empty($lieciamas_ekranas) || !empty($kaina)) {
                         $sql .= " WHERE ";
-
                         if (!empty($gamintojas)) {
                             $sql .= "gamintojas = '$gamintojas' AND ";
                         }
-
                         if (!empty($ekrano_istrizaine)) {
                             $sql .= "ekrano_istrizaine = '$ekrano_istrizaine' AND ";
                         }
-
                         if (!empty($rezoliucija)) {
                             $sql .= "rezoliucija = '$rezoliucija' AND ";
                         }
-
                         if (!empty($lieciamas_ekranas)) {
                             $sql .= "lieciamas_ekranas = '$lieciamas_ekranas' AND ";
                         }
-
                         if (!empty($kaina)) {
                             $sql .= "kaina <= '$kaina' AND ";
                         }
-
                         $sql = rtrim($sql, "AND ");
                     }
-
                     $sql .= " GROUP BY m.id";
-
                     // Execute query and fetch results
                     $result = mysqli_query($conn, $sql);
-
-                    // Generate select options for gamintojas
                     ?>
-                    <label for="gamintojas" class="form-label">Gamintojas</label>
-                    <select class="form-select" id="gamintojas" name="gamintojas">
-                        <option value="">Visi</option>
-                        <?php
-                        // Reset the pointer of the result set to the beginning
-                        mysqli_data_seek($result, 0);
 
-                        // Loop through result set and generate options
-                        $selected_values = array();
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $selected = '';
-                            if ($_POST['gamintojas'] == $row['gamintojas']) {
-                                $selected = 'selected';
+                    <div id="filterContainer" style="width: 20vw!important;">
+                        <!--Generate select options for gamintojas-->
+                        <label for="gamintojas" class="form-label">Gamintojas</label>
+                        <select class="form-select" id="gamintojas" name="gamintojas">
+                            <option value="">Visi</option>
+                            <?php
+                            // Reset the pointer of the result set to the beginning
+                            mysqli_data_seek($result, 0);
+                            // Loop through result set and generate options
+                            $selected_values = array();
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['gamintojas'] == $row['gamintojas']) {
+                                    $selected = 'selected';
+                                }
+                                if (!in_array($row['gamintojas'], $selected_values)) {
+                                    echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . '</option>';
+                                    $selected_values[] = $row['gamintojas'];
+                                }
                             }
-                            if (!in_array($row['gamintojas'], $selected_values)) {
-                                echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . '</option>';
-                                $selected_values[] = $row['gamintojas'];
+                            ?>
+                        </select>
+                        
+                        <!--Generate select options for ekrano_istrizaine-->
+                        <label for="ekrano_istrizaine" class="form-label">Ekrano įstrižainė</label>
+                        <select class="form-select" id="ekrano_istrizaine" name="ekrano_istrizaine">
+                            <option value="">Visi</option>
+                            <?php
+                            // Reset the pointer of the result set to the beginning
+                            mysqli_data_seek($result, 0);
+                            // Loop through result set and generate options
+                            $selected_values = array();
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['ekrano_istrizaine'] == $row['ekrano_istrizaine']) {
+                                    $selected = 'selected';
+                                }
+                                if (!in_array($row['ekrano_istrizaine'], $selected_values)) {
+                                    echo '<option value="' . $row["ekrano_istrizaine"] . '" ' . $selected . '>' . $row["ekrano_istrizaine"] . '</option>';
+                                    $selected_values[] = $row['ekrano_istrizaine'];
+                                }
                             }
-                        }
-                        ?>
-                    </select>
+                            ?>
+                        </select>
 
-                    <label for="ekrano_istrizaine" class="form-label">Ekrano įstrižainė</label>
-                    <select class="form-select" id="ekrano_istrizaine" name="ekrano_istrizaine">
-                        <option value="">Visi</option>
-                        <?php
-                        // Reset the pointer of the result set to the beginning
-                        mysqli_data_seek($result, 0);
-
-                        // Loop through result set and generate options
-                        $selected_values = array();
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $selected = '';
-                            if ($_POST['ekrano_istrizaine'] == $row['ekrano_istrizaine']) {
-                                $selected = 'selected';
+                        <!--Generate select options for rezoliucija-->
+                        <label for="rezoliucija" class="form-label">Rezoliucija</label>
+                        <select class="form-select" id="rezoliucija" name="rezoliucija">
+                            <option value="">Visi</option>
+                            <?php
+                            // Reset the pointer of the result set to the beginning
+                            mysqli_data_seek($result, 0);
+                            // Loop through result set and generate options
+                            $selected_values = array();
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['rezoliucija'] == $row['rezoliucija']) {
+                                    $selected = 'selected';
+                                }
+                                if (!in_array($row['rezoliucija'], $selected_values)) {
+                                    echo '<option value="' . $row["rezoliucija"] . '" ' . $selected . '>' . $row["rezoliucija"] . '</option>';
+                                    $selected_values[] = $row['rezoliucija'];
+                                }
                             }
-                            if (!in_array($row['ekrano_istrizaine'], $selected_values)) {
-                                echo '<option value="' . $row["ekrano_istrizaine"] . '" ' . $selected . '>' . $row["ekrano_istrizaine"] . '</option>';
-                                $selected_values[] = $row['ekrano_istrizaine'];
+                            ?>
+                        </select>
+
+                        <!--Generate select options for lieciamas_ekranas-->
+                        <label for="lieciamas_ekranas" class="form-label">Lieciamas ekranas</label>
+                        <select class="form-select" id="lieciamas_ekranas" name="lieciamas_ekranas">
+                            <option value="">Visi</option>
+                            <?php
+                            // Reset the pointer of the result set to the beginning
+                            mysqli_data_seek($result, 0);
+                            // Loop through result set and generate options
+                            $selected_values = array();
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
+                                    $selected = 'selected';
+                                }
+                                if (!in_array($row['lieciamas_ekranas'], $selected_values)) {
+                                    echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . '</option>';
+                                    $selected_values[] = $row['lieciamas_ekranas'];
+                                }
                             }
-                        }
+                            ?>
+                        </select>
 
-                        ?>
-                    </select>
+                        <!--Generate select options for kaina-->
+                        <div class="form-group">
+                            <?php
+                            // Get the minimum and maximum kaina values from the database
+                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM monitoriai";
+                            $result = mysqli_query($conn, $sql);
+                            $row = mysqli_fetch_assoc($result);
+                            $min_kaina = $row['min_kaina'];
+                            $max_kaina = $row['max_kaina'];
+                            ?>
+                            <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value"><?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?></span></label>
+                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
 
-                    <label for="rezoliucija" class="form-label">Rezoliucija</label>
-                    <select class="form-select" id="rezoliucija" name="rezoliucija">
-                        <option value="">Visi</option>
-                        <?php
-                        // Reset the pointer of the result set to the beginning
-                        mysqli_data_seek($result, 0);
-
-                        // Loop through result set and generate options
-                        $selected_values = array();
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $selected = '';
-                            if ($_POST['rezoliucija'] == $row['rezoliucija']) {
-                                $selected = 'selected';
-                            }
-                            if (!in_array($row['rezoliucija'], $selected_values)) {
-                                echo '<option value="' . $row["rezoliucija"] . '" ' . $selected . '>' . $row["rezoliucija"] . '</option>';
-                                $selected_values[] = $row['rezoliucija'];
-                            }
-                        }
-                        ?>
-                    </select>
-
-                    <label for="lieciamas_ekranas" class="form-label">Lieciamas ekranas</label>
-                    <select class="form-select" id="lieciamas_ekranas" name="lieciamas_ekranas">
-                        <option value="">Visi</option>
-                        <?php
-                        // Reset the pointer of the result set to the beginning
-                        mysqli_data_seek($result, 0);
-
-                        // Loop through result set and generate options
-                        $selected_values = array();
-                        while ($row = mysqli_fetch_assoc($result)) {
-                            $selected = '';
-                            if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
-                                $selected = 'selected';
-                            }
-                            if (!in_array($row['lieciamas_ekranas'], $selected_values)) {
-                                echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . '</option>';
-                                $selected_values[] = $row['lieciamas_ekranas'];
-                            }
-                        }
-                        ?>
-                    </select>
-
-                    <label for="kaina" class="form-label">Kaina iki (€)</label>
-                    <input type="number" class="form-control" id="kaina" name="kaina" min="0" max="9999" step="30" value="<?php echo isset($_POST['kaina']) ? $_POST['kaina'] : ''; ?>">
-
-                </div>
-                <button type="submit" class="btn btn-primary" name="filter_submit">Filtruoti</button>
+                            <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
+                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-5" name="filter_submit">Filtruoti</button>
+                    </div>
             </form>
-
 
             <?php
             // Check if form has been submitted
@@ -171,7 +173,12 @@
                 $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                 $rezoliucija = $_POST['rezoliucija'];
                 $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
-                $kaina = $_POST['kaina'];
+                if (isset($_POST['kaina_nuo'])) {
+                    $min_kaina = $_POST['kaina_nuo'];
+                }
+                if (isset($_POST['kaina_iki'])) {
+                    $max_kaina = $_POST['kaina_iki'];
+                }
 
                 $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.rezoliucija, m.lieciamas_ekranas, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
                 FROM monitoriai m 
@@ -196,8 +203,12 @@
                     $where_conditions[] = "lieciamas_ekranas = '$lieciamas_ekranas'";
                 }
 
-                if (!empty($kaina)) {
-                    $where_conditions[] = "kaina <= $kaina";
+                if (!empty($min_kaina) && !empty($max_kaina)) {
+                    $where_conditions[] = "kaina BETWEEN $min_kaina AND $max_kaina";
+                } elseif (!empty($min_kaina)) {
+                    $where_conditions[] = "kaina >= $min_kaina";
+                } elseif (!empty($max_kaina)) {
+                    $where_conditions[] = "kaina <= $max_kaina";
                 }
 
                 if (!empty($where_conditions)) {
@@ -213,14 +224,14 @@
                     echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<div class="col">';
-                        echo '<div class="card h-100" style="display: flex; flex-direction: column; height: 100%;">';
-                        echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image" style="object-fit: cover; height: 100%;">';
-                        echo '<div class="card-body" style="flex-grow: 1;">';
+                        echo '<div class="card h-100">';
+                        echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
+                        echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["kaina"] . '</p>';
-                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["ekrano_istrizaine"] . '</p>';
-                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["rezoliucija"] . '</p>';
-                        echo '<p class="card-text" style="margin-bottom: auto;">' . $row["lieciamas_ekranas"] . '</p>';
+                        echo '<p class="card-text">' . $row["kaina"] . '</p>';
+                        echo '<p class="card-text">' . $row["ekrano_istrizaine"] . '</p>';
+                        echo '<p class="card-text">' . $row["rezoliucija"] . '</p>';
+                        echo '<p class="card-text">' . $row["lieciamas_ekranas"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
                         echo '<small class="text-muted">' . $row["timestamp"] . '</small>';
@@ -236,39 +247,63 @@
             ?>
         </div>
         <!-- footer -->
-        <?php
-        require_once 'footer.php';
-        ?>
     </div>
+    <?php
+    require_once 'footer.php';
+    ?>
     </div>
     <!-- close db conn -->
     <?php
     mysqli_close($conn);
     ?>
     <script>
-  // Select the form and add an event listener to detect changes
-  const form = document.getElementById('filter-form');
-  form.addEventListener('change', handleFormChange);
+        // Select the form and add an event listener to detect changes
+        const form = document.getElementById('filter-form');
+        form.addEventListener('change', handleFormChange);
 
-  function handleFormChange(event) {
-    // Prevent the form from submitting
-    event.preventDefault();
+        function handleFormChange(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
 
-    // Get the form data and send an AJAX request
-    const formData = new FormData(form);
-    fetch('filter.php', {
-      method: 'POST',
-      body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-      // Update the product list in the DOM with the new data
-      const productList = document.querySelector('.product-list');
-      productList.innerHTML = data;
-    })
-    .catch(error => console.error(error));
-  }
-</script>
+            // Get the form data and send an AJAX request
+            const formData = new FormData(form);
+            fetch('filter.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Update the product list in the DOM with the new data
+                    const productList = document.querySelector('.product-list');
+                    productList.innerHTML = data;
+                })
+                .catch(error => console.error(error));
+        }
+    </script>
+
+    <script>
+        // Get the range input elements
+        const kainaNuo = document.getElementById('kaina_nuo');
+        const kainaIki = document.getElementById('kaina_iki');
+
+        // Get the span elements to display the selected values
+        const kainaNuoValue = document.getElementById('kaina_nuo_value');
+        const kainaIkiValue = document.getElementById('kaina_iki_value');
+
+        // Add event listeners to update the span elements in real-time
+        kainaNuo.addEventListener('input', function() {
+            if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
+                kainaNuo.value = kainaIki.value;
+            }
+            kainaNuoValue.textContent = kainaNuo.value;
+        });
+        kainaIki.addEventListener('input', function() {
+            if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
+                kainaIki.value = kainaNuo.value;
+            }
+            kainaIkiValue.textContent = kainaIki.value;
+        });
+    </script>
 </body>
 
 </html>
