@@ -59,20 +59,18 @@
                         <select class="form-select" id="gamintojas" name="gamintojas">
                             <option value="">Visi</option>
                             <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
-                            // Loop through result set and generate options
-                            $selected_values = array();
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $selected = '';
-                                if ($_POST['gamintojas'] == $row['gamintojas']) {
-                                    $selected = 'selected';
-                                }
-                                if (!in_array($row['gamintojas'], $selected_values)) {
-                                    echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . '</option>';
-                                    $selected_values[] = $row['gamintojas'];
-                                }
-                            }
+                           // Execute query and fetch results
+                           $sql = "SELECT gamintojas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                           $result = mysqli_query($conn, $sql);
+
+                           // Loop through result set and generate options
+                           while ($row = mysqli_fetch_assoc($result)) {
+                               $selected = '';
+                               if ($_POST['gamintojas'] == $row['gamintojas']) {
+                                   $selected = 'selected';
+                               }
+                               echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . ' (' . $row["total"] . ')</option>';
+                           }
                             ?>
                         </select>
                           
@@ -83,19 +81,17 @@
                         <select class="form-select" id="pavadinimas" name="pavadinimas">
                             <option value="">Visi</option>
                             <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
+                            // Execute query and fetch results
+                            $sql = "SELECT pavadinimas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY pavadinimas ORDER BY pavadinimas ASC";
+                            $result = mysqli_query($conn, $sql);
+
                             // Loop through result set and generate options
-                            $selected_values = array();
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
                                 if ($_POST['pavadinimas'] == $row['pavadinimas']) {
                                     $selected = 'selected';
                                 }
-                                if (!in_array($row['pavadinimas'], $selected_values)) {
-                                    echo '<option value="' . $row["pavadinimas"] . '" ' . $selected . '>' . $row["pavadinimas"] . '</option>';
-                                    $selected_values[] = $row['pavadinimas'];
-                                }
+                                echo '<option value="' . $row["pavadinimas"] . '" ' . $selected . '>' . $row["pavadinimas"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
@@ -107,19 +103,17 @@
                         <select class="form-select" id="aprasymas" name="aprasymas">
                             <option value="">Visi</option>
                             <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
+                            // Execute query and fetch results
+                            $sql = "SELECT aprasymas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY aprasymas ORDER BY aprasymas ASC";
+                            $result = mysqli_query($conn, $sql);
+
                             // Loop through result set and generate options
-                            $selected_values = array();
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
                                 if ($_POST['aprasymas'] == $row['aprasymas']) {
                                     $selected = 'selected';
                                 }
-                                if (!in_array($row['aprasymas'], $selected_values)) {
-                                    echo '<option value="' . $row["aprasymas"] . '" ' . $selected . '>' . $row["aprasymas"] . '</option>';
-                                    $selected_values[] = $row['aprasymas'];
-                                }
+                                echo '<option value="' . $row["aprasymas"] . '" ' . $selected . '>' . $row["aprasymas"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
