@@ -62,41 +62,37 @@
                         <select class="form-select" id="gamintojas" name="gamintojas">
                             <option value="">Visi</option>
                             <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
+                            // Execute query and fetch results
+                            $sql = "SELECT gamintojas, COUNT(*) AS total FROM monitoriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            $result = mysqli_query($conn, $sql);
+
                             // Loop through result set and generate options
-                            $selected_values = array();
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
                                 if ($_POST['gamintojas'] == $row['gamintojas']) {
                                     $selected = 'selected';
                                 }
-                                if (!in_array($row['gamintojas'], $selected_values)) {
-                                    echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . '</option>';
-                                    $selected_values[] = $row['gamintojas'];
-                                }
+                                echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
-                        
+
                         <!--Generate select options for ekrano_istrizaine-->
                         <label for="ekrano_istrizaine" class="form-label">Ekrano įstrižainė</label>
                         <select class="form-select" id="ekrano_istrizaine" name="ekrano_istrizaine">
                             <option value="">Visi</option>
                             <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
+                            // Execute query and fetch results
+                            $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM monitoriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
+                            $result = mysqli_query($conn, $sql);
+
                             // Loop through result set and generate options
-                            $selected_values = array();
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
                                 if ($_POST['ekrano_istrizaine'] == $row['ekrano_istrizaine']) {
                                     $selected = 'selected';
                                 }
-                                if (!in_array($row['ekrano_istrizaine'], $selected_values)) {
-                                    echo '<option value="' . $row["ekrano_istrizaine"] . '" ' . $selected . '>' . $row["ekrano_istrizaine"] . '</option>';
-                                    $selected_values[] = $row['ekrano_istrizaine'];
-                                }
+                                echo '<option value="' . $row["ekrano_istrizaine"] . '" ' . $selected . '>' . $row["ekrano_istrizaine"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
@@ -106,19 +102,17 @@
                         <select class="form-select" id="rezoliucija" name="rezoliucija">
                             <option value="">Visi</option>
                             <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
+                            // Execute query and fetch results
+                            $sql = "SELECT rezoliucija, COUNT(*) AS total FROM monitoriai GROUP BY rezoliucija ORDER BY rezoliucija ASC";
+                            $result = mysqli_query($conn, $sql);
+
                             // Loop through result set and generate options
-                            $selected_values = array();
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
                                 if ($_POST['rezoliucija'] == $row['rezoliucija']) {
                                     $selected = 'selected';
                                 }
-                                if (!in_array($row['rezoliucija'], $selected_values)) {
-                                    echo '<option value="' . $row["rezoliucija"] . '" ' . $selected . '>' . $row["rezoliucija"] . '</option>';
-                                    $selected_values[] = $row['rezoliucija'];
-                                }
+                                echo '<option value="' . $row["rezoliucija"] . '" ' . $selected . '>' . $row["rezoliucija"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
@@ -126,24 +120,22 @@
                         <!--Generate select options for lieciamas_ekranas-->
                         <label for="lieciamas_ekranas" class="form-label">Lieciamas ekranas</label>
                         <select class="form-select" id="lieciamas_ekranas" name="lieciamas_ekranas">
-                            <option value="">Visi</option>
-                            <?php
-                            // Reset the pointer of the result set to the beginning
-                            mysqli_data_seek($result, 0);
-                            // Loop through result set and generate options
-                            $selected_values = array();
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $selected = '';
-                                if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
-                                    $selected = 'selected';
-                                }
-                                if (!in_array($row['lieciamas_ekranas'], $selected_values)) {
-                                    echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . '</option>';
-                                    $selected_values[] = $row['lieciamas_ekranas'];
-                                }
-                            }
-                            ?>
-                        </select>
+    <option value="">Visi</option>
+    <?php
+    // Execute query and fetch results
+    $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total FROM monitoriai GROUP BY lieciamas_ekranas ORDER BY lieciamas_ekranas ASC";
+    $result = mysqli_query($conn, $sql);
+
+    // Loop through result set and generate options
+    while ($row = mysqli_fetch_assoc($result)) {
+        $selected = '';
+        if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
+            $selected = 'selected';
+        }
+        echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . ' (' . $row["total"] . ')</option>';
+    }
+    ?>
+</select>
 
                         <!--Generate select options for kaina-->
                         <div class="form-group">
