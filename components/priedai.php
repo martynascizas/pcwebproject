@@ -130,7 +130,9 @@
                             <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
-                        <button type="submit" class="btn btn-primary mb-5" name="filter_submit">Filtruoti</button>
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                            <button type="submit" class="btn btn-primary" name="filter_submit">Filtruoti</button>
+                        </div>
                     </div>
             </form>
 
