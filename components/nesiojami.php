@@ -62,7 +62,7 @@
                     $result = mysqli_query($conn, $sql);
                     ?>
 
-                    <div id="filterContainer" style="width: 20vw!important;">
+                    <div id="filterContainer" style="width: 50vw; margin: 0 auto;">
                         <!--Generate select options for gamintojas-->
                         <label for="gamintojas" class="form-label">Gamintojas</label>
                         <select class="form-select" id="gamintojas" name="gamintojas">
@@ -274,8 +274,8 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<div class="col">';
                         echo '<div class="card h-100">';
-                        echo '<img src="../crud/nesiojami_kompiuteriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
-                        echo '<div class="card-body">';
+                        echo '<div class="m-4"><img src="../crud/nesiojami_kompiuteriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image"></div>';
+                        echo '<div class="card-body d-flex flex-column justify-content-end">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                         echo '<p class="card-text">' . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
                         echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
@@ -295,6 +295,7 @@
                 } else {
                     echo "0 results";
                 }
+                
             }
             ?>
         </div>

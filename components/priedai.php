@@ -53,7 +53,7 @@
                     $result = mysqli_query($conn, $sql);
                     ?>
 
-                    <div id="filterContainer" style="width: 20vw!important;">
+                    <div id="filterContainer" style="width: 50vw; margin: 0 auto;">
                         <!--Generate select options for gamintojas-->
                         <label for="gamintojas" class="form-label">Gamintojas</label>
                         <select class="form-select" id="gamintojas" name="gamintojas">
