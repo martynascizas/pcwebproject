@@ -220,7 +220,7 @@
                         echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">' . "Ekrano įstrižainė: " . $row["ekrano_istrizaine"] . '</p>';
+                        echo '<p class="card-text">' . "Ekrano įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
                         echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
                         echo '<p class="card-text">' . "Liečiamas ekranas: " . $row["lieciamas_ekranas"] . '</p>';
                         echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
