@@ -37,7 +37,7 @@
                         if (!empty($gamintojas)) {
                             $sql .= "gamintojas = '$gamintojas' AND ";
                         }
-             
+
                         if (!empty($procesorius)) {
                             $sql .= "procesorius = '$procesorius' AND ";
                         }
@@ -86,18 +86,18 @@
                         <select class="form-select" id="procesorius" name="procesorius">
                             <option value="">Visi</option>
                             <?php
-                             // Execute query and fetch results
-                             $sql = "SELECT procesorius, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
-                             $result = mysqli_query($conn, $sql);
- 
-                             // Loop through result set and generate options
-                             while ($row = mysqli_fetch_assoc($result)) {
-                                 $selected = '';
-                                 if ($_POST['procesorius'] == $row['procesorius']) {
-                                     $selected = 'selected';
-                                 }
-                                 echo '<option value="' . $row["procesorius"] . '" ' . $selected . '>' . $row["procesorius"] . ' (' . $row["total"] . ')</option>';
-                             }
+                            // Execute query and fetch results
+                            $sql = "SELECT procesorius, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
+                            $result = mysqli_query($conn, $sql);
+
+                            // Loop through result set and generate options
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['procesorius'] == $row['procesorius']) {
+                                    $selected = 'selected';
+                                }
+                                echo '<option value="' . $row["procesorius"] . '" ' . $selected . '>' . $row["procesorius"] . ' (' . $row["total"] . ')</option>';
+                            }
                             ?>
                         </select>
 
@@ -107,17 +107,17 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                      $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
-                      $result = mysqli_query($conn, $sql);
+                            $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
+                            $result = mysqli_query($conn, $sql);
 
-                      // Loop through result set and generate options
-                      while ($row = mysqli_fetch_assoc($result)) {
-                          $selected = '';
-                          if ($_POST['vaizdo_plokste'] == $row['vaizdo_plokste']) {
-                              $selected = 'selected';
-                          }
-                          echo '<option value="' . $row["vaizdo_plokste"] . '" ' . $selected . '>' . $row["vaizdo_plokste"] . ' (' . $row["total"] . ')</option>';
-                      }
+                            // Loop through result set and generate options
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['vaizdo_plokste'] == $row['vaizdo_plokste']) {
+                                    $selected = 'selected';
+                                }
+                                echo '<option value="' . $row["vaizdo_plokste"] . '" ' . $selected . '>' . $row["vaizdo_plokste"] . ' (' . $row["total"] . ')</option>';
+                            }
                             ?>
                         </select>
 
@@ -126,38 +126,38 @@
                         <select class="form-select" id="ram" name="ram">
                             <option value="">Visi</option>
                             <?php
-                              // Execute query and fetch results
-                              $sql = "SELECT ram, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY ram ORDER BY ram ASC";
-                              $result = mysqli_query($conn, $sql);
-  
-                              // Loop through result set and generate options
-                              while ($row = mysqli_fetch_assoc($result)) {
-                                  $selected = '';
-                                  if ($_POST['ram'] == $row['ram']) {
-                                      $selected = 'selected';
-                                  }
-                                  echo '<option value="' . $row["ram"] . '" ' . $selected . '>' . $row["ram"] . ' (' . $row["total"] . ')</option>';
-                              }
+                            // Execute query and fetch results
+                            $sql = "SELECT ram, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY ram ORDER BY ram ASC";
+                            $result = mysqli_query($conn, $sql);
+
+                            // Loop through result set and generate options
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['ram'] == $row['ram']) {
+                                    $selected = 'selected';
+                                }
+                                echo '<option value="' . $row["ram"] . '" ' . $selected . '>' . $row["ram"] . ' (' . $row["total"] . ')</option>';
+                            }
                             ?>
                         </select>
 
-                             <!--Generate select options for hdd-->
-                             <label for="hdd" class="form-label">HDD</label>
+                        <!--Generate select options for hdd-->
+                        <label for="hdd" class="form-label">HDD</label>
                         <select class="form-select" id="hdd" name="hdd">
                             <option value="">Visi</option>
                             <?php
-                          // Execute query and fetch results
-                          $sql = "SELECT hdd, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
-                          $result = mysqli_query($conn, $sql);
+                            // Execute query and fetch results
+                            $sql = "SELECT hdd, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
+                            $result = mysqli_query($conn, $sql);
 
-                          // Loop through result set and generate options
-                          while ($row = mysqli_fetch_assoc($result)) {
-                              $selected = '';
-                              if ($_POST['hdd'] == $row['hdd']) {
-                                  $selected = 'selected';
-                              }
-                              echo '<option value="' . $row["hdd"] . '" ' . $selected . '>' . $row["hdd"] . ' (' . $row["total"] . ')</option>';
-                          }
+                            // Loop through result set and generate options
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['hdd'] == $row['hdd']) {
+                                    $selected = 'selected';
+                                }
+                                echo '<option value="' . $row["hdd"] . '" ' . $selected . '>' . $row["hdd"] . ' (' . $row["total"] . ')</option>';
+                            }
                             ?>
                         </select>
 
@@ -249,11 +249,12 @@
                         echo '<img src="../crud/staliniai_kompiuteriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">' . $row["kaina"] . '</p>';
-                        echo '<p class="card-text">' . $row["procesorius"] . '</p>';
-                        echo '<p class="card-text">' . $row["vaizdo_plokste"] . '</p>';
-                        echo '<p class="card-text">' . $row["ram"] . '</p>';
-                        echo '<p class="card-text">' . $row["hdd"] . '</p>';
+                        echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
+                        echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
+                        echo '<p class="card-text">' . "Operetyvioji atmintis (RAM): " . $row["ram"] . '</p>';
+                        echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
+                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
+                        echo '<p class="card-text">' . "Prekės kodas: STA" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
                         echo '<small class="text-muted">' . $row["timestamp"] . '</small>';

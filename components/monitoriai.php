@@ -120,22 +120,22 @@
                         <!--Generate select options for lieciamas_ekranas-->
                         <label for="lieciamas_ekranas" class="form-label">Lieciamas ekranas</label>
                         <select class="form-select" id="lieciamas_ekranas" name="lieciamas_ekranas">
-    <option value="">Visi</option>
-    <?php
-    // Execute query and fetch results
-    $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total FROM monitoriai GROUP BY lieciamas_ekranas ORDER BY lieciamas_ekranas ASC";
-    $result = mysqli_query($conn, $sql);
+                            <option value="">Visi</option>
+                            <?php
+                            // Execute query and fetch results
+                            $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total FROM monitoriai GROUP BY lieciamas_ekranas ORDER BY lieciamas_ekranas ASC";
+                            $result = mysqli_query($conn, $sql);
 
-    // Loop through result set and generate options
-    while ($row = mysqli_fetch_assoc($result)) {
-        $selected = '';
-        if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
-            $selected = 'selected';
-        }
-        echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . ' (' . $row["total"] . ')</option>';
-    }
-    ?>
-</select>
+                            // Loop through result set and generate options
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
+                                    $selected = 'selected';
+                                }
+                                echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . ' (' . $row["total"] . ')</option>';
+                            }
+                            ?>
+                        </select>
 
                         <!--Generate select options for kaina-->
                         <div class="form-group">
@@ -220,10 +220,11 @@
                         echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">' . $row["kaina"] . '</p>';
-                        echo '<p class="card-text">' . $row["ekrano_istrizaine"] . '</p>';
-                        echo '<p class="card-text">' . $row["rezoliucija"] . '</p>';
-                        echo '<p class="card-text">' . $row["lieciamas_ekranas"] . '</p>';
+                        echo '<p class="card-text">' . "Ekrano įstrižainė: " . $row["ekrano_istrizaine"] . '</p>';
+                        echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
+                        echo '<p class="card-text">' . "Liečiamas ekranas: " . $row["lieciamas_ekranas"] . '</p>';
+                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
+                        echo '<p class="card-text">' . "Prekės kodas: MON" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
                         echo '<small class="text-muted">' . $row["timestamp"] . '</small>';

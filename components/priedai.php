@@ -59,23 +59,21 @@
                         <select class="form-select" id="gamintojas" name="gamintojas">
                             <option value="">Visi</option>
                             <?php
-                           // Execute query and fetch results
-                           $sql = "SELECT gamintojas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
-                           $result = mysqli_query($conn, $sql);
+                            // Execute query and fetch results
+                            $sql = "SELECT gamintojas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            $result = mysqli_query($conn, $sql);
 
-                           // Loop through result set and generate options
-                           while ($row = mysqli_fetch_assoc($result)) {
-                               $selected = '';
-                               if ($_POST['gamintojas'] == $row['gamintojas']) {
-                                   $selected = 'selected';
-                               }
-                               echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . ' (' . $row["total"] . ')</option>';
-                           }
+                            // Loop through result set and generate options
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                $selected = '';
+                                if ($_POST['gamintojas'] == $row['gamintojas']) {
+                                    $selected = 'selected';
+                                }
+                                echo '<option value="' . $row["gamintojas"] . '" ' . $selected . '>' . $row["gamintojas"] . ' (' . $row["total"] . ')</option>';
+                            }
                             ?>
                         </select>
-                          
-                        <!--Generate select options for pavadinimas-->
-                        <div id="filterContainer" style="width: 20vw!important;">
+
                         <!--Generate select options for pavadinimas-->
                         <label for="pavadinimas" class="form-label">pavadinimas</label>
                         <select class="form-select" id="pavadinimas" name="pavadinimas">
@@ -95,9 +93,7 @@
                             }
                             ?>
                         </select>
-                    
-                  <!--Generate select options for aprasymas-->
-                  <div id="filterContainer" style="width: 20vw!important;">
+
                         <!--Generate select options for aprasymas-->
                         <label for="aprasymas" class="form-label">aprasymas</label>
                         <select class="form-select" id="aprasymas" name="aprasymas">
@@ -196,9 +192,10 @@
                         echo '<img src="../crud/kompiuteriu_priedai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<h5 class="card-title">' . $row["pavadinimas"] . '</h5>';
-                        echo '<h5 class="card-title">' . $row["aprasymas"] . '</h5>';
-                        echo '<p class="card-text">' . $row["kaina"] . '</p>';
+                        echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
+                        echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
+                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
+                        echo '<p class="card-text">' . "Prekės kodas: PRI" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
                         echo '<small class="text-muted">' . $row["timestamp"] . '</small>';
@@ -213,10 +210,7 @@
             }
             ?>
         </div>
-        </div>
-
     </div>
-
     </div>
     <?php
     require_once 'footer.php';

@@ -192,6 +192,7 @@
                             $row = mysqli_fetch_assoc($result);
                             $min_kaina = $row['min_kaina'];
                             $max_kaina = $row['max_kaina'];
+
                             ?>
                             <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value"><?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?></span></label>
                             <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
@@ -276,12 +277,13 @@
                         echo '<img src="../crud/nesiojami_kompiuteriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">' . $row["kaina"] . '</p>';
-                        echo '<p class="card-text">' . $row["ekrano_istrizaine"] . '</p>';
-                        echo '<p class="card-text">' . $row["procesorius"] . '</p>';
-                        echo '<p class="card-text">' . $row["vaizdo_plokste"] . '</p>';
-                        echo '<p class="card-text">' . $row["ram"] . '</p>';
-                        echo '<p class="card-text">' . $row["hdd"] . '</p>';
+                        echo '<p class="card-text">' . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
+                        echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
+                        echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
+                        echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
+                        echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
+                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
+                        echo '<p class="card-text">' . "Prekės kodas: NES" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
                         echo '<small class="text-muted">' . $row["timestamp"] . '</small>';

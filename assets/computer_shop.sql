@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2023 at 09:17 PM
+-- Generation Time: Apr 07, 2023 at 08:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -42,7 +42,8 @@ CREATE TABLE `kompiuteriu_priedai` (
 --
 
 INSERT INTO `kompiuteriu_priedai` (`id`, `pavadinimas`, `kaina`, `aprasymas`, `photo`, `gamintojas`, `timestamp`) VALUES
-(15, 'priedas', '20.00', 'Aprašymas', NULL, 'Dellss', '2023-04-01 18:57:05');
+(17, 'Rinkinys', '59.00', 'Priedo aprasymas', NULL, 'Deltaco', '2023-04-06 20:35:55'),
+(18, 'Rinkinys', '499.00', 'priedo aprasymas', NULL, 'AOC', '2023-04-07 16:12:00');
 
 -- --------------------------------------------------------
 
@@ -61,7 +62,8 @@ CREATE TABLE `kompiuteriu_priedai_photos` (
 --
 
 INSERT INTO `kompiuteriu_priedai_photos` (`id`, `kompiuteriu_priedai_id`, `filename`) VALUES
-(43, 15, 'accessories.jpg');
+(45, 17, 'priedai.webp'),
+(46, 18, 'accessories.jpg');
 
 -- --------------------------------------------------------
 
@@ -85,10 +87,9 @@ CREATE TABLE `monitoriai` (
 --
 
 INSERT INTO `monitoriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `kaina`, `photo`, `timestamp`, `rezoliucija`, `lieciamas_ekranas`) VALUES
-(70, 'AOC', 27, '199.00', NULL, '2023-04-03 19:28:41', 'Full HD', 'No'),
-(71, 'AOC', 32, '149.00', NULL, '2023-04-03 19:29:39', 'Full HD', 'No'),
-(72, 'DELL', 19, '89.00', NULL, '2023-04-03 19:30:27', 'HD', 'Yes'),
-(73, 'DELL', 32, '329.00', NULL, '2023-04-03 19:31:10', '4K', 'Yes');
+(79, 'AOC', 32, '299.00', NULL, '2023-04-06 19:37:51', 'Full HD', 'No'),
+(80, 'AOC', 27, '159.00', NULL, '2023-04-06 19:38:23', 'Full HD', 'No'),
+(81, 'AOC', 19, '15.00', NULL, '2023-04-07 16:11:47', 'Full HD', 'No');
 
 -- --------------------------------------------------------
 
@@ -107,10 +108,9 @@ CREATE TABLE `monitoriai_photos` (
 --
 
 INSERT INTO `monitoriai_photos` (`id`, `monitoriai_id`, `filename`) VALUES
-(59, 70, 'aoc27.webp'),
-(60, 71, 'aoc27g2spu.jpg'),
-(61, 72, 'dell0.jpg'),
-(62, 73, 'dell2.jpg');
+(68, 79, 'aoc27.webp'),
+(69, 80, 'aoc27g2spu.jpg'),
+(70, 81, 'aoc27g2spu.jpg');
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,8 @@ CREATE TABLE `nesiojami_kompiuteriai` (
 --
 
 INSERT INTO `nesiojami_kompiuteriai` (`id`, `gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`, `timestamp`) VALUES
-(0, 'Dell edit', 19, 'I5 8gen', 'AMD', 8, 256, '499.00', '', '2023-04-01 18:53:00');
+(21, 'Dell', 19, 'I5 8gen', 'AMD', 16, 500, '499.00', '', '2023-04-07 16:36:03'),
+(22, 'Mac Book Pro', 13, 'M2', 'M2', 16, 500, '2599.00', '', '2023-04-07 16:36:33');
 
 -- --------------------------------------------------------
 
@@ -155,7 +156,8 @@ CREATE TABLE `nesiojami_kompiuteriai_photos` (
 --
 
 INSERT INTO `nesiojami_kompiuteriai_photos` (`id`, `nesiojami_kompiuteriai_id`, `filename`) VALUES
-(0, 0, 'del lap.jpg');
+(0, 21, 'del lap.jpg'),
+(0, 22, 'macbook_pro_13_in_silver_2.jpg');
 
 -- --------------------------------------------------------
 
@@ -180,7 +182,8 @@ CREATE TABLE `staliniai_kompiuteriai` (
 --
 
 INSERT INTO `staliniai_kompiuteriai` (`id`, `gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`, `timestamp`) VALUES
-(0, 'Dell', 'I5 8gen', '3060', 16, 240, '499.00', '', '2023-04-01 18:46:51');
+(13, 'Dell', 'I5 8gen', '3060', 16, 240, '499.00', '', '2023-04-07 16:38:19'),
+(14, 'AOC', 'intel', '3060', 16, 240, '59.00', '', '2023-04-07 16:38:33');
 
 -- --------------------------------------------------------
 
@@ -199,7 +202,8 @@ CREATE TABLE `staliniai_kompiuteriai_photos` (
 --
 
 INSERT INTO `staliniai_kompiuteriai_photos` (`id`, `staliniai_kompiuteriai_id`, `filename`) VALUES
-(0, 0, 'pc.jfif');
+(0, 13, 'pc.webp'),
+(0, 14, 'pc.jfif');
 
 --
 -- Indexes for dumped tables
@@ -232,6 +236,18 @@ ALTER TABLE `monitoriai_photos`
   ADD KEY `monitoriai_id` (`monitoriai_id`);
 
 --
+-- Indexes for table `nesiojami_kompiuteriai`
+--
+ALTER TABLE `nesiojami_kompiuteriai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `staliniai_kompiuteriai`
+--
+ALTER TABLE `staliniai_kompiuteriai`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -239,25 +255,37 @@ ALTER TABLE `monitoriai_photos`
 -- AUTO_INCREMENT for table `kompiuteriu_priedai`
 --
 ALTER TABLE `kompiuteriu_priedai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `kompiuteriu_priedai_photos`
 --
 ALTER TABLE `kompiuteriu_priedai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `monitoriai`
 --
 ALTER TABLE `monitoriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT for table `monitoriai_photos`
 --
 ALTER TABLE `monitoriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+
+--
+-- AUTO_INCREMENT for table `nesiojami_kompiuteriai`
+--
+ALTER TABLE `nesiojami_kompiuteriai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `staliniai_kompiuteriai`
+--
+ALTER TABLE `staliniai_kompiuteriai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
