@@ -178,7 +178,7 @@
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button type="submit" class="btn btn-primary" name="filter_submit">Submit</button>
+                            <button type="submit" class="btn btn-primary mb-4" name="filter_submit">Submit</button>
                         </div>
                     </div>
             </form>

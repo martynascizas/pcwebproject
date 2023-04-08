@@ -201,7 +201,7 @@
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button type="submit" class="btn btn-primary" name="filter_submit">Filtruoti</button>
+                            <button type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
                         </div>
                     </div>
             </form>
@@ -276,7 +276,31 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<div class="col">';
                         echo '<div class="card h-100">';
-                        echo '<div class="m-4"><img src="../crud/nesiojami_kompiuteriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image"></div>';
+                        echo '<div id="carouselExampleControls'.$row["id"].'" class="carousel slide" data-bs-ride="carousel">';
+                        echo '<div class="carousel-inner">';
+                    
+                        // Loop through all photos and create carousel items
+                        $photos = explode(",", $row["photos"]);
+                        for ($i = 0; $i < count($photos); $i++) {
+                            if ($i == 0) {
+                                echo '<div class="carousel-item active">';
+                            } else {
+                                echo '<div class="carousel-item">';
+                            }
+                            echo '<div class="m-4"><img src="../crud/nesiojami_kompiuteriai/uploads/' . $photos[$i] . '" class="d-block w-100 zoomable" alt="Product Image"></div>';
+                            echo '</div>';
+                        }
+                    
+                        echo '</div>';
+                        echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls'.$row["id"].'" data-bs-slide="prev">';
+                        echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+                        echo '<span class="visually-hidden">Previous</span>';
+                        echo '</button>';
+                        echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls'.$row["id"].'" data-bs-slide="next">';
+                        echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+                        echo '<span class="visually-hidden">Next</span>';
+                        echo '</button>';
+                        echo '</div>';
                         echo '<div class="card-body d-flex flex-column justify-content-end">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                         echo '<p class="card-text">' . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
@@ -294,6 +318,7 @@
                         echo '</div>';
                     }
                     echo '</div>';
+                    
                 } else {
                     echo "0 results";
                 }
@@ -310,6 +335,53 @@
     <?php
     mysqli_close($conn);
     ?>
+
+    <style>
+        .zoomable {
+            cursor: zoom-in;
+        }
+
+        .zoomable.active {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
+            cursor: zoom-out;
+            object-fit: contain;
+            backdrop-filter: blur(8px);
+            /* Add a 5px blur effect */
+        }
+
+        .exit-btn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+    </style>
+
+    <script>
+        const zoomableImages = document.querySelectorAll('.zoomable');
+
+        zoomableImages.forEach(image => {
+            image.addEventListener('click', e => {
+                e.target.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+                const exitBtn = document.createElement('button');
+                exitBtn.innerHTML = 'Exit';
+                exitBtn.classList.add('exit-btn');
+                document.body.appendChild(exitBtn);
+                exitBtn.addEventListener('click', () => {
+                    e.target.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                    exitBtn.remove();
+                });
+            });
+        });
+    </script>
+
     <script>
         // Select the form and add an event listener to detect changes
         const form = document.getElementById('filter-form');
