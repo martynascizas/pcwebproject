@@ -20,5 +20,10 @@
                 </li> -->
             </ul>
         </div>
+        <li class="call-icon d-none d-sm-block">
+            <a class="call" href="tel:+3706899999" style="text-decoration: none;">
+                <i class="bi bi-telephone"></i>
+            </a>
+        </li>
     </div>
 </nav>

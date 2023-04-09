@@ -276,9 +276,9 @@
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '<div class="col">';
                         echo '<div class="card h-100">';
-                        echo '<div id="carouselExampleControls'.$row["id"].'" class="carousel slide" data-bs-ride="carousel">';
+                        echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
                         echo '<div class="carousel-inner">';
-                    
+
                         // Loop through all photos and create carousel items
                         $photos = explode(",", $row["photos"]);
                         for ($i = 0; $i < count($photos); $i++) {
@@ -290,13 +290,13 @@
                             echo '<div class="m-4"><img src="../crud/nesiojami_kompiuteriai/uploads/' . $photos[$i] . '" class="d-block w-100 zoomable" alt="Product Image"></div>';
                             echo '</div>';
                         }
-                    
+
                         echo '</div>';
-                        echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls'.$row["id"].'" data-bs-slide="prev">';
+                        echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev">';
                         echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
                         echo '<span class="visually-hidden">Previous</span>';
                         echo '</button>';
-                        echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls'.$row["id"].'" data-bs-slide="next">';
+                        echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next">';
                         echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
                         echo '<span class="visually-hidden">Next</span>';
                         echo '</button>';
@@ -318,7 +318,6 @@
                         echo '</div>';
                     }
                     echo '</div>';
-                    
                 } else {
                     echo "0 results";
                 }
@@ -361,6 +360,12 @@
             z-index: 1000;
         }
     </style>
+
+    <!-- <script>
+        window.onload = function() {
+            document.querySelector('.btn-primary').click();
+        };
+    </script> -->
 
     <script>
         const zoomableImages = document.querySelectorAll('.zoomable');

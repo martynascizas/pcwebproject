@@ -6,15 +6,16 @@ body {
 }
 
 .col-md-3 {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto;
 }
 
+/* replace with the width of the fixed left column */
 .col-md-9 {
-  margin-left: 25%; /* replace with the width of the fixed left column */
+    margin-left: 25%;
 }
 
 
@@ -23,34 +24,7 @@ body {
     width: 0px;
 }
 
-/*first main div*/
-
-.btn {
-    background-color: black;
-    color: white;
-    border-radius: 3px;
-    border: none;
-    padding: 6px 40px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.btn:hover {
-    background-color: grey;
-}
-
-.first-container {
-    background-image: url('assets/img/bg.jpg');
-    background-size: cover;
-    background-position: center;
-}
-
-.second-container {
-    margin-right: 100px;
-}
-
 /*navigacija*/
-
 .navbar-nav {
     display: flex;
     align-items: center;
@@ -58,60 +32,12 @@ body {
 }
 
 .navbar {
-    height: 80px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.949) !important;
+    background-color: rgba(237, 237, 237, 0.949) !important;
     transition: all 0.3s ease-in-out;
-}
-
-.navbar.scrolled {
-    height: 60px;
-    background-color: rgb(255, 255, 255);
-}
-
-.navbar.scrolled .navbar-brand {
-    font-size: 1.5rem;
-    transition: all 0.3s ease-in-out;
-    margin-top: 0px !important;
-}
-
-.navbar.scrolled .nav-link {
-    font-size: 0.9rem;
-    transition: all 0.3s ease-in-out;
-}
-
-@media (min-width: 992px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 0px;
-    }
-}
-
-@media (max-width: 991.98px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 10px;
-    }
-}
-
-/*nav animacija*/
-
-@keyframes heightChange {
-    from {
-        height: 80px;
-    }
-
-    to {
-        height: 60px;
-    }
-}
-
-.navbar.animated {
-    animation: heightChange 0.3s ease-in-out;
-}
-
-.navbar.scrolled .navbar-collapse {
-    margin-top: 0px;
 }
 
 @media (min-width: 992px) {
@@ -133,14 +59,20 @@ body {
 }
 
 @media (max-width: 991.98px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 10px;
-    }
 
     .navbar-brand {
         margin-left: 15px;
         text-align: center;
         width: 100%;
+        margin-top: -5px;
+    }
+
+    .call-icon {
+        display: block !important;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .nav-link {
@@ -170,6 +102,17 @@ body {
     }
 }
 
+i.bi-telephone {
+    color: rgb(79, 79, 79);
+    font-size: 1.25em; /* 5px increase from default */
+  }
+
+@media (min-width: 992px) {
+    .call-icon {
+        display: none !important;
+    }
+}
+
 /*categoriju stiliai, category-container*/
 
 .btn-primary-white {
@@ -194,8 +137,6 @@ body {
     width: 80%;
 }
 
-/*kategoriju stiliai*/
-
 /*category-container fix del aukscio mazuose ekranuose*/
 @media only screen and (max-width: 767px) {
     #heightfix {
@@ -203,7 +144,7 @@ body {
     }
 
     .call a {
-        color: red!important;
+        color: red !important;
     }
 }
 
@@ -223,11 +164,4 @@ body {
 
 footer {
     flex-shrink: 0;
-}
-
-/*naujausi produktai*/
-
-#latest-products {
-    padding-top: 60px;
-    margin-bottom: 30px;
 }
