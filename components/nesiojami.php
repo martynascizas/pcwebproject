@@ -90,6 +90,12 @@
                             <?php
                             // Execute query and fetch results
                             $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
+                            // $selected_gamintojas = $_POST['gamintojas'];
+                            // $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
+                            //         FROM nesiojami_kompiuteriai 
+                            //         WHERE gamintojas = '$selected_gamintojas'
+                            //         GROUP BY ekrano_istrizaine 
+                            //         ORDER BY ekrano_istrizaine ASC";
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -201,7 +207,20 @@
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function() {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("ekrano_istrizaine").value = "";
+                                    document.getElementById("procesorius").value = "";
+                                    document.getElementById("vaizdo_plokste").value = "";
+                                    document.getElementById("ram").value = "";
+                                    document.getElementById("hdd").value = "";
+                                    // document.getElementById("kaina_nuo").value = "";
+                                    // document.getElementById("kaina_iki").value = "";
+                                });
+                            </script>
                         </div>
                     </div>
             </form>
@@ -308,11 +327,10 @@
                         echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
                         echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
                         echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
-                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
                         echo '<p class="card-text">' . "Prekės kodas: NES" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
-                        echo '<small class="text-muted">' . $row["timestamp"] . '</small>';
+                        echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
@@ -324,8 +342,8 @@
             }
             ?>
         </div>
-        <!-- footer -->
     </div>
+    <!-- footer -->
     <?php
     require_once 'footer.php';
     ?>
@@ -335,41 +353,9 @@
     mysqli_close($conn);
     ?>
 
-    <style>
-        .zoomable {
-            cursor: zoom-in;
-        }
-
-        .zoomable.active {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 999;
-            cursor: zoom-out;
-            object-fit: contain;
-            backdrop-filter: blur(8px);
-            /* Add a 5px blur effect */
-        }
-
-        .exit-btn {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-        }
-    </style>
-
-    <!-- <script>
-        window.onload = function() {
-            document.querySelector('.btn-primary').click();
-        };
-    </script> -->
-
+    <!--img zoom-->
     <script>
         const zoomableImages = document.querySelectorAll('.zoomable');
-
         zoomableImages.forEach(image => {
             image.addEventListener('click', e => {
                 e.target.classList.toggle('active');
@@ -387,6 +373,7 @@
         });
     </script>
 
+    <!--filter-->
     <script>
         // Select the form and add an event listener to detect changes
         const form = document.getElementById('filter-form');
@@ -412,6 +399,7 @@
         }
     </script>
 
+    <!--price range-->
     <script>
         // Get the range input elements
         const kainaNuo = document.getElementById('kaina_nuo');

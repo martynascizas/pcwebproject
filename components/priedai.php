@@ -196,11 +196,10 @@
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                         echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
                         echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
-                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
                         echo '<p class="card-text">' . "Prekės kodas: PRI" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
-                        echo '<small class="text-muted">' . $row["timestamp"] . '</small>';
+                        echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';

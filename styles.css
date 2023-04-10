@@ -36,7 +36,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(237, 237, 237, 0.949) !important;
+    background-color: rgba(248, 248, 248, 0.949) !important;
     transition: all 0.3s ease-in-out;
 }
 
@@ -52,11 +52,31 @@ body {
     .nav-link {
         margin-right: 15px;
     }
-
+/* 
     .navbar-nav {
         margin-right: 150px;
-    }
+    } */
 }
+
+.navbar-nav {
+    margin-right: 150px!important;
+}
+
+@media (max-width: 1183px) {
+    .navbar-nav {
+        margin-right: 0px!important;
+        font-size: 10px;
+    }
+  }
+
+  @media (max-width: 1033px) {
+    .navbar-nav {
+        margin-right: 0px!important;
+    }
+    .nav-link {
+        margin-right: 0px;
+    }
+  }
 
 @media (max-width: 991.98px) {
 
@@ -80,8 +100,17 @@ body {
         margin-left: auto;
     }
 
-    .navbar-toggler {
+    .hide-navbar-toggler {
         display: none;
+    }
+
+
+    .navbar-nav {
+        background-color: rgba(248, 248, 248, 0.949);
+        float: right;
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 10px;
     }
 
     .second-container {
@@ -101,16 +130,55 @@ body {
         margin-right: 0 !important;
     }
 }
+/*filter*/
 
-i.bi-telephone {
+
+/*icons*/
+.bi-telephone {
     color: rgb(79, 79, 79);
-    font-size: 1.25em; /* 5px increase from default */
-  }
+    font-size: 1.25em;
+    /* 5px increase from default */
+}
+
+.bi-envelope {
+    color: rgb(79, 79, 79);
+    font-size: 1.25em;
+}
+
+.bi-geo-alt {
+    color: rgb(79, 79, 79);
+    font-size: 1.25em;
+}
 
 @media (min-width: 992px) {
     .call-icon {
         display: none !important;
     }
+}
+
+/*image zoom*/
+.zoomable {
+    cursor: zoom-in;
+}
+
+.zoomable.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    cursor: zoom-out;
+    object-fit: contain;
+    backdrop-filter: blur(8px);
+    /* Add a 5px blur effect */
+}
+
+.exit-btn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
 }
 
 /*categoriju stiliai, category-container*/
@@ -164,4 +232,12 @@ i.bi-telephone {
 
 footer {
     flex-shrink: 0;
+}
+
+/*prodnav*/
+.navbar-toggler {
+    margin-top: -60px;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
 }

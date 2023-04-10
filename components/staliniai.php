@@ -255,11 +255,10 @@
                         echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
                         echo '<p class="card-text">' . "Operetyvioji atmintis (RAM): " . $row["ram"] . '</p>';
                         echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
-                        echo '<p class="card-text">' . $row["kaina"] . " - Eur" . '</p>';
                         echo '<p class="card-text">' . "Prekės kodas: STA" . $row["id"] . '</p>';
                         echo '</div>';
                         echo '<div class="card-footer">';
-                        echo '<small class="text-muted">' . $row["timestamp"] . '</small>';
+                        echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
