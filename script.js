@@ -35,6 +35,20 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    $('#rezoliucija').on('change', function () {
+        // $('#filter-form').submit();
+        $('#submit_btn').click();
+    });
+});
+
+$(document).ready(function () {
+    $('#lieciamas_ekranas').on('change', function () {
+        // $('#filter-form').submit();
+        $('#submit_btn').click();
+    });
+});
+
 
 
 // function clearForm() {

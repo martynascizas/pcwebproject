@@ -63,7 +63,18 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT gamintojas, COUNT(*) AS total FROM monitoriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $rezoliucija = $_POST['rezoliucija'];
+                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
+                            if (!empty($ekrano_istrizaine) || !empty($rezoliucija) || !empty($lieciamas_ekranas))
+                                $sql = "SELECT gamintojas, COUNT(*) AS total 
+                                     FROM monitoriai 
+                                     WHERE lieciamas_ekranas = '$lieciamas_ekranas' || ekrano_istrizaine = '$ekrano_istrizaine' || rezoliucija = '$rezoliucija'
+                                     GROUP BY gamintojas 
+                                     ORDER BY gamintojas ASC";
+                            else {
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM monitoriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -83,11 +94,13 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
-                            if (!empty($selected_gamintojas))
+                            $gamintojas = $_POST['gamintojas'];
+                            $rezoliucija = $_POST['rezoliucija'];
+                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
+                            if (!empty($gamintojas) || !empty($rezoliucija) || !empty($lieciamas_ekranas))
                                 $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
                                      FROM monitoriai 
-                                     WHERE gamintojas = '$selected_gamintojas'
+                                     WHERE lieciamas_ekranas = '$lieciamas_ekranas' || gamintojas = '$gamintojas' || rezoliucija = '$rezoliucija'
                                      GROUP BY ekrano_istrizaine 
                                      ORDER BY ekrano_istrizaine ASC";
                             else {
@@ -112,12 +125,13 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
+                            $gamintojas = $_POST['gamintojas'];
                             $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine))
+                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
+                            if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($lieciamas_ekranas))
                                 $sql = "SELECT rezoliucija, COUNT(*) AS total 
                                      FROM monitoriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine'
+                                     WHERE lieciamas_ekranas = '$lieciamas_ekranas' || gamintojas = '$gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine'
                                      GROUP BY rezoliucija 
                                      ORDER BY rezoliucija ASC";
                             else {
@@ -142,13 +156,13 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
+                            $gamintojas = $_POST['gamintojas'];
                             $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $rezoliucija = $_POST['rezoliucija'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) ||!empty($rezoliucija))
+                            if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($rezoliucija))
                                 $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total 
                                      FROM monitoriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || rezoliucija = '$rezoliucija'
+                                     WHERE rezoliucija = '$rezoliucija' || gamintojas = '$gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine'
                                      GROUP BY lieciamas_ekranas 
                                      ORDER BY lieciamas_ekranas ASC";
                             else {
