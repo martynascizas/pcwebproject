@@ -53,7 +53,7 @@ $sql = "SELECT * FROM staliniai_kompiuteriai WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 ?>
-<h2>Edit Monitor</h2>
+<h2>Edit staliniai kompiuteriai</h2>
 <form method="POST" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <label for="gamintojas">Gamintojas:</label>

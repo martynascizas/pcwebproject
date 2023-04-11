@@ -52,7 +52,7 @@ $sql = "SELECT * FROM monitoriai WHERE id='$id'";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 ?>
-<h2>Edit Monitor</h2>
+<h2>Edit monitoriai</h2>
 <form method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
     <label>Gamintojas:</label>

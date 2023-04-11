@@ -206,6 +206,8 @@
                                     document.getElementById("ekrano_istrizaine").value = "";
                                     document.getElementById("rezoliucija").value = "";
                                     document.getElementById("lieciamas_ekranas").value = "";
+                                    document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
+                                    document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
                                     document.getElementById("submit_btn").click();
                                 });
                             </script>

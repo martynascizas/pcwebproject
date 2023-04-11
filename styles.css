@@ -54,14 +54,13 @@ body {
     }
 }
 
-.navbar-nav {
-    margin-right: 150px!important;
+.navbar-text {
+    margin-right: 150px;
 }
 
 @media (max-width: 1183px) {
     .navbar-nav {
         margin-right: 0px!important;
-        font-size: 10px;
     }
   }
 
@@ -127,6 +126,7 @@ body {
     }
 }
 /*filter*/
+
 #submit_btn {
     display: none;
 }
