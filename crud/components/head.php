@@ -10,5 +10,5 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../styles.css">
     <script src="script.js"></script>
-    <title>devėti.lt - CMS</title>
+    <title>devėtas.lt- CMS</title>
 </head>
