@@ -67,7 +67,19 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT gamintojas, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            $hdd = $_POST['hdd'];
+                            if (!empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd))
+                                $sql = "SELECT gamintojas, COUNT(*) AS total 
+                                     FROM staliniai_kompiuteriai 
+                                     WHERE procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
+                                     GROUP BY gamintojas 
+                                     ORDER BY gamintojas ASC";
+                            else {
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -87,11 +99,14 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
-                            if (!empty($selected_gamintojas))
+                            $gamintojas = $_POST['gamintojas'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            $hdd = $_POST['hdd'];
+                            if (!empty($gamintojas) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd)) 
                                 $sql = "SELECT procesorius, COUNT(*) AS total 
                                      FROM staliniai_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas'
+                                     WHERE gamintojas = '$gamintojas' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
                                      GROUP BY procesorius 
                                      ORDER BY procesorius ASC";
                             else {
@@ -116,12 +131,14 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
+                            $hdd = $_POST['hdd'];
+                            $gamintojas = $_POST['gamintojas'];
                             $procesorius = $_POST['procesorius'];
-                            if (!empty($selected_gamintojas) || !empty($procesorius))
+                            $ram = $_POST['ram'];
+                            if (!empty($hdd) || !empty($gamintojas) || !empty($procesorius) || !empty($ram))
                                 $sql = "SELECT vaizdo_plokste, COUNT(*) AS total 
                                      FROM staliniai_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius'
+                                     WHERE hdd = '$hdd' || gamintojas = '$gamintojas' || procesorius = '$procesorius' || ram = '$ram'
                                      GROUP BY vaizdo_plokste 
                                      ORDER BY vaizdo_plokste ASC";
                             else {
@@ -146,13 +163,14 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
+                            $hdd = $_POST['hdd'];
+                            $gamintojas = $_POST['gamintojas'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
-                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste)) 
+                            if (!empty($hdd) || !empty($gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste))
                                 $sql = "SELECT ram, COUNT(*) AS total 
                                      FROM staliniai_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste'
+                                     WHERE hdd = '$hdd' || gamintojas = '$gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste'
                                      GROUP BY ram 
                                      ORDER BY ram ASC";
                             else {
@@ -177,14 +195,14 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ram = $_POST['ram'];
+                            $gamintojas = $_POST['gamintojas'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
-                            $ram = $_POST['ram'];
-                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram)) 
+                            if (!empty($ram) || !empty($gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste))
                                 $sql = "SELECT hdd, COUNT(*) AS total 
                                      FROM staliniai_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram'
+                                     WHERE ram = '$ram' || gamintojas = '$gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste'
                                      GROUP BY hdd 
                                      ORDER BY hdd ASC";
                             else {
