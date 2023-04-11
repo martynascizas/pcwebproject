@@ -69,7 +69,20 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT gamintojas, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            $hdd = $_POST['hdd'];
+                            if (!empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($hdd) || !empty($ram))
+                                $sql = "SELECT gamintojas, COUNT(*) AS total 
+                                        FROM nesiojami_kompiuteriai 
+                                        WHERE ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
+                                        GROUP BY gamintojas 
+                                        ORDER BY gamintojas ASC";
+                            else {
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -90,12 +103,16 @@
                             <?php
                             // Execute query and fetch results
                             $selected_gamintojas = $_POST['gamintojas'];
-                            if (!empty($selected_gamintojas))
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            $hdd = $_POST['hdd'];
+                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd))
                                 $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
-                                     FROM nesiojami_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas'
-                                     GROUP BY ekrano_istrizaine 
-                                     ORDER BY ekrano_istrizaine ASC";
+                                        FROM nesiojami_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
+                                        GROUP BY ekrano_istrizaine 
+                                        ORDER BY ekrano_istrizaine ASC";
                             else {
                                 $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
                             }
@@ -120,12 +137,15 @@
                             // Execute query and fetch results       
                             $selected_gamintojas = $_POST['gamintojas'];
                             $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine))
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            $hdd = $_POST['hdd'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd))
                                 $sql = "SELECT procesorius, COUNT(*) AS total 
-                                     FROM nesiojami_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine'
-                                     GROUP BY procesorius 
-                                     ORDER BY procesorius ASC";
+                                        FROM nesiojami_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
+                                        GROUP BY procesorius 
+                                        ORDER BY procesorius ASC";
                             else {
                                 $sql = "SELECT procesorius, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
                             }
@@ -151,12 +171,14 @@
                             $selected_gamintojas = $_POST['gamintojas'];
                             $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius))
+                            $ram = $_POST['ram'];
+                            $hdd = $_POST['hdd'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($ram) || !empty($hdd))
                                 $sql = "SELECT vaizdo_plokste, COUNT(*) AS total 
-                                     FROM nesiojami_kompiuteriai 
-                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius'
-                                     GROUP BY vaizdo_plokste 
-                                     ORDER BY vaizdo_plokste ASC";
+                                        FROM nesiojami_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || ram = '$ram' || hdd = '$hdd'
+                                        GROUP BY vaizdo_plokste 
+                                        ORDER BY vaizdo_plokste ASC";
                             else {
                                 $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
                             }
@@ -184,10 +206,11 @@
                             $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste))
+                            $hdd = $_POST['hdd'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($hdd))
                                 $sql = "SELECT ram, COUNT(*) AS total 
                                         FROM nesiojami_kompiuteriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste'
+                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || hdd = '$hdd'
                                         GROUP BY ram 
                                         ORDER BY ram ASC";
                             else {
