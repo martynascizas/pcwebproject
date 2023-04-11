@@ -89,13 +89,16 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
-                            // $selected_gamintojas = $_POST['gamintojas'];
-                            // $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
-                            //         FROM nesiojami_kompiuteriai 
-                            //         WHERE gamintojas = '$selected_gamintojas'
-                            //         GROUP BY ekrano_istrizaine 
-                            //         ORDER BY ekrano_istrizaine ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            if (!empty($selected_gamintojas))
+                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
+                                     FROM nesiojami_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas'
+                                     GROUP BY ekrano_istrizaine 
+                                     ORDER BY ekrano_istrizaine ASC";
+                            else {
+                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -114,8 +117,18 @@
                         <select class="form-select" id="procesorius" name="procesorius">
                             <option value="">Visi</option>
                             <?php
-                            // Execute query and fetch results
-                            $sql = "SELECT procesorius, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
+                            // Execute query and fetch results       
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine))
+                                $sql = "SELECT procesorius, COUNT(*) AS total 
+                                     FROM nesiojami_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine'
+                                     GROUP BY procesorius 
+                                     ORDER BY procesorius ASC";
+                            else {
+                                $sql = "SELECT procesorius, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -135,7 +148,18 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $procesorius = $_POST['procesorius'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius))
+                                $sql = "SELECT vaizdo_plokste, COUNT(*) AS total 
+                                     FROM nesiojami_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius'
+                                     GROUP BY vaizdo_plokste 
+                                     ORDER BY vaizdo_plokste ASC";
+                            else {
+                                $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -155,7 +179,20 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT ram, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ram ORDER BY ram ASC";
+                            // Execute query and fetch results
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste))
+                                $sql = "SELECT ram, COUNT(*) AS total 
+                                        FROM nesiojami_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste'
+                                        GROUP BY ram 
+                                        ORDER BY ram ASC";
+                            else {
+                                $sql = "SELECT ram, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ram ORDER BY ram ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -175,7 +212,20 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT hdd, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste))
+                                $sql = "SELECT hdd, COUNT(*) AS total 
+                                        FROM nesiojami_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram'
+                                        GROUP BY hdd 
+                                        ORDER BY hdd ASC";
+                            else {
+                                $sql = "SELECT hdd, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -217,6 +267,7 @@
                                     document.getElementById("vaizdo_plokste").value = "";
                                     document.getElementById("ram").value = "";
                                     document.getElementById("hdd").value = "";
+                                    document.getElementById("submit_btn").click();
                                     // document.getElementById("kaina_nuo").value = "";
                                     // document.getElementById("kaina_iki").value = "";
                                 });
