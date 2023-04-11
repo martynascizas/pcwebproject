@@ -60,7 +60,17 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT gamintojas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            $pavadinimas = $_POST['pavadinimas'];
+                            $aprasymas = $_POST['aprasymas'];
+                            if (!empty($pavadinimas) || !empty($aprasymas))
+                                $sql = "SELECT gamintojas, COUNT(*) AS total 
+                                     FROM kompiuteriu_priedai 
+                                     WHERE pavadinimas = '$pavadinimas' || aprasymas = '$aprasymas'
+                                     GROUP BY gamintojas 
+                                     ORDER BY gamintojas ASC";
+                            else {
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -80,7 +90,17 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT pavadinimas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY pavadinimas ORDER BY pavadinimas ASC";
+                            $gamintojas = $_POST['gamintojas'];
+                            $aprasymas = $_POST['aprasymas'];
+                            if (!empty($gamintojas) || !empty($aprasymas))
+                                $sql = "SELECT pavadinimas, COUNT(*) AS total 
+                                     FROM kompiuteriu_priedai 
+                                     WHERE gamintojas = '$gamintojas' || aprasymas = '$aprasymas'
+                                     GROUP BY pavadinimas 
+                                     ORDER BY pavadinimas ASC";
+                            else {
+                                $sql = "SELECT pavadinimas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY pavadinimas ORDER BY pavadinimas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -100,7 +120,17 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT aprasymas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY aprasymas ORDER BY aprasymas ASC";
+                            $gamintojas = $_POST['gamintojas'];
+                            $pavadinimas = $_POST['pavadinimas'];
+                            if (!empty($gamintojas) || !empty($pavadinimas))
+                                $sql = "SELECT aprasymas, COUNT(*) AS total 
+                                     FROM kompiuteriu_priedai 
+                                     WHERE gamintojas = '$gamintojas' || pavadinimas = '$pavadinimas'
+                                     GROUP BY pavadinimas 
+                                     ORDER BY pavadinimas ASC";
+                            else {
+                                $sql = "SELECT aprasymas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY aprasymas ORDER BY aprasymas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -128,7 +158,7 @@
                             <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
 
                             <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
-                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
+                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>

@@ -52,10 +52,6 @@ body {
     .nav-link {
         margin-right: 15px;
     }
-/* 
-    .navbar-nav {
-        margin-right: 150px;
-    } */
 }
 
 .navbar-nav {
@@ -131,13 +127,14 @@ body {
     }
 }
 /*filter*/
-
+#submit_btn {
+    display: none;
+}
 
 /*icons*/
 .bi-telephone {
     color: rgb(79, 79, 79);
     font-size: 1.25em;
-    /* 5px increase from default */
 }
 
 .bi-envelope {

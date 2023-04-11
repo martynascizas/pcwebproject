@@ -64,6 +64,23 @@ $(document).ready(function () {
     });
 });
 
+$(document).ready(function () {
+    var timeoutId;
+    $('#kaina_nuo').on('input', function () {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function() {
+            $('#submit_btn').click();
+        }, 500); // Wait for 500ms before submitting the form
+    });
+
+    $('#kaina_iki').on('input', function () {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(function() {
+            $('#submit_btn').click();
+        }, 500); // Wait for 500ms before submitting the form
+    });
+});
+
 
 // function clearForm() {
 //     document.getElementById("filter_form").reset();
