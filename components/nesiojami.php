@@ -288,8 +288,6 @@
                                     document.getElementById("ekrano_istrizaine").value = "";
                                     document.getElementById("procesorius").value = "";
                                     document.getElementById("vaizdo_plokste").value = "";
-                                    document.getElementById("ram").value = "";
-                                    document.getElementById("hdd").value = "";
                                     document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
                                     document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
                                     document.getElementById("submit_btn").click();
