@@ -83,7 +83,16 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM monitoriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            if (!empty($selected_gamintojas))
+                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
+                                     FROM monitoriai 
+                                     WHERE gamintojas = '$selected_gamintojas'
+                                     GROUP BY ekrano_istrizaine 
+                                     ORDER BY ekrano_istrizaine ASC";
+                            else {
+                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM monitoriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -103,7 +112,17 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT rezoliucija, COUNT(*) AS total FROM monitoriai GROUP BY rezoliucija ORDER BY rezoliucija ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine))
+                                $sql = "SELECT rezoliucija, COUNT(*) AS total 
+                                     FROM monitoriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine'
+                                     GROUP BY rezoliucija 
+                                     ORDER BY rezoliucija ASC";
+                            else {
+                                $sql = "SELECT rezoliucija, COUNT(*) AS total FROM monitoriai GROUP BY rezoliucija ORDER BY rezoliucija ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -123,7 +142,18 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total FROM monitoriai GROUP BY lieciamas_ekranas ORDER BY lieciamas_ekranas ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $rezoliucija = $_POST['rezoliucija'];
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) ||!empty($rezoliucija))
+                                $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total 
+                                     FROM monitoriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || rezoliucija = '$rezoliucija'
+                                     GROUP BY lieciamas_ekranas 
+                                     ORDER BY lieciamas_ekranas ASC";
+                            else {
+                                $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total FROM monitoriai GROUP BY lieciamas_ekranas ORDER BY lieciamas_ekranas ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -154,7 +184,17 @@
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function() {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("ekrano_istrizaine").value = "";
+                                    document.getElementById("rezoliucija").value = "";
+                                    document.getElementById("lieciamas_ekranas").value = "";
+                                    document.getElementById("submit_btn").click();
+                                });
+                            </script>
                         </div>
                     </div>
             </form>

@@ -75,7 +75,7 @@
                         </select>
 
                         <!--Generate select options for pavadinimas-->
-                        <label for="pavadinimas" class="form-label">pavadinimas</label>
+                        <label for="pavadinimas" class="form-label">Pavadinimas</label>
                         <select class="form-select" id="pavadinimas" name="pavadinimas">
                             <option value="">Visi</option>
                             <?php
@@ -95,7 +95,7 @@
                         </select>
 
                         <!--Generate select options for aprasymas-->
-                        <label for="aprasymas" class="form-label">aprasymas</label>
+                        <label for="aprasymas" class="form-label">Aprasymas</label>
                         <select class="form-select" id="aprasymas" name="aprasymas">
                             <option value="">Visi</option>
                             <?php

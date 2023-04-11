@@ -113,7 +113,7 @@
                         </select>
 
                         <!--Generate select options for procesorius-->
-                        <label for="procesorius" class="form-label">procesorius</label>
+                        <label for="procesorius" class="form-label">Procesorius</label>
                         <select class="form-select" id="procesorius" name="procesorius">
                             <option value="">Visi</option>
                             <?php
@@ -268,8 +268,6 @@
                                     document.getElementById("ram").value = "";
                                     document.getElementById("hdd").value = "";
                                     document.getElementById("submit_btn").click();
-                                    // document.getElementById("kaina_nuo").value = "";
-                                    // document.getElementById("kaina_iki").value = "";
                                 });
                             </script>
                         </div>

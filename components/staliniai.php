@@ -82,12 +82,21 @@
                         </select>
 
                         <!--Generate select options for procesorius-->
-                        <label for="procesorius" class="form-label">procesorius</label>
+                        <label for="procesorius" class="form-label">Procesorius</label>
                         <select class="form-select" id="procesorius" name="procesorius">
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT procesorius, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            if (!empty($selected_gamintojas))
+                                $sql = "SELECT procesorius, COUNT(*) AS total 
+                                     FROM staliniai_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas'
+                                     GROUP BY procesorius 
+                                     ORDER BY procesorius ASC";
+                            else {
+                                $sql = "SELECT procesorius, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -107,7 +116,17 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $procesorius = $_POST['procesorius'];
+                            if (!empty($selected_gamintojas) || !empty($procesorius))
+                                $sql = "SELECT vaizdo_plokste, COUNT(*) AS total 
+                                     FROM staliniai_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius'
+                                     GROUP BY vaizdo_plokste 
+                                     ORDER BY vaizdo_plokste ASC";
+                            else {
+                                $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -127,7 +146,18 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT ram, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY ram ORDER BY ram ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste)) 
+                                $sql = "SELECT ram, COUNT(*) AS total 
+                                     FROM staliniai_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste'
+                                     GROUP BY ram 
+                                     ORDER BY ram ASC";
+                            else {
+                                $sql = "SELECT ram, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY ram ORDER BY ram ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -147,7 +177,19 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $sql = "SELECT hdd, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
+                            $selected_gamintojas = $_POST['gamintojas'];
+                            $procesorius = $_POST['procesorius'];
+                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
+                            $ram = $_POST['ram'];
+                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram)) 
+                                $sql = "SELECT hdd, COUNT(*) AS total 
+                                     FROM staliniai_kompiuteriai 
+                                     WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram'
+                                     GROUP BY hdd 
+                                     ORDER BY hdd ASC";
+                            else {
+                                $sql = "SELECT hdd, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
+                            }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
@@ -178,7 +220,18 @@
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button type="submit" class="btn btn-primary mb-4" name="filter_submit">Submit</button>
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4" name="filter_submit">Submit</button>
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function() {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("procesorius").value = "";
+                                    document.getElementById("vaizdo_plokste").value = "";
+                                    document.getElementById("ram").value = "";
+                                    document.getElementById("hdd").value = "";
+                                    document.getElementById("submit_btn").click();
+                                });
+                            </script>
                         </div>
                     </div>
             </form>
