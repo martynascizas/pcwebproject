@@ -240,7 +240,7 @@
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste))
+                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram))
                                 $sql = "SELECT hdd, COUNT(*) AS total 
                                         FROM nesiojami_kompiuteriai 
                                         WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram'
