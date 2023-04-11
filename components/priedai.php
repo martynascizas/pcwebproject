@@ -75,7 +75,7 @@
                         </select>
 
                         <!--Generate select options for pavadinimas-->
-                        <label for="pavadinimas" class="form-label">Pavadinimas</label>
+                        <label for="pavadinimas" class="form-label">pavadinimas</label>
                         <select class="form-select" id="pavadinimas" name="pavadinimas">
                             <option value="">Visi</option>
                             <?php
@@ -95,7 +95,7 @@
                         </select>
 
                         <!--Generate select options for aprasymas-->
-                        <label for="aprasymas" class="form-label">Aprasymas</label>
+                        <label for="aprasymas" class="form-label">aprasymas</label>
                         <select class="form-select" id="aprasymas" name="aprasymas">
                             <option value="">Visi</option>
                             <?php
@@ -131,7 +131,16 @@
                             <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo $max_kaina; ?>">
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4" name="filter_submit">Filtruoti</button>
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function() {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("pavadinimas").value = "";
+                                    document.getElementById("aprasymas").value = "";
+                                    document.getElementById("submit_btn").click();
+                                });
+                            </script>
                         </div>
                     </div>
             </form>

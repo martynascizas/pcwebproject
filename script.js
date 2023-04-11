@@ -50,6 +50,20 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+    $('#pavadinimas').on('change', function () {
+        // $('#filter-form').submit();
+        $('#submit_btn').click();
+    });
+});
+
+$(document).ready(function () {
+    $('#aprasymas').on('change', function () {
+        // $('#filter-form').submit();
+        $('#submit_btn').click();
+    });
+});
+
 
 // function clearForm() {
 //     document.getElementById("filter_form").reset();
