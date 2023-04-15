@@ -9,7 +9,8 @@
 
 <body>
 
-    <a href="https://parduosiu.lt/devetas/crud/" id="crud-link">Go to CRUD page</a>
+    <!-- <a href="https://parduosiu.lt/devetas/crud/" id="crud-link">Go to CRUD page</a> -->
+    <a href="http://localhost/pcwebsiteproject/crud/index.php" id="crud-link" target="_blank">Go to CRUD page</a>
 
     <!-- db conn -->
     <?php
@@ -31,7 +32,7 @@
 
     <!-- footer -->
     <?php
-    require_once 'components/footer.php';
+    require_once 'components/assets/footer.php';
     ?>
 
     <!-- close db conn -->

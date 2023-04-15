@@ -60,18 +60,19 @@ body {
 
 @media (max-width: 1183px) {
     .navbar-nav {
-        margin-right: 0px!important;
+        margin-right: 0px !important;
     }
-  }
+}
 
-  @media (max-width: 1033px) {
+@media (max-width: 1033px) {
     .navbar-nav {
-        margin-right: 0px!important;
+        margin-right: 0px !important;
     }
+
     .nav-link {
         margin-right: 0px;
     }
-  }
+}
 
 @media (max-width: 991.98px) {
 
@@ -125,10 +126,11 @@ body {
         margin-right: 0 !important;
     }
 }
+
 /*filter*/
 
 #submit_btn {
-    display: none;
+   
 }
 
 /*icons*/
@@ -238,3 +240,56 @@ footer {
     outline: none !important;
     box-shadow: none !important;
 }
+
+/*filter sidebar*/
+
+
+
+.sidebar-toggler {
+    margin-top: 60px;
+}
+
+/* Define the animation */
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-5px);
+    }
+
+    60% {
+        transform: translateY(-2.5px);
+    }
+}
+
+/* Apply the animation to the button */
+.btn.sidebar-toggler {
+    animation-name: bounce;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+}
+
+.form-select {
+    width: 100%;
+}
+
+
+
+.offcanvas.offcanvas-start {
+    width: 300px!important;
+}
+
+/* select {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+} */

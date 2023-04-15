@@ -1,115 +1,71 @@
-$(document).ready(function () {
-    $('#gamintojas').on('change', function () {
-        $('#submit_btn').click();
+document.addEventListener('DOMContentLoaded', function () {
+    const gamintojasSelect = document.getElementById('gamintojas');
+    const ekranoIstrizaineSelect = document.getElementById('ekrano_istrizaine');
+    const procesoriusSelect = document.getElementById('procesorius');
+    const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
+    const ramSelect = document.getElementById('ram');
+    const hddSelect = document.getElementById('hdd');
+    const rezoliucijaSelect = document.getElementById('rezoliucija');
+    const lieciamasEkranasSelect = document.getElementById('lieciamas_ekranas');
+    const pavadinimasSelect = document.getElementById('pavadinimas');
+    const aprasymasSelect = document.getElementById('aprasymas');
+    const kainaNuoInput = document.getElementById('kaina_nuo');
+    const kainaIkiInput = document.getElementById('kaina_iki');
+    const submitBtn = document.getElementById('submit_btn');
+    let timeoutId;
+
+    gamintojasSelect.addEventListener('change', function () {
+        submitBtn.click();
+        document.getElementById('sid').click();
     });
-});
 
-$(document).ready(function () {
-    $('#ekrano_istrizaine').on('change', function () {
-        $('#submit_btn').click();
+    ekranoIstrizaineSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#procesorius').on('change', function () {
-        $('#submit_btn').click();
+    procesoriusSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#vaizdo_plokste').on('change', function () {
-        $('#submit_btn').click();
+    vaizdoPloksteSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#ram').on('change', function () {
-        $('#submit_btn').click();
+    ramSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#hdd').on('change', function () {
-        // $('#filter-form').submit();
-        $('#submit_btn').click();
+    hddSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#rezoliucija').on('change', function () {
-        // $('#filter-form').submit();
-        $('#submit_btn').click();
+    rezoliucijaSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#lieciamas_ekranas').on('change', function () {
-        // $('#filter-form').submit();
-        $('#submit_btn').click();
+    lieciamasEkranasSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-
-$(document).ready(function () {
-    $('#pavadinimas').on('change', function () {
-        // $('#filter-form').submit();
-        $('#submit_btn').click();
+    pavadinimasSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    $('#aprasymas').on('change', function () {
-        // $('#filter-form').submit();
-        $('#submit_btn').click();
+    aprasymasSelect.addEventListener('change', function () {
+        submitBtn.click();
     });
-});
 
-$(document).ready(function () {
-    var timeoutId;
-    $('#kaina_nuo').on('input', function () {
+    kainaNuoInput.addEventListener('input', function () {
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(function() {
-            $('#submit_btn').click();
+        timeoutId = setTimeout(function () {
+            submitBtn.click();
         }, 500); // Wait for 500ms before submitting the form
     });
 
-    $('#kaina_iki').on('input', function () {
+    kainaIkiInput.addEventListener('input', function () {
         clearTimeout(timeoutId);
-        timeoutId = setTimeout(function() {
-            $('#submit_btn').click();
+        timeoutId = setTimeout(function () {
+            submitBtn.click();
         }, 500); // Wait for 500ms before submitting the form
     });
 });
-
-
-// function clearForm() {
-//     document.getElementById("filter_form").reset();
-//   }
-
-/*navbar animation*/
-// window.addEventListener("scroll", function () {
-//     var navbar = document.querySelector(".navbar");
-//     if (window.scrollY > 0) {
-//         navbar.classList.add("scrolled", "animated");
-//     } else {
-//         navbar.classList.remove("scrolled", "animated");
-//     }
-// });
-
-/*img zoom*/
-// const zoomableImages = document.querySelectorAll('.zoomable');
-// zoomableImages.forEach(image => {
-//     image.addEventListener('click', e => {
-//         e.target.classList.toggle('active');
-//         document.body.classList.toggle('no-scroll');
-//         const exitBtn = document.createElement('button');
-//         exitBtn.innerHTML = 'Exit';
-//         exitBtn.classList.add('exit-btn');
-//         document.body.appendChild(exitBtn);
-//         exitBtn.addEventListener('click', () => {
-//             e.target.classList.remove('active');
-//             document.body.classList.remove('no-scroll');
-//             exitBtn.remove();
-//         });
-//     });
-// });

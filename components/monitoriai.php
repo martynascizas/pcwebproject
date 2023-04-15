@@ -3,22 +3,14 @@
 
 <head>
     <?php
-    require_once 'prodhead.php';
+    require_once 'assets/prodhead.php';
     ?>
 </head>
 
 <body>
-    <!-- db conn -->
-    <?php
-    require '../db.php';
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    ?>
-
     <!-- navbar -->
     <?php
-    require_once 'prodnav.php';
+    require_once 'assets/prodnav.php';
     ?>
 
     <div class="wrapper">
@@ -27,6 +19,10 @@
             <form id="filter-form" method="POST">
                 <div class="mb-3">
                     <?php
+                    require '../db.php';
+                    if (!$conn) {
+                        die("Connection failed: " . mysqli_connect_error());
+                    }
                     // Construct SQL query with the selected gamintojas value
                     $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.rezoliucija, m.lieciamas_ekranas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
@@ -215,9 +211,51 @@
                     </div>
             </form>
 
-            <?php
-            // Check if form has been submitted
-            if (isset($_POST['filter_submit'])) {
+            <?php  // Check if form has been submitted
+            if (!isset($_POST['filter_submit'])) {
+                // Perform the JOIN between the tables
+                $sql = "SELECT nk.*, GROUP_CONCAT(nkp.filename) AS photos
+                FROM monitoriai nk
+                LEFT JOIN monitoriai_photos nkp ON nk.id = nkp.monitoriai_id
+                GROUP BY nk.id
+                ORDER BY nk.timestamp DESC";
+
+                $result = mysqli_query($conn, $sql);
+                // Generate the HTML markup for the products
+                echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $photos = explode(",", $row["photos"]);
+                    $carousel_items = '';
+                    foreach ($photos as $i => $photo) {
+                        $active_class = ($i == 0) ? 'active' : '';
+                        $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
+                        $carousel_items .= '<div class="m-4"><img src="../crud/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></div>';
+                        $carousel_items .= '</div>';
+                    }
+
+                    echo '<div class="col">';
+                    echo '<div class="card h-100">';
+                    echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
+                    echo '<div class="carousel-inner">' . $carousel_items . '</div>';
+                    echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
+                    echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
+                    echo '</div>';
+                    echo '<div class="card-body d-flex flex-column justify-content-end">';
+                    echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
+                    echo '<p class="card-text">' . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
+                    echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
+                    echo '<p class="card-text">' . "Liečiamas ekranas: " . $row["lieciamas_ekranas"] . '</p>';
+                    echo '<p class="card-text">' . "Prekės kodas: MON" . $row["id"] . '</p>';
+                    echo '</div>';
+                    echo '<div class="card-footer">';
+                    echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+                echo '</div>';
+                // Check if form has been submitted
+            } else if (isset($_POST['filter_submit'])) {
                 // Get the selected gamintojas and ekrano_istrizaine values from the form
                 $gamintojas = $_POST['gamintojas'];
                 $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
@@ -273,12 +311,25 @@
                 if (mysqli_num_rows($result) > 0) {
                     echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
                     while ($row = mysqli_fetch_assoc($result)) {
+                        $photos = explode(",", $row["photos"]);
+                        $carousel_items = '';
+                        foreach ($photos as $i => $photo) {
+                            $active_class = ($i == 0) ? 'active' : '';
+                            $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
+                            $carousel_items .= '<div class="m-4"><img src="../crud/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></div>';
+                            $carousel_items .= '</div>';
+                        }
+
                         echo '<div class="col">';
                         echo '<div class="card h-100">';
-                        echo '<img src="../crud/monitoriai/uploads/' . $row["photos"] . '" class="card-img-top" alt="Product Image">';
-                        echo '<div class="card-body">';
+                        echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
+                        echo '<div class="carousel-inner">' . $carousel_items . '</div>';
+                        echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
+                        echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
+                        echo '</div>';
+                        echo '<div class="card-body d-flex flex-column justify-content-end">';
                         echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                        echo '<p class="card-text">' . "Ekrano įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
+                        echo '<p class="card-text">' . "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\"" . '</p>';
                         echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
                         echo '<p class="card-text">' . "Liečiamas ekranas: " . $row["lieciamas_ekranas"] . '</p>';
                         echo '<p class="card-text">' . "Prekės kodas: MON" . $row["id"] . '</p>';
@@ -294,18 +345,38 @@
                     echo "0 results";
                 }
             }
+            mysqli_close($conn);
             ?>
         </div>
         <!-- footer -->
     </div>
+
+    <!-- footer -->
     <?php
-    require_once 'footer.php';
+    require_once 'assets/footer.php';
     ?>
-    </div>
-    <!-- close db conn -->
-    <?php
-    mysqli_close($conn);
-    ?>
+
+    <!--img zoom-->
+    <script>
+        const zoomableImages = document.querySelectorAll('.zoomable');
+        zoomableImages.forEach(image => {
+            image.addEventListener('click', e => {
+                e.target.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+                const exitBtn = document.createElement('button');
+                exitBtn.innerHTML = 'Exit';
+                exitBtn.classList.add('exit-btn');
+                document.body.appendChild(exitBtn);
+                exitBtn.addEventListener('click', () => {
+                    e.target.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                    exitBtn.remove();
+                });
+            });
+        });
+    </script>
+
+    <!--filter-->
     <script>
         // Select the form and add an event listener to detect changes
         const form = document.getElementById('filter-form');
@@ -331,6 +402,7 @@
         }
     </script>
 
+    <!--price range-->
     <script>
         // Get the range input elements
         const kainaNuo = document.getElementById('kaina_nuo');
