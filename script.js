@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     gamintojasSelect.addEventListener('change', function () {
         submitBtn.click();
-        document.getElementById('sid').click();
     });
 
     ekranoIstrizaineSelect.addEventListener('change', function () {

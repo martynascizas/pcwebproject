@@ -8,6 +8,15 @@
 </head>
 
 <body>
+    <?php
+    session_start();
+
+    if (!isset($_SESSION['windowHasLoaded'])) {
+        $_SESSION['windowHasLoaded'] = true;
+    } else {
+        echo '<script>window.onload = function () { document.getElementById("sid").click(); };</script>';
+    }
+    ?>
     <!-- navbar -->
     <?php
     require_once 'assets/prodnav.php';
@@ -16,10 +25,10 @@
     require '../db.php';
     ?>
 
-    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3 show" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
         <div class="offcanvas-header">
             <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Filtrai</h6>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <?php
         if (!$conn) {
@@ -512,7 +521,7 @@
 
             // Get the form data and send an AJAX request
             const formData = new FormData(form);
-            fetch('filter.php', {
+            fetch('nesiojamitest.php', {
                     method: 'POST',
                     body: formData
                 })
