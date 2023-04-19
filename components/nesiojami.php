@@ -327,7 +327,7 @@
                 </button>
                 <div class="wrapper">
                     <div class="container products_section products-margin">
-                        <h3 id="nesiojami_kompiuteriai" class="text-center mb-5">TEST_NESIOJAMI_KOMPIUTERIAI</h3>
+                        <h3 id="nesiojami_kompiuteriai" class="text-center mb-5">Nešiojami Kompiuteriai</h3>
                         <?php
                         // Check if form has been submitted
                         if (!isset($_POST['filter_submit'])) {
@@ -489,6 +489,11 @@
     require_once 'assets/footer.php';
     ?>
 
+    <!-- close filter -->
+    <script>
+
+    </script>
+
     <!--img zoom-->
     <script>
         const zoomableImages = document.querySelectorAll('.zoomable');
@@ -496,18 +501,27 @@
             image.addEventListener('click', e => {
                 e.target.classList.toggle('active');
                 document.body.classList.toggle('no-scroll');
-                const exitBtn = document.createElement('button');
-                exitBtn.innerHTML = 'Exit';
-                exitBtn.classList.add('exit-btn');
-                document.body.appendChild(exitBtn);
-                exitBtn.addEventListener('click', () => {
-                    e.target.classList.remove('active');
-                    document.body.classList.remove('no-scroll');
-                    exitBtn.remove();
-                });
+                if (e.target.classList.contains('active')) {
+                    const overlay = document.createElement('div');
+                    overlay.classList.add('overlay');
+                    document.body.appendChild(overlay);
+                    const exitBtn = document.createElement('button');
+                    exitBtn.innerHTML = 'Exit';
+                    exitBtn.classList.add('exit-btn');
+                    overlay.appendChild(exitBtn);
+                    exitBtn.addEventListener('click', () => {
+                        e.target.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                        overlay.remove();
+                    });
+                } else {
+                    const overlay = document.querySelector('.overlay');
+                    overlay.remove();
+                }
             });
         });
     </script>
+
 
     <!--filter-->
     <script>
@@ -521,7 +535,7 @@
 
             // Get the form data and send an AJAX request
             const formData = new FormData(form);
-            fetch('nesiojamitest.php', {
+            fetch('nesiojami.php', {
                     method: 'POST',
                     body: formData
                 })
@@ -559,6 +573,20 @@
             kainaIkiValue.textContent = kainaIki.value;
         });
     </script>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="imageModalLabel">Image</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="" class="img-fluid" id="zoomImage">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

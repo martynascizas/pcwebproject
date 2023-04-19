@@ -5,6 +5,10 @@ body {
     height: 100%
 }
 
+#crud-link {
+    display: none;
+}
+
 .col-md-3 {
     position: fixed;
     top: 0;
@@ -100,12 +104,11 @@ body {
         display: none;
     }
 
-
     .navbar-nav {
         background-color: rgba(248, 248, 248, 0.949);
         float: right;
-        font-weight: bold;
-        border-radius: 5px;
+        border-bottom-left-radius: 5%;
+        border-bottom-right-radius: 5%;
         padding: 10px;
     }
 
@@ -129,9 +132,7 @@ body {
 
 /*filter*/
 
-#submit_btn {
-   
-}
+#submit_btn {}
 
 /*icons*/
 .bi-telephone {
@@ -156,6 +157,29 @@ body {
 }
 
 /*image zoom*/
+
+.carousel-item {
+    height: 400px;
+    position: relative;
+}
+
+.carousel-item:before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+    /* 16:9 aspect ratio */
+}
+
+.carousel-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
 .zoomable {
     cursor: zoom-in;
 }
@@ -169,13 +193,25 @@ body {
     z-index: 999;
     cursor: zoom-out;
     object-fit: contain;
-    backdrop-filter: blur(8px);
-    /* Add a 5px blur effect */
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 998;
+    background-color: rgba(255, 255, 255, 0.852); /* fallback color */
+    background-color: hsla(0, 0%, 100%, 0.852); /* fallback color with alpha */
+    /* Add a semi-transparent black overlay */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 }
 
 .exit-btn {
     position: fixed;
-    top: 10px;
+    bottom: 10px;
     right: 10px;
     z-index: 1000;
 }
@@ -284,7 +320,7 @@ footer {
 
 
 .offcanvas.offcanvas-start {
-    width: 300px!important;
+    width: 300px !important;
 }
 
 /* select {
