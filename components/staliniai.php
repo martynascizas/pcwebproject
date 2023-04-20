@@ -304,10 +304,9 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div class="m-4"><img src="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></div>';
+                                    $carousel_items .= '<div class="m-4"><a href="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
-
                                 echo '<div class="col">';
                                 echo '<div class="card h-100">';
                                 echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -395,8 +394,9 @@
                                     $carousel_items = '';
                                     foreach ($photos as $i => $photo) {
                                         $active_class = ($i == 0) ? 'active' : '';
+                                        $gallery_name = 'gallery-' . $row["id"];
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div class="m-4"><img src="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></div>';
+                                        $carousel_items .= '<div class="m-4"><a href="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="' . $gallery_name . '"><img src="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
 
@@ -439,35 +439,18 @@
     require_once 'assets/footer.php';
     ?>
 
-    <!-- close filter -->
+    <!-- fancybox -->
     <script>
-
-    </script>
-
-    <!--img zoom-->
-    <script>
-        const zoomableImages = document.querySelectorAll('.zoomable');
-        zoomableImages.forEach(image => {
-            image.addEventListener('click', e => {
-                e.target.classList.toggle('active');
-                document.body.classList.toggle('no-scroll');
-                if (e.target.classList.contains('active')) {
-                    const overlay = document.createElement('div');
-                    overlay.classList.add('overlay');
-                    document.body.appendChild(overlay);
-                    const exitBtn = document.createElement('button');
-                    exitBtn.innerHTML = 'Exit';
-                    exitBtn.classList.add('exit-btn');
-                    overlay.appendChild(exitBtn);
-                    exitBtn.addEventListener('click', () => {
-                        e.target.classList.remove('active');
-                        document.body.classList.remove('no-scroll');
-                        overlay.remove();
-                    });
-                } else {
-                    const overlay = document.querySelector('.overlay');
-                    overlay.remove();
-                }
+        $(document).ready(function() {
+            $('[data-fancybox="gallery1"]').fancybox({
+                loop: true,
+                buttons: [
+                    "zoom",
+                    "slideShow",
+                    "fullScreen",
+                    "thumbs",
+                    "close"
+                ]
             });
         });
     </script>
