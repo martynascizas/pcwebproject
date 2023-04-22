@@ -30,7 +30,13 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="col-md-12">
+                    <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/akcijos.jpg'); background-size: cover; border: none;">
+                        <div class="card-body" style="height: 150px;">
+                            <a href="components/akcijos.php" class="btn btn-primary-white" style="position:absolute; bottom:20px; left:20px;">Akcijos</a>
+                        </div>
+                    </div>
+                </div> -->
             </div>
         </div>
-    </div>
-</section>
+   
