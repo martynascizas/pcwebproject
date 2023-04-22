@@ -243,7 +243,7 @@ body {
 /*category-container fix del aukscio mazuose ekranuose*/
 @media only screen and (max-width: 767px) {
     #heightfix {
-        min-height: 1570px;
+        min-height: 1620px;
     }
 
     .call a {
