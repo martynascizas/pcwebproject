@@ -95,7 +95,7 @@
                     </li>
                     <li>
                         <!--Generate select options for pavadinimas-->
-                        <label for="pavadinimas" class="form-label">pavadinimas</label>
+                        <label for="pavadinimas" class="form-label">Pavadinimas</label>
                         <select class="form-select" id="pavadinimas" name="pavadinimas">
                             <option value="">Visi</option>
                             <?php
@@ -126,7 +126,7 @@
                     </li>
                     <li>
                         <!--Generate select options for aprasymas-->
-                        <label for="aprasymas" class="form-label">Vaizdo Plokštė</label>
+                        <label for="aprasymas" class="form-label">Aprašymas</label>
                         <select class="form-select" id="aprasymas" name="aprasymas">
                             <option value="">Visi</option>
                             <?php
@@ -237,7 +237,7 @@
                                 echo '<div class="card-body d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                                 echo '<p class="card-text">' . "pavadinimas: " . $row["pavadinimas"] . '</p>';
-                                echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["aprasymas"] . '</p>';
+                                echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
                                 echo '<p class="card-text">' . "Prekės kodas: NES" . $row["id"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -317,7 +317,7 @@
                                     echo '<div class="card-body d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                                     echo '<p class="card-text">' . "pavadinimas: " . $row["pavadinimas"] . '</p>';
-                                    echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["aprasymas"] . '</p>';
+                                    echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
                                     echo '<p class="card-text">' . "Prekės kodas: NES" . $row["id"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';

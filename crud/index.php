@@ -14,17 +14,20 @@ require_once 'components/head.php';
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto" style="transition: all 0.3s ease-in-out;">
-          <li class="nav-item">
-            <a class="nav-link" href="../crud/nesiojami_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Nešiojami Kompiuteriai</a>
+        <li class="nav-item">
+            <a class="nav-link" href="../crud/akcijos/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Akcijos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../crud/staliniai_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Staliniai Kompiuteriai</a>
+            <a class="nav-link" href="../crud/nesiojami_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Nešiojami</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../crud/staliniai_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Staliniai</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="../crud/monitoriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Monitoriai</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../crud/kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Kompiuterių Priedai</a>
+            <a class="nav-link" href="../crud/kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Priedai</a>
           </li>
         </ul>
       </div>

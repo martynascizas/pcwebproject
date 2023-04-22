@@ -99,7 +99,7 @@
                     </li>
                     <li>
                         <!--Generate select options for rezoliucija-->
-                        <label for="rezoliucija" class="form-label">rezoliucija</label>
+                        <label for="rezoliucija" class="form-label">Rezoliucija</label>
                         <select class="form-select" id="rezoliucija" name="rezoliucija">
                             <option value="">Visi</option>
                             <?php
@@ -163,7 +163,7 @@
                     </li>
                     <li>
                         <!--Generate select options for ekrano_istrizaine-->
-                        <label for="ekrano_istrizaine" class="form-label">ekrano_istrizaine</label>
+                        <label for="ekrano_istrizaine" class="form-label">Ekrano Įstrižainė</label>
                         <select class="form-select" id="ekrano_istrizaine" name="ekrano_istrizaine">
                             <option value="">Visi</option>
                             <?php

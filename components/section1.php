@@ -17,7 +17,7 @@ px<section id="categorys-container">
                     </div>
                 </div>
                 <div class="col-md-12">
-                    <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/akcijos.jpg'); background-size: cover; border: none;">
+                    <div class="card h-100 shadow rounded-0" style="background: linear-gradient(to bottom, #fff6f6, #ffeaea); border: none;">
                         <div class="card-body" style="height: 60px;">
                             <a href="components/akcijos.php" class="btn btn-primary-white" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Akcijos</a>
                         </div>
