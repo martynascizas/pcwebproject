@@ -58,7 +58,7 @@ body {
     }
 }
 
-@media (min-width: 576px) {
+@media (max-width: 576px) {
     .cat a {
         left: 20px;
     }
@@ -72,6 +72,23 @@ body {
         left: 95px !important;
     }
 
+    #categorys-container .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #categorys-container .col-md-12 {
+        margin-top: 20px;
+    }
+
+    #categorys-container .col-md-12+.col-md-6 {
+        order: 3;
+    }
+
+    #categorys-container .col-md-12 {
+        order: 5;
+    }
 }
 
 .navbar-text {
@@ -145,10 +162,6 @@ body {
         margin-right: 0 !important;
     }
 }
-
-/*filter*/
-
-#submit_btn {}
 
 /*icons*/
 .bi-telephone {
@@ -258,15 +271,58 @@ body {
     width: 80%;
 }
 
+.card-title {
+    margin-bottom: 20px;
+}
+
 /*category-container fix del aukscio mazuose ekranuose*/
 @media only screen and (max-width: 767px) {
     #heightfix {
-        min-height: 1620px;
+        min-height: 1400px;
     }
 
     .call a {
         color: red !important;
     }
+
+    .cat a {
+        left: 20px !important;
+    }
+
+    .cat-bottom a {
+        bottom: 20px !important;
+        top: unset !important;
+    }
+
+    .akcijos a {
+        left: 95px !important;
+    }
+
+    #categorys-container .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #categorys-container .col-md-12 {
+        margin-top: 20px;
+    }
+
+    #categorys-container .col-md-12+.col-md-6 {
+        order: 3;
+    }
+
+    #categorys-container .col-md-12 {
+        order: 5;
+    }
+}
+
+.card {
+    border: none;
+}
+
+.card-footer {
+    border: none;
 }
 
 .container.products_section.mb-5.products-margin {

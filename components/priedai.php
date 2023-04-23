@@ -236,7 +236,7 @@
                                 echo '</div>';
                                 echo '<div class="card-body d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                echo '<p class="card-text">' . "pavadinimas: " . $row["pavadinimas"] . '</p>';
+                                echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
                                 echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
                                 echo '<p class="card-text">' . "Prekės kodas: PRI00" . $row["id"] . '</p>';
                                 echo '</div>';
@@ -316,7 +316,7 @@
                                     echo '</div>';
                                     echo '<div class="card-body d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                    echo '<p class="card-text">' . "pavadinimas: " . $row["pavadinimas"] . '</p>';
+                                    echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
                                     echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
                                     echo '<p class="card-text">' . "Prekės kodas: PRI00" . $row["id"] . '</p>';
                                     echo '</div>';

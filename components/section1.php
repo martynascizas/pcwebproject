@@ -1,4 +1,4 @@
-px<section id="categorys-container">
+<section id="categorys-container">
     <div id="heightfix" class=" d-flex flex-column align-items-center">
         <div class="container mt-1 custom-container flex-shrink-0 vh-100" style="width: 100vw; display: flex; flex-direction: column; justify-content: center;">
             <div class="row row-cols-1 row-cols-md-2 g-3">
@@ -23,7 +23,6 @@ px<section id="categorys-container">
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-6">
                     <div class="card h-100 shadow rounded-0" style="background-image: url('assets/img/monitor.webp'); background-size: cover; border: none;">
                         <div class="card-body cat cat-bottom" style="height: 285px;">
@@ -40,3 +39,5 @@ px<section id="categorys-container">
                 </div>
             </div>
         </div>
+    </div>
+</section>

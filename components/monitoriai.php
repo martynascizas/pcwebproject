@@ -276,7 +276,7 @@
                                 echo '</div>';
                                 echo '<div class="card-body d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                echo '<p class="card-text">' . "rezoliucija: " . $row["rezoliucija"] . '</p>';
+                                echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
                                 echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["lieciamas_ekranas"] . '</p>';
                                 echo '<p class="card-text">' . "Operatyvioji atmintis (ekrano_istrizaine): " . $row["ekrano_istrizaine"] . '</p>';
                                 echo '<p class="card-text">' . "Prekės kodas: MON00" . $row["id"] . '</p>';
@@ -362,7 +362,7 @@
                                     echo '</div>';
                                     echo '<div class="card-body d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                    echo '<p class="card-text">' . "rezoliucija: " . $row["rezoliucija"] . '</p>';
+                                    echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
                                     echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["lieciamas_ekranas"] . '</p>';
                                     echo '<p class="card-text">' . "Operatyvioji atmintis (ekrano_istrizaine): " . $row["ekrano_istrizaine"] . '</p>';
                                     echo '<p class="card-text">' . "Prekės kodas: MON00" . $row["id"] . '</p>';

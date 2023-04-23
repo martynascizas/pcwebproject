@@ -35,7 +35,7 @@
             die("Connection failed: " . mysqli_connect_error());
         }
         // Construct SQL query with the selected gamintojas value
-        $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
+        $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, m.nauja_kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
                     FROM akcijos m 
                     LEFT JOIN akcijos_photos mp ON m.id = mp.akcijos_id";
@@ -236,12 +236,12 @@
                                 echo '</div>';
                                 echo '<div class="card-body d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                echo '<p class="card-text">' . "pavadinimas: " . $row["pavadinimas"] . '</p>';
-                                echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["aprasymas"] . '</p>';
+                                echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
+                                echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
                                 echo '<p class="card-text">' . "Prekės kodas: AKC00" . $row["id"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text">' . 'Kaina: <del style="color: red;">' . $row["kaina"] . 'Eur</del>' . '</p>' . "Nauja Kaina: " . $row["nauja_kaina"] . "Eur" . '</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -316,8 +316,8 @@
                                     echo '</div>';
                                     echo '<div class="card-body d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                    echo '<p class="card-text">' . "pavadinimas: " . $row["pavadinimas"] . '</p>';
-                                    echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["aprasymas"] . '</p>';
+                                    echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
+                                    echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
                                     echo '<p class="card-text">' . "Prekės kodas: AKC00" . $row["id"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';

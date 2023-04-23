@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-4 text-center">
         <h6 class="text-white">APIE MUS</h6>
-        <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <p class="text-secondary">Lorem ipsum dolor sit amet.</p>
       </div>
       <div class="col-md-4 text-center">
         <h6 class="text-white">MŪSŲ PASLAUGOS</h6>
