@@ -320,7 +320,7 @@
                                 echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
                                 echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
                                 echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
-                                echo '<p class="card-text">' . "Prekės kodas: NES" . $row["id"] . '</p>';
+                                echo '<p class="card-text">' . "Prekės kodas: STA00" . $row["id"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
                                 echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
@@ -413,7 +413,7 @@
                                     echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
                                     echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
                                     echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
-                                    echo '<p class="card-text">' . "Prekės kodas: NES" . $row["id"] . '</p>';
+                                    echo '<p class="card-text">' . "Prekės kodas: STA00" . $row["id"] . '</p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';
                                     echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';

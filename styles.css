@@ -58,6 +58,22 @@ body {
     }
 }
 
+@media (min-width: 576px) {
+    .cat a {
+        left: 20px;
+    }
+
+    .cat-bottom a {
+        bottom: 20px !important;
+        top: unset !important;
+    }
+
+    .akcijos a {
+        left: 95px !important;
+    }
+
+}
+
 .navbar-text {
     margin-right: 150px;
 }
@@ -202,8 +218,10 @@ body {
     width: 100vw;
     height: 100vh;
     z-index: 998;
-    background-color: rgba(255, 255, 255, 0.852); /* fallback color */
-    background-color: hsla(0, 0%, 100%, 0.852); /* fallback color with alpha */
+    background-color: rgba(255, 255, 255, 0.852);
+    /* fallback color */
+    background-color: hsla(0, 0%, 100%, 0.852);
+    /* fallback color with alpha */
     /* Add a semi-transparent black overlay */
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
