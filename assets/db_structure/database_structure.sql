@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 07:59 PM
+-- Generation Time: Apr 24, 2023 at 09:48 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,8 +18,27 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `testas`
+-- Database: `computer_shop_structure`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(6) UNSIGNED NOT NULL,
+  `username` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`) VALUES
+(8, 'admin', '$2y$10$Pr1z9B.gPocT5gLI.x9SZ.h5SM435nkdiXmvr88oLJP6rR5ztqA.C');
 
 -- --------------------------------------------------------
 
@@ -38,6 +57,13 @@ CREATE TABLE `akcijos` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `akcijos`
+--
+
+INSERT INTO `akcijos` (`id`, `pavadinimas`, `kaina`, `nauja_kaina`, `aprasymas`, `photo`, `gamintojas`, `timestamp`) VALUES
+(5, 'Akcija pavadinimas', 199.00, 189.00, 'Akcija aprasymas', NULL, 'AOC', '2023-04-23 19:06:14');
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +75,14 @@ CREATE TABLE `akcijos_photos` (
   `akcijos_id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `akcijos_photos`
+--
+
+INSERT INTO `akcijos_photos` (`id`, `akcijos_id`, `filename`) VALUES
+(5, 5, 'aoc27.webp'),
+(6, 5, 'aoc27g2spu.jpg');
 
 -- --------------------------------------------------------
 
@@ -173,6 +207,12 @@ CREATE TABLE `staliniai_kompiuteriai_photos` (
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `akcijos`
 --
 ALTER TABLE `akcijos`
@@ -226,6 +266,12 @@ ALTER TABLE `staliniai_kompiuteriai`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `akcijos`
