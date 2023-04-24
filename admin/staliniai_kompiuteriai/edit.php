@@ -16,8 +16,16 @@
     <title>staliniai</title>
 </head>
 
+<?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
+?>
+
 <body>
-<?php include '../components/header.php'; ?>
+    <?php include '../components/header.php'; ?>
     <?php
     // Connect to the database
     require '../../db.php';

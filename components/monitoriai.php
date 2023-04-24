@@ -263,7 +263,7 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div class="m-4"><a href="../crud/monitoriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../crud/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div class="m-4"><a href="../admin/monitoriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
 
@@ -349,7 +349,7 @@
                                     foreach ($photos as $i => $photo) {
                                         $active_class = ($i == 0) ? 'active' : '';
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div class="m-4"><a href="../crud/monitoriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../crud/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                        $carousel_items .= '<div class="m-4"><a href="../admin/monitoriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
 

@@ -304,7 +304,7 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div class="m-4"><a href="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div class="m-4"><a href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
                                 echo '<div class="col">';
@@ -396,7 +396,7 @@
                                         $active_class = ($i == 0) ? 'active' : '';
                                         $gallery_name = 'gallery-' . $row["id"];
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div class="m-4"><a href="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="' . $gallery_name . '"><img src="../crud/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                        $carousel_items .= '<div class="m-4"><a href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="' . $gallery_name . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
 

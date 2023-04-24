@@ -13,8 +13,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="script.js"></script>
-    <title>monitoriai</title>
+    <title>akcijos</title>
 </head>
+
+<?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: ../login.php");
+    exit;
+}
+?>
 
 <body>
     <?php include '../components/header.php'; ?>
@@ -32,18 +40,19 @@
         // Get the form data
         $id = $_POST["id"];
         $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
-        $ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
-        $rezoliucija = mysqli_real_escape_string($conn, $_POST['rezoliucija']);
+        $pavadinimas = mysqli_real_escape_string($conn, $_POST['pavadinimas']);
+        $aprasymas = mysqli_real_escape_string($conn, $_POST['aprasymas']);
         $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
+        $nauja_kaina = mysqli_real_escape_string($conn, $_POST['nauja_kaina']);
 
-        // Update the monitoriai data
-        $sql = "UPDATE monitoriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine', kaina='$kaina', rezoliucija='$rezoliucija' WHERE id='$id'";
+        // Update the akcijos data
+        $sql = "UPDATE akcijos SET gamintojas='$gamintojas', pavadinimas='$pavadinimas', kaina='$kaina',nauja_kaina='$nauja_kaina', aprasymas='$aprasymas' WHERE id='$id'";
         mysqli_query($conn, $sql);
 
         // Check if new photos were uploaded
         if (!empty($_FILES["photos"]["name"][0])) {
             // Remove old photos from the database
-            $sql = "DELETE FROM monitoriai_photos WHERE monitoriai_id='$id'";
+            $sql = "DELETE FROM akcijos_photos WHERE akcijos_id='$id'";
             mysqli_query($conn, $sql);
 
             // Upload new photos
@@ -55,19 +64,19 @@
                 move_uploaded_file($tmp_name, "uploads/" . $filename);
 
                 // Add the photo to the database
-                $sql = "INSERT INTO monitoriai_photos (monitoriai_id, filename) VALUES ('$id', '$filename')";
+                $sql = "INSERT INTO akcijos_photos (akcijos_id, filename) VALUES ('$id', '$filename')";
                 mysqli_query($conn, $sql);
             }
         }
 
-        // Redirect back to the monitoriai list
+        // Redirect back to the akcijos list
         header("Location: index.php");
         exit();
     }
 
-    // Get the monitoriai data
+    // Get the akcijos data
     $id = $_GET["id"];
-    $sql = "SELECT * FROM monitoriai WHERE id='$id'";
+    $sql = "SELECT * FROM akcijos WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     ?>
@@ -83,16 +92,20 @@
                             <input type="text" class="form-control" id="gamintojas" name="gamintojas" value="<?php echo $row['gamintojas']; ?>" required>
                         </div>
                         <div class="mb-3">
-                            <label for="ekrano_istrizaine" class="form-label">Ekrano įstrižainė:</label>
-                            <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" value="<?php echo $row['ekrano_istrizaine']; ?>" required>
+                            <label for="pavadinimas" class="form-label">Pavadinimas:</label>
+                            <input type="text" class="form-control" id="pavadinimas" name="pavadinimas" value="<?php echo $row['pavadinimas']; ?>" required>
                         </div>
                         <div class="mb-3">
-                            <label for="rezoliucija" class="form-label">Rezoliucija:</label>
-                            <input type="text" class="form-control" id="rezoliucija" name="rezoliucija" value="<?php echo $row['rezoliucija']; ?>" required>
+                            <label for="aprasymas" class="form-label">Aprasymas:</label>
+                            <input type="text" class="form-control" id="aprasymas" name="aprasymas" value="<?php echo $row['aprasymas']; ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="kaina" class="form-label">Kaina:</label>
                             <input type="number" class="form-control" id="kaina" name="kaina" value="<?php echo $row['kaina']; ?>" min="0.01" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nauja_kaina" class="form-label">Nauja kaina:</label>
+                            <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" value="<?php echo $row['nauja_kaina']; ?>" min="0.01" step="0.01" required>
                         </div>
                         <div class="mb-3">
                             <label for="photos" class="form-label">Photo:</label>
@@ -105,7 +118,7 @@
         </div>
         <?php
         // Display the current photos
-        $sql = "SELECT * FROM monitoriai_photos WHERE monitoriai_id='$id'";
+        $sql = "SELECT * FROM akcijos_photos WHERE akcijos_id='$id'";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<img src='uploads/" . $row["filename"] . "' width='200'>";

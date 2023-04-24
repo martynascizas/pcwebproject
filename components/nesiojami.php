@@ -347,7 +347,7 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div class="m-4"><a href="../crud/nesiojami_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../crud/nesiojami_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div class="m-4"><a href="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
 
@@ -445,7 +445,7 @@
                                     foreach ($photos as $i => $photo) {
                                         $active_class = ($i == 0) ? 'active' : '';
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div class="m-4"><a href="../crud/nesiojami_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../crud/nesiojami_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                        $carousel_items .= '<div class="m-4"><a href="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
 

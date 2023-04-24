@@ -16,7 +16,7 @@
                     </a>
                 </li>
                 <!-- <li>
-                    <a class="nav-link" href="crud/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Admin</a>
+                    <a class="nav-link" href="admin/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Admin</a>
                 </li> -->
             </ul>
         </div>

@@ -9,19 +9,27 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Akcijos</title>
+    <title>kompiuteriu_priedai</title>
 </head>
+
+<?php
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+  header("Location: ../login.php");
+  exit;
+}
+?>
 
 <body>
     <?php include '../components/header.php'; ?>
-    <!-- akcijos akcijos -->
+    <!-- KOMPIUTERIU PRIEDAI -->
     <div>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                    <h1 class="text-center">Akcijos - Įkelti naują</h1>
+                    <h1 class="text-center">Kompiuterių Priedai - Įkelti naują</h1>
                     <form action="insert.php" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
+                    <div class="mb-3">
                             <label for="gamintojas" class="form-label">Gamintojas:</label>
                             <input type="text" class="form-control" id="gamintojas" name="gamintojas" required>
                         </div>
@@ -36,10 +44,6 @@
                         <div class="mb-3">
                             <label for="kaina" class="form-label">Kaina:</label>
                             <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="nauja_kaina" class="form-label">Nauja Kaina:</label>
-                            <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" min="0.01" step="0.01" required>
                         </div>
                         <div class="mb-3">
                             <label for="photo" class="form-label">Photo:</label>
@@ -60,18 +64,18 @@
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        // Check if a akcijos was deleted
+        // Check if a kompiuteriu_priedai was deleted
         if (isset($_POST['delete'])) {
             $id = $_POST['id'];
 
             // Get the filenames of the photos for the monitor
-            $sql = "SELECT `filename` FROM `akcijos_photos` WHERE `akcijos_id` = '$id'";
+            $sql = "SELECT `filename` FROM `kompiuteriu_priedai_photos` WHERE `kompiuteriu_priedai_id` = '$id'";
             $result = mysqli_query($conn, $sql);
 
-            // Delete the akcijos and akcijos_photos from the database
-            $sql = "DELETE FROM `akcijos` WHERE `id` = '$id'";
+            // Delete the kompiuteriu_priedai and kompiuteriu_priedai_photos from the database
+            $sql = "DELETE FROM `kompiuteriu_priedai` WHERE `id` = '$id'";
             mysqli_query($conn, $sql);
-            $sql = "DELETE FROM `akcijos_photos` WHERE `akcijos_id` = '$id'";
+            $sql = "DELETE FROM `kompiuteriu_priedai_photos` WHERE `kompiuteriu_priedai_id` = '$id'";
             mysqli_query($conn, $sql);
 
             // Delete the photo files from the server
@@ -84,18 +88,18 @@
             }
         }
 
-        // Retrieve akcijos data from the database
-        // $sql = "SELECT * FROM `akcijos`";
-        $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, m.nauja_kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
-    FROM akcijos m 
-    LEFT JOIN akcijos_photos mp ON m.id = mp.akcijos_id 
+        // Retrieve kompiuteriu_priedai data from the database
+        // $sql = "SELECT * FROM `kompiuteriu_priedai`";
+        $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+    FROM kompiuteriu_priedai m 
+    LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id 
     GROUP BY m.id";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " akcijos - " . $row["kaina"]  . ' nauja kaina: ' . $row['nauja_kaina'] . " EUR</h3>";
+                echo "<h3>". $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);
@@ -123,7 +127,7 @@
                 echo "<hr>";
             }
         } else {
-            echo "<br> No akcijos found";
+            echo "<br> No kompiuteriu priedai found";
         }
         // Close the database connection
         mysqli_close($conn);
