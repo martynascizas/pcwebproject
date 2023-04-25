@@ -106,11 +106,16 @@ require_once 'components/head.php';
             </div>
             <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>
+          <div style="margin-top: 20px;">
+            <a href="http://localhost/project/index.php">devėtas.lt</a>
+            <!-- <a href="https://parduosiu.lt/devetas/">devėtas.lt</a> -->
+          </div>
         </div>
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
     </div>
   </div>
+
 </body>
 
 </html>

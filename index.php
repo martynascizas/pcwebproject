@@ -10,7 +10,7 @@
 <body>
 
     <!-- <a href="https://parduosiu.lt/devetas/admin/" id="crud-link">Go to CRUD page</a> -->
-    <a href="http://localhost/project/admin/index.php" id="crud-link" target="_blank">Go to ADMIN page</a>
+    <a href="http://localhost/project/admin/index.php" id="crud-link" target="_blank">Go to admin page</a>
 
     <!-- db conn -->
     <?php
@@ -56,7 +56,7 @@
         document.addEventListener('touchstart', function() {
             touchTimer = setTimeout(function() {
                 window.location.href = document.getElementById('crud-link').href;
-            }, 3000);
+            }, 1000);
         });
         document.addEventListener('touchend', function() {
             clearTimeout(touchTimer);
