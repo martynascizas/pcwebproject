@@ -1,12 +1,11 @@
 body {
-
+    background: linear-gradient(to bottom, #ffffff79, #ffffff);
+    font-family: 'Montserrat', sans-serif;
+    overflow-y: scroll;
+    height: 100%
 }
 
 /* nav stilius */
-
-.navbar-brand, .nav-link {
-    font-family: 'Montserrat', sans-serif;
-}
 
 .navbar-nav {
     display: flex;
@@ -15,77 +14,84 @@ body {
 }
 
 .navbar {
-    height: 80px;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.949) !important;
+    background-color: rgba(248, 248, 248, 0.949) !important;
     transition: all 0.3s ease-in-out;
 }
 
-.navbar.scrolled {
-    height: 60px;
-    background-color: rgb(255, 255, 255);
-}
-
-.navbar.scrolled .navbar-brand {
-    font-size: 1.5rem;
-    transition: all 0.3s ease-in-out;
-    margin-top: -7px;
-}
-
-.navbar.scrolled .nav-link {
-    font-size: 0.9rem;
-    transition: all 0.3s ease-in-out;
+.navbar-toggler {
+    margin-top: -60px;
+    border: none;
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 @media (min-width: 992px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 0px;
+    .nav-link {
+        margin-right: 15px;
+    }
+}
+
+@media (max-width: 1183px) {
+    .navbar-nav {
+        margin-right: 0px !important;
+    }
+}
+
+@media (max-width: 1033px) {
+    .navbar-nav {
+        margin-right: 0px !important;
+    }
+
+    .nav-link {
+        margin-right: 0px;
     }
 }
 
 @media (max-width: 991.98px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 10px;
-    }
-}
-
-/* animacija */
-@keyframes heightChange {
-    from {
-        height: 80px;
-    }
-
-    to {
-        height: 60px;
-    }
-}
-
-.navbar.animated {
-    animation: heightChange 0.3s ease-in-out;
-}
-
-.navbar.scrolled .navbar-collapse {
-    margin-top: 0px;
-}
-
-@media (min-width: 992px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 0px;
-    }
 
     .navbar-brand {
-        margin-left: 200px;
+        margin-left: 15px !important;
+        text-align: center;
+        width: 100%;
+        margin-top: -5px;
     }
 
     .nav-link {
-        margin-right: 15px;
+        margin-right: 0;
+        margin-left: auto;
     }
 
     .navbar-nav {
-        margin-right: 200px;
+        background-color: rgba(248, 248, 248, 0.949);
+        float: right;
+        border-bottom-left-radius: 5%;
+        border-bottom-right-radius: 5%;
+        padding: 10px;
     }
+
+}
+
+@media (max-width: 991.98px) {
+    .d-flex {
+        justify-content: center !important;
+    }
+
+    .text-white {
+        text-align: center !important;
+        margin-right: 0 !important;
+    }
+}
+
+@media (min-width: 992px) {
+
+    .navbar-brand {
+        margin-left: 150px;
+    }
+
 }
 
 @media (max-width: 991.98px) {
@@ -104,19 +110,8 @@ body {
         margin-left: auto;
     }
 
-    .navbar-toggler {
-        display: none;
-    }
 }
 
-/* nav fix on scroll */
-
-#nesiojami_kompiuteriai,
-#staliniai_kompiuteriai,
-#monitoriai,
-#kompiuteriu_priedai {
-    padding-top: 80px;
-    /* add 80px of padding to the top of the section */
-    margin-top: -80px;
-    /* offset the section by -80px to compensate for the added padding */
+.marginTop {
+    margin-top: 65px;
 }

@@ -241,7 +241,7 @@
                                 echo '<p class="card-text">' . "Prekės kodas: AKC00" . $row["id"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . 'Kaina: <del style="color: red;">' . $row["kaina"] . 'Eur</del>' . '</p>' . "Nauja Kaina: " . $row["nauja_kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text">' . 'Kaina: <del style="color: red;">' . $row["kaina"] . "Eur". '</del>' . " " . $row["nauja_kaina"] . "Eur" . '</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';

@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+header("Location: http://localhost/project/admin/akcijos/index.php");
+// header("Location: https://parduosiu.lt/devetas/admin/akcijos/index.php");
+exit;
+?>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <?php
@@ -46,4 +52,4 @@ if (!isset($_SESSION['admin_id'])) {
   </nav>
 </body>
 
-</html>
+</html> -->
