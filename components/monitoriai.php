@@ -25,10 +25,12 @@
     require '../db.php';
     ?>
 
-    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
+        data-bs-backdrop="false">
         <div class="offcanvas-header">
             <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Filtrai</h6>
-            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <?php
         if (!$conn) {
@@ -107,7 +109,7 @@
                             $selected_gamintojas = $_POST['gamintojas'];
                             $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
                             $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
-                            if (!empty($selected_gamintojas) ||  !empty($lieciamas_ekranas) || !empty($ekrano_istrizaine))
+                            if (!empty($selected_gamintojas) || !empty($lieciamas_ekranas) || !empty($ekrano_istrizaine))
                                 $sql = "SELECT rezoliucija, COUNT(*) AS total 
                                         FROM monitoriai 
                                         WHERE gamintojas = '$selected_gamintojas' || lieciamas_ekranas = '$lieciamas_ekranas' || ekrano_istrizaine = '$ekrano_istrizaine'
@@ -131,7 +133,7 @@
                     </li>
                     <li>
                         <!--Generate select options for lieciamas_ekranas-->
-                        <label for="lieciamas_ekranas" class="form-label">Vaizdo Plokštė</label>
+                        <label for="lieciamas_ekranas" class="form-label">Liečiamas ekranas</label>
                         <select class="form-select" id="lieciamas_ekranas" name="lieciamas_ekranas">
                             <option value="">Visi</option>
                             <?php
@@ -206,19 +208,28 @@
                             $max_kaina = $row['max_kaina'];
 
                             ?>
-                            <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value"><?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?></span></label>
-                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
+                            <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value">
+                                    <?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>
+                                </span></label>
+                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo"
+                                min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1"
+                                value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
 
-                            <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
-                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
+                            <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value">
+                                    <?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>
+                                </span></label>
+                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki"
+                                min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1"
+                                value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
                         </div>
                     </li>
                     <li>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none" name="filter_submit">Filtruoti</button>
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
+                                name="filter_submit">Filtruoti</button>
                             <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
                             <script>
-                                document.getElementById("clear_btn").addEventListener("click", function() {
+                                document.getElementById("clear_btn").addEventListener("click", function () {
                                     document.getElementById("gamintojas").value = "";
                                     document.getElementById("rezoliucija").value = "";
                                     document.getElementById("lieciamas_ekranas").value = "";
@@ -238,7 +249,8 @@
         <div class="row">
             <div class="col min-vh-100 py-3">
                 <!-- toggler -->
-                <button id="sid" class="btn sidebar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+                <button id="sid" class="btn sidebar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                    role="button">
                     <i class="bi bi-filter fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
                 </button>
                 <div class="wrapper">
@@ -277,8 +289,8 @@
                                 echo '<div class="card-body d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                                 echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
-                                echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["lieciamas_ekranas"] . '</p>';
-                                echo '<p class="card-text">' . "Operatyvioji atmintis (ekrano_istrizaine): " . $row["ekrano_istrizaine"] . '</p>';
+                                echo '<p class="card-text">' . "Liečiamas ekranas: " . $row["lieciamas_ekranas"] . '</p>';
+                                echo '<p class="card-text">' . "Ekrano įstrižainė (coliais): " . $row["ekrano_istrizaine"] . "\" " . '</p>';
                                 echo '<p class="card-text">' . "Prekės kodas: MON00" . $row["id"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -363,7 +375,7 @@
                                     echo '<div class="card-body d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
                                     echo '<p class="card-text">' . "Rezoliucija: " . $row["rezoliucija"] . '</p>';
-                                    echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["lieciamas_ekranas"] . '</p>';
+                                    echo '<p class="card-text">' . "Liečiamas ekranas: " . $row["lieciamas_ekranas"] . '</p>';
                                     echo '<p class="card-text">' . "Operatyvioji atmintis (ekrano_istrizaine): " . $row["ekrano_istrizaine"] . '</p>';
                                     echo '<p class="card-text">' . "Prekės kodas: MON00" . $row["id"] . '</p>';
                                     echo '</div>';
@@ -393,7 +405,7 @@
 
     <!-- fancybox -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('[data-fancybox="gallery1"]').fancybox({
                 loop: true,
                 buttons: [
@@ -420,9 +432,9 @@
             // Get the form data and send an AJAX request
             const formData = new FormData(form);
             fetch('nesiojami.php', {
-                    method: 'POST',
-                    body: formData
-                })
+                method: 'POST',
+                body: formData
+            })
                 .then(response => response.text())
                 .then(data => {
                     // Update the product list in the DOM with the new data
@@ -444,13 +456,13 @@
         const kainaIkiValue = document.getElementById('kaina_iki_value');
 
         // Add event listeners to update the span elements in real-time
-        kainaNuo.addEventListener('input', function() {
+        kainaNuo.addEventListener('input', function () {
             if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
                 kainaNuo.value = kainaIki.value;
             }
             kainaNuoValue.textContent = kainaNuo.value;
         });
-        kainaIki.addEventListener('input', function() {
+        kainaIki.addEventListener('input', function () {
             if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
                 kainaIki.value = kainaNuo.value;
             }

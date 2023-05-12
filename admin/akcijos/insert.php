@@ -21,6 +21,7 @@ $aprasymas = mysqli_real_escape_string($conn, $_POST['aprasymas']);
 $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
 $nauja_kaina = mysqli_real_escape_string($conn, $_POST['nauja_kaina']);
 $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
+$filename = '';
 
 // Check if a photo was uploaded
 if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
@@ -33,7 +34,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         // Insert data into table
         // $sql = "INSERT INTO `akcijos` (`pavadinimas`, `aprasymas`, `kaina`, `gamintojas`, `photo`) VALUES ('$pavadinimas', `$gamintojas`, `$aprasymas`, `$kaina`, '$filename')";
         $sql = "INSERT INTO `akcijos` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`, `nauja_kaina`, `photo`) 
-        VALUES ('$pavadinimas', '$gamintojas', '$aprasymas', $kaina, '$filename')";
+        VALUES ('$pavadinimas', '$gamintojas', '$aprasymas', '$kaina', '$nauja_kaina', '$filename')";
+
         if (mysqli_query($conn, $sql)) {
             echo "New akcijos added successfully.";
         } else {
@@ -45,8 +47,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
 } else {
     // Insert data into table without photo
     // $sql = "INSERT INTO `akcijos` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`) VALUES ('$pavadinimas', `$gamintojas`, '$aprasymas', $kaina)";
-    $sql = "INSERT INTO `akcijos` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`, `nauja_kaina`) 
-        VALUES ('$pavadinimas', '$gamintojas', '$aprasymas', $kaina, $nauja_kaina)";
+    $sql = "INSERT INTO `akcijos` (`pavadinimas`, `gamintojas`, `aprasymas`, `kaina`, `nauja_kaina`, `photo`) 
+    VALUES ('$pavadinimas', '$gamintojas', '$aprasymas', '$kaina', '$nauja_kaina', '$filename')";
 
     if (mysqli_query($conn, $sql)) {
         $akcijos_id = mysqli_insert_id($conn); // Get the ID of the inserted akcijos

@@ -169,7 +169,7 @@
                     </li>
                     <li>
                         <!--Generate select options for ram-->
-                        <label for="ram" class="form-label">RAM</label>
+                        <label for="ram" class="form-label">Operatyvioji atmintis (RAM)</label>
                         <select class="form-select" id="ram" name="ram">
                             <option value="">Visi</option>
                             <?php
@@ -203,7 +203,7 @@
                     </li>
                     <li>
                         <!--Generate select options for hdd-->
-                        <label for="hdd" class="form-label">HDD</label>
+                        <label for="hdd" class="form-label">Kietasis diskas</label>
                         <select class="form-select" id="hdd" name="hdd">
                             <option value="">Visi</option>
                             <?php
@@ -319,7 +319,7 @@
                                 echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
                                 echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
                                 echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
-                                echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
+                                echo '<p class="card-text">' . "Kietasis diskas: " . $row["hdd"] . '</p>';
                                 echo '<p class="card-text">' . "Prekės kodas: STA00" . $row["id"] . '</p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';

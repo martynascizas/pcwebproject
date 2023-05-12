@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2023 at 09:48 PM
+-- Generation Time: May 12, 2023 at 08:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -33,13 +33,6 @@ CREATE TABLE `admin` (
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(8, 'admin', '$2y$10$Pr1z9B.gPocT5gLI.x9SZ.h5SM435nkdiXmvr88oLJP6rR5ztqA.C');
-
 -- --------------------------------------------------------
 
 --
@@ -57,13 +50,6 @@ CREATE TABLE `akcijos` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `akcijos`
---
-
-INSERT INTO `akcijos` (`id`, `pavadinimas`, `kaina`, `nauja_kaina`, `aprasymas`, `photo`, `gamintojas`, `timestamp`) VALUES
-(5, 'Akcija pavadinimas', 199.00, 189.00, 'Akcija aprasymas', NULL, 'AOC', '2023-04-23 19:06:14');
-
 -- --------------------------------------------------------
 
 --
@@ -75,14 +61,6 @@ CREATE TABLE `akcijos_photos` (
   `akcijos_id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `akcijos_photos`
---
-
-INSERT INTO `akcijos_photos` (`id`, `akcijos_id`, `filename`) VALUES
-(5, 5, 'aoc27.webp'),
-(6, 5, 'aoc27g2spu.jpg');
 
 -- --------------------------------------------------------
 
@@ -153,8 +131,8 @@ CREATE TABLE `nesiojami_kompiuteriai` (
   `ekrano_istrizaine` int(11) NOT NULL,
   `procesorius` varchar(50) NOT NULL,
   `vaizdo_plokste` varchar(50) NOT NULL,
-  `ram` int(11) NOT NULL,
-  `hdd` int(11) NOT NULL,
+  `ram` varchar(50) NOT NULL,
+  `hdd` varchar(50) NOT NULL,
   `kaina` decimal(10,2) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
@@ -183,8 +161,8 @@ CREATE TABLE `staliniai_kompiuteriai` (
   `gamintojas` varchar(50) NOT NULL,
   `procesorius` varchar(50) NOT NULL,
   `vaizdo_plokste` varchar(50) NOT NULL,
-  `ram` int(11) NOT NULL,
-  `hdd` int(11) NOT NULL,
+  `ram` varchar(50) NOT NULL,
+  `hdd` varchar(50) NOT NULL,
   `kaina` decimal(10,2) NOT NULL,
   `photo` varchar(255) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
@@ -277,13 +255,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `akcijos`
 --
 ALTER TABLE `akcijos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `akcijos_photos`
 --
 ALTER TABLE `akcijos_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `kompiuteriu_priedai`
@@ -301,25 +279,25 @@ ALTER TABLE `kompiuteriu_priedai_photos`
 -- AUTO_INCREMENT for table `monitoriai`
 --
 ALTER TABLE `monitoriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT for table `monitoriai_photos`
 --
 ALTER TABLE `monitoriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `nesiojami_kompiuteriai`
 --
 ALTER TABLE `nesiojami_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `staliniai_kompiuteriai`
 --
 ALTER TABLE `staliniai_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
