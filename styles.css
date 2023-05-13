@@ -1,400 +1,365 @@
 body {
-    background: linear-gradient(to bottom, #ffffff79, #ffffff);
-    font-family: 'Montserrat', sans-serif;
-    overflow-y: scroll;
-    height: 100%
+  background: linear-gradient(to bottom, #ffffff79, #ffffff);
+  font-family: "Montserrat", sans-serif;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 #crud-link {
-    display: none;
+  display: none;
 }
 
 .col-md-3 {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    overflow-y: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
 }
 
 /* replace with the width of the fixed left column */
 .col-md-9 {
-    margin-left: 25%;
+  margin-left: 25%;
 }
-
 
 /*isjungiu default skrolinimo juosta*/
 ::-webkit-scrollbar {
-    width: 0px;
+  width: 0px;
 }
 
 /*navigacija*/
 .navbar-nav {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .navbar {
-    height: 60px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(248, 248, 248, 0.949) !important;
-    transition: all 0.3s ease-in-out;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(248, 248, 248, 0.949) !important;
+  transition: all 0.3s ease-in-out;
 }
 
 @media (min-width: 992px) {
-    .navbar.scrolled .navbar-collapse {
-        margin-top: 0px;
-    }
+  .navbar.scrolled .navbar-collapse {
+    margin-top: 0px;
+  }
 
-    .navbar-brand {
-        margin-left: 150px;
-    }
+  .navbar-brand {
+    margin-left: 150px;
+  }
 
-    .nav-link {
-        margin-right: 15px;
-    }
+  .nav-link {
+    margin-right: 15px;
+  }
 }
 
 @media (max-width: 576px) {
-    .cat a {
-        left: 20px;
-    }
+  .cat a {
+    left: 20px;
+  }
 
-    .cat-bottom a {
-        bottom: 20px !important;
-        top: unset !important;
-    }
+  .cat-bottom a {
+    bottom: 20px !important;
+    top: unset !important;
+  }
 
-    .akcijos a {
-        left: 95px !important;
-    }
+  .akcijos a {
+    left: 95px !important;
+  }
 
-    #categorys-container .row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  #categorys-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    #categorys-container .col-md-12 {
-        margin-top: 20px;
-    }
+  #categorys-container .col-md-12 {
+    margin-top: 20px;
+  }
 
-    #categorys-container .col-md-12+.col-md-6 {
-        order: 3;
-    }
+  #categorys-container .col-md-12 + .col-md-6 {
+    order: 3;
+  }
 
-    #categorys-container .col-md-12 {
-        order: 5;
-    }
+  #categorys-container .col-md-12 {
+    order: 5;
+  }
 }
 
 .navbar-text {
-    margin-right: 150px;
+  margin-right: 150px;
 }
 
 @media (max-width: 1183px) {
-    .navbar-nav {
-        margin-right: 0px !important;
-    }
+  .navbar-nav {
+    margin-right: 0px !important;
+  }
 }
 
 @media (max-width: 1033px) {
-    .navbar-nav {
-        margin-right: 0px !important;
-    }
+  .navbar-nav {
+    margin-right: 0px !important;
+  }
 
-    .nav-link {
-        margin-right: 0px;
-    }
+  .nav-link {
+    margin-right: 0px;
+  }
 }
 
 @media (max-width: 991.98px) {
+  .navbar-brand {
+    margin-left: 15px;
+    text-align: center;
+    width: 100%;
+    margin-top: -5px;
+  }
 
-    .navbar-brand {
-        margin-left: 15px;
-        text-align: center;
-        width: 100%;
-        margin-top: -5px;
-    }
+  .call-icon {
+    display: block !important;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    .call-icon {
-        display: block !important;
-        position: absolute;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-    }
+  .nav-link {
+    margin-right: 0;
+    margin-left: auto;
+  }
 
-    .nav-link {
-        margin-right: 0;
-        margin-left: auto;
-    }
+  .hide-navbar-toggler {
+    display: none;
+  }
 
-    .hide-navbar-toggler {
-        display: none;
-    }
+  .navbar-nav {
+    background-color: rgba(248, 248, 248, 0.949);
+    float: right;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    padding: 10px;
+  }
 
-    .navbar-nav {
-        background-color: rgba(248, 248, 248, 0.949);
-        float: right;
-        border-bottom-left-radius: 5%;
-        border-bottom-right-radius: 5%;
-        padding: 10px;
-    }
-
-    .second-container {
-        margin-right: 0 !important;
-        text-align: center;
-        padding: 0 15px 0 15px;
-    }
+  .second-container {
+    margin-right: 0 !important;
+    text-align: center;
+    padding: 0 15px 0 15px;
+  }
 }
 
 @media (max-width: 991.98px) {
-    .d-flex {
-        justify-content: center !important;
-    }
+  .d-flex {
+    justify-content: center !important;
+  }
 
-    .text-white {
-        text-align: center !important;
-        margin-right: 0 !important;
-    }
+  .text-white {
+    text-align: center !important;
+    margin-right: 0 !important;
+  }
 }
 
 /*icons*/
 .bi-telephone {
-    color: rgb(79, 79, 79);
-    font-size: 1.25em;
+  color: rgb(79, 79, 79);
+  font-size: 1.25em;
 }
 
 .bi-envelope {
-    color: rgb(79, 79, 79);
-    font-size: 1.25em;
+  color: rgb(79, 79, 79);
+  font-size: 1.25em;
 }
 
 .bi-geo-alt {
-    color: rgb(79, 79, 79);
-    font-size: 1.25em;
+  color: rgb(79, 79, 79);
+  font-size: 1.25em;
 }
 
 @media (min-width: 992px) {
-    .call-icon {
-        display: none !important;
-    }
+  .call-icon {
+    display: none !important;
+  }
 }
 
-/*image zoom*/
-
-.carousel-item {
-    height: 230px;
-    position: relative;
+.carousel-control-next,
+.carousel-control-prev {
+  width: 20% !important;
 }
 
-.carousel-item:before {
-    content: "";
-    display: block;
-    padding-top: 56.25%;
-    /* 16:9 aspect ratio */
+.carousel-control-next,
+.carousel-control-prev {
+  width: 1em !important;
 }
 
-.carousel-item img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.carousel-image {
+  object-fit: contain;
+  height: 150px;
 }
 
-
-.zoomable {
-    cursor: zoom-in;
-}
-
-.zoomable.active {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
-    cursor: zoom-out;
-    object-fit: contain;
-}
-
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 998;
-    background-color: rgba(255, 255, 255, 0.852);
-    /* fallback color */
-    background-color: hsla(0, 0%, 100%, 0.852);
-    /* fallback color with alpha */
-    /* Add a semi-transparent black overlay */
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-}
-
-.exit-btn {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    z-index: 1000;
+img:hover {
+  cursor: zoom-in;
 }
 
 /*categoriju stiliai, category-container*/
 
 .btn-primary-white {
-    background-color: #fff;
-    color: #333;
-    border-radius: 0;
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    outline: none;
+  background-color: #fff;
+  color: #333;
+  border-radius: 0;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  outline: none;
 }
 
 .btn-primary-white:hover {
-    background-color: #000;
-    color: #fff;
+  background-color: #000;
+  color: #fff;
 }
 
-.card-body {
-    border: none !important;
-    border-radius: 0 !important;
+.card-body-custom {
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 0.8em !important;
+  background-color: #fafafa!important;
+  padding: 6px;
+}
+
+.card-footer {
+  padding-left: 0px!important;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  background-color: #ffffff!important;
+}
+
+.card-text-custom {
+  margin-bottom: 2px;
 }
 
 .custom-container {
-    width: 80%;
+  width: 80%;
 }
 
 .card-title {
-    margin-bottom: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-size: 1.2em;
 }
 
 /*category-container fix del aukscio mazuose ekranuose*/
 @media only screen and (max-width: 767px) {
-    #heightfix {
-        min-height: 1400px;
-    }
+  #heightfix {
+    min-height: 1400px;
+  }
 
-    .call a {
-        color: red !important;
-    }
+  .call a {
+    color: red !important;
+  }
 
-    .cat a {
-        left: 20px !important;
-    }
+  .cat a {
+    left: 20px !important;
+  }
 
-    .cat-bottom a {
-        bottom: 20px !important;
-        top: unset !important;
-    }
+  .cat-bottom a {
+    bottom: 20px !important;
+    top: unset !important;
+  }
 
-    .akcijos a {
-        left: 95px !important;
-    }
+  .akcijos a {
+    left: 95px !important;
+  }
 
-    #categorys-container .row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
+  #categorys-container .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    #categorys-container .col-md-12 {
-        margin-top: 20px;
-    }
+  #categorys-container .col-md-12 {
+    margin-top: 20px;
+  }
 
-    #categorys-container .col-md-12+.col-md-6 {
-        order: 3;
-    }
+  #categorys-container .col-md-12 + .col-md-6 {
+    order: 3;
+  }
 
-    #categorys-container .col-md-12 {
-        order: 5;
-    }
+  #categorys-container .col-md-12 {
+    order: 5;
+  }
 }
 
 .card {
-    border: none;
+  border: none;
 }
 
 .card-footer {
-    border: none;
+  border: none;
 }
 
 .container.products_section.mb-5.products-margin {
-    margin-top: 100px;
+  margin-top: 100px;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .container {
-    flex-grow: 1;
+  flex-grow: 1;
 }
 
 footer {
-    flex-shrink: 0;
-    width: 100%;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 /*prodnav*/
 .navbar-toggler {
-    margin-top: -60px;
-    border: none;
-    outline: none !important;
-    box-shadow: none !important;
+  margin-top: -60px;
+  border: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /*filter sidebar*/
 
-
-
 .sidebar-toggler {
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 /* Define the animation */
 @keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
 
-    0%,
-    20%,
-    50%,
-    80%,
-    100% {
-        transform: translateY(0);
-    }
+  40% {
+    transform: translateY(-5px);
+  }
 
-    40% {
-        transform: translateY(-5px);
-    }
-
-    60% {
-        transform: translateY(-2.5px);
-    }
+  60% {
+    transform: translateY(-2.5px);
+  }
 }
 
 /* Apply the animation to the button */
 .btn.sidebar-toggler {
-    animation-name: bounce;
-    animation-duration: 3s;
-    animation-fill-mode: both;
-    animation-iteration-count: infinite;
+  animation-name: bounce;
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-iteration-count: infinite;
 }
 
 .form-select {
-    width: 100%;
+  width: 100%;
 }
-
-
 
 .offcanvas.offcanvas-start {
-    width: 300px !important;
+  width: 300px !important;
 }
-
