@@ -246,14 +246,12 @@
                                 echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
                                 echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                 echo '</div>';
-
                                 echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
                                 echo '<p class="card-text card-text-custom">' . "Pavadinimas: " . "<b>" . $row["pavadinimas"] . "</b>" . '</p>';
                                 echo '<p class="card-text card-text-custom">' . "Aprašymas: <b>" . $row["aprasymas"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>AKC00" . $row["id"] . '</b></p>';
                                 echo '</div>';
-                                
                                 echo '<div class="card-footer">';
                                 echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
                                 echo '</div>';

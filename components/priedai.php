@@ -228,35 +228,6 @@
 
                             $result = mysqli_query($conn, $sql);
                             // Generate the HTML markup for the products
-                            // echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
-                            // while ($row = mysqli_fetch_assoc($result)) {
-                            //     $photos = explode(",", $row["photos"]);
-                            //     $carousel_items = '';
-                            //     foreach ($photos as $i => $photo) {
-                            //         $active_class = ($i == 0) ? 'active' : '';
-                            //         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                            //         $carousel_items .= '<div class="m-4"><a href="../admin/kompiuteriu_priedai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/kompiuteriu_priedai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
-                            //         $carousel_items .= '</div>';
-                            //     }
-                        
-                            //     echo '<div class="col">';
-                            //     echo '<div class="card h-100">';
-                            //     echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
-                            //     echo '<div class="carousel-inner">' . $carousel_items . '</div>';
-                            //     echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
-                            //     echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
-                            //     echo '</div>';
-                            //     echo '<div class="card-body d-flex flex-column justify-content-end">';
-                            //     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                            //     echo '<p class="card-text">' . "Pavadinimas: " . $row["pavadinimas"] . '</p>';
-                            //     echo '<p class="card-text">' . "Aprašymas: " . $row["aprasymas"] . '</p>';
-                            //     echo '<p class="card-text">' . "Prekės kodas: PRI00" . $row["id"] . '</p>';
-                            //     echo '</div>';
-                            //     echo '<div class="card-footer">';
-                            //     echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
-                            //     echo '</div>';
-                            //     echo '</div>';
-                            //     echo '</div>';
                             echo '<div class="row row-cols-1 row-cols-md-5 g-4">';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $photos = explode(",", $row["photos"]);
