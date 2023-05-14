@@ -243,7 +243,8 @@ img:hover {
 }
 
 .card-text-custom {
-  margin-bottom: 2px;
+  margin-bottom: -3px;
+  font-size: 1em;
 }
 
 .custom-container {
