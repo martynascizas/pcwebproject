@@ -297,16 +297,49 @@
 
                             $result = mysqli_query($conn, $sql);
                             // Generate the HTML markup for the products
-                            echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                            // echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                            // while ($row = mysqli_fetch_assoc($result)) {
+                            //     $photos = explode(",", $row["photos"]);
+                            //     $carousel_items = '';
+                            //     foreach ($photos as $i => $photo) {
+                            //         $active_class = ($i == 0) ? 'active' : '';
+                            //         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
+                            //         $carousel_items .= '<div class="m-4"><a href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                            //         $carousel_items .= '</div>';
+                            //     }
+                            //     echo '<div class="col">';
+                            //     echo '<div class="card h-100">';
+                            //     echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
+                            //     echo '<div class="carousel-inner">' . $carousel_items . '</div>';
+                            //     echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
+                            //     echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
+                            //     echo '</div>';
+                            //     echo '<div class="card-body d-flex flex-column justify-content-end">';
+                            //     echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
+                            //     echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
+                            //     echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
+                            //     echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
+                            //     echo '<p class="card-text">' . "Kietasis diskas: " . $row["hdd"] . '</p>';
+                            //     echo '<p class="card-text">' . "Prekės kodas: STA00" . $row["id"] . '</p>';
+                            //     echo '</div>';
+                            //     echo '<div class="card-footer">';
+                            //     echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
+                            //     echo '</div>';
+                            //     echo '</div>';
+                            //     echo '</div>';
+                            // }
+                            // echo '</div>';
+                            echo '<div class="row row-cols-1 row-cols-md-5 g-4">';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $photos = explode(",", $row["photos"]);
                                 $carousel_items = '';
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div class="m-4"><a href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="gallery' . $row["id"] . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
+
                                 echo '<div class="col">';
                                 echo '<div class="card h-100">';
                                 echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -314,16 +347,17 @@
                                 echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
                                 echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                 echo '</div>';
-                                echo '<div class="card-body d-flex flex-column justify-content-end">';
-                                echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
-                                echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
-                                echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
-                                echo '<p class="card-text">' . "Kietasis diskas: " . $row["hdd"] . '</p>';
-                                echo '<p class="card-text">' . "Prekės kodas: STA00" . $row["id"] . '</p>';
+                                echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
+                                echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
+                               
+                                echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -388,18 +422,17 @@
                             $result = mysqli_query($conn, $sql);
                             // Display results in HTML table
                             if (mysqli_num_rows($result) > 0) {
-                                echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
+                                echo '<div class="row row-cols-1 row-cols-md-5 g-4">';
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $photos = explode(",", $row["photos"]);
                                     $carousel_items = '';
                                     foreach ($photos as $i => $photo) {
                                         $active_class = ($i == 0) ? 'active' : '';
-                                        $gallery_name = 'gallery-' . $row["id"];
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div class="m-4"><a href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" data-fancybox="' . $gallery_name . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable" alt="Product Image"></a></div>';
+                                        $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
-
+    
                                     echo '<div class="col">';
                                     echo '<div class="card h-100">';
                                     echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -407,16 +440,17 @@
                                     echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
                                     echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                     echo '</div>';
-                                    echo '<div class="card-body d-flex flex-column justify-content-end">';
-                                    echo '<h5 class="card-title">' . $row["gamintojas"] . '</h5>';
-                                    echo '<p class="card-text">' . "Procesorius: " . $row["procesorius"] . '</p>';
-                                    echo '<p class="card-text">' . "Vaizdo plokštė: " . $row["vaizdo_plokste"] . '</p>';
-                                    echo '<p class="card-text">' . "Operatyvioji atmintis (RAM): " . $row["ram"] . '</p>';
-                                    echo '<p class="card-text">' . "Kietasis diskas (HDD): " . $row["hdd"] . '</p>';
-                                    echo '<p class="card-text">' . "Prekės kodas: STA00" . $row["id"] . '</p>';
+                                    echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
+                                    echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
+                                   
+                                    echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';
-                                    echo '<p class="card-text">' . "Kaina: " . $row["kaina"] . "Eur" . '</p>';
+                                    echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</div>';
@@ -479,6 +513,55 @@
                 })
                 .catch(error => console.error(error));
         }
+    </script>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const gamintojasSelect = document.getElementById('gamintojas');
+            const procesoriusSelect = document.getElementById('procesorius');
+            const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
+            const ramSelect = document.getElementById('ram');
+            const hddSelect = document.getElementById('hdd');
+            const submitBtn = document.getElementById('submit_btn');
+            const kainaNuoInput = document.getElementById('kaina_nuo');
+            const kainaIkiInput = document.getElementById('kaina_iki');
+            let timeoutId;
+
+            gamintojasSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+         
+            procesoriusSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            vaizdoPloksteSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            ramSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            hddSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+
+            kainaNuoInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
+
+            kainaIkiInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
+        });
     </script>
 
     <!--price range-->

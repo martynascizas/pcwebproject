@@ -188,11 +188,6 @@ body {
   width: 20% !important;
 }
 
-.carousel-control-next,
-.carousel-control-prev {
-  width: 1em !important;
-}
-
 .carousel-image {
   object-fit: contain;
   height: 150px;
@@ -221,15 +216,15 @@ img:hover {
   border: none !important;
   border-radius: 0 !important;
   font-size: 0.8em !important;
-  background-color: #fafafa!important;
+  background-color: #fafafa !important;
   padding: 6px;
 }
 
 .card-footer {
-  padding-left: 0px!important;
+  padding-left: 0px !important;
   padding-top: 1px;
   padding-bottom: 1px;
-  background-color: #ffffff!important;
+  background-color: #ffffff !important;
 }
 
 .card-text-custom {
