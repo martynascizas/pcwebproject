@@ -4,10 +4,11 @@
             style="width: 100vw; display: flex; flex-direction: column; justify-content: center;">
             <div class="row row-cols-1 row-cols-md-2 g-3">
                 <div class="col-md-6 clickable-div" onclick="location.href='components/nesiojami.php';">
-                    <div class="card h-100 shadow rounded-0"
+                    <div class="card h-100 shadow rounded-0 enlarge-div"
                         style="background-image: url('assets/img/laptops.jpg'); background-size: cover; border: none;">
                         <div class="card-body cat" style="height: 285px;">
-                            <a href="components/nesiojami.php" class="btn btn-primary-white">Nešiojami kompiuteriai</a>
+                            <a href="components/nesiojami.php" class="btn btn-primary-white enlarge-text">Nešiojami
+                                kompiuteriai</a>
                         </div>
                     </div>
                 </div>
