@@ -1,5 +1,5 @@
 <?php
-header("Location: http://localhost/project/admin/akcijos/index.php");
+header("Location: http://localhost/devetas.lt/admin/akcijos/index.php");
 // header("Location: https://parduosiu.lt/devetas/admin/akcijos/index.php");
 exit;
 ?>

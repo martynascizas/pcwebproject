@@ -35,7 +35,7 @@ body {
 }
 
 .navbar {
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,14 +58,6 @@ body {
 }
 
 @media (max-width: 576px) {
-  .cat a {
-    left: 20px;
-  }
-
-  .cat-bottom a {
-    bottom: 20px !important;
-    top: unset !important;
-  }
 
   .akcijos a {
     left: 95px !important;
@@ -81,7 +73,7 @@ body {
     margin-top: 20px;
   }
 
-  #categorys-container .col-md-12 + .col-md-6 {
+  #categorys-container .col-md-12+.col-md-6 {
     order: 3;
   }
 
@@ -204,7 +196,7 @@ body {
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-height: 10px;
+  height: 10px;
 }
 
 .carousel-inner {
@@ -223,16 +215,25 @@ img:hover {
 /*categoriju stiliai, category-container*/
 
 .btn-primary-white {
-  background-color: #fff;
+  background-color: #f08435;
   color: #333;
-  border-radius: 0;
+  border-radius: 15px 15px 0 0;
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-  outline: none;
+  outline: none !important;
+  padding: 0px;
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 225px;
+  font-size: 15px;
 }
 
 .btn-primary-white:hover {
-  background-color: #000;
-  color: #fff;
+  background-color: #f08435;
+}
+
+.card {
+  border-radius: 0 15px 15px 15px !important;
 }
 
 .card-body-custom {
@@ -241,6 +242,10 @@ img:hover {
   font-size: 0.8em !important;
   background-color: #fafafa !important;
   padding: 6px;
+}
+
+.card-body {
+  cursor: pointer !important;
 }
 
 .card-footer {
@@ -256,7 +261,12 @@ img:hover {
 }
 
 .custom-container {
-  width: 80%;
+  width: 70% !important;
+}
+
+.g-3,
+.gx-3 {
+  --bs-gutter-x: 2rem;
 }
 
 .card-title {
@@ -265,23 +275,31 @@ img:hover {
   font-size: 1.2em;
 }
 
+
+
+/* Media query for screens smaller than 800px in height */
+@media (max-height: 800px) {
+  .custom-container {
+    height: 800px!important;
+  };
+}
+
 /*category-container fix del aukscio mazuose ekranuose*/
 @media only screen and (max-width: 767px) {
   #heightfix {
-    min-height: 1400px;
+    min-height: 1440px;
+  }
+
+  .card {
+    border-radius: 0 0 15px 15px !important;
+  }
+
+  .btn-primary-white {
+    width: 100%;
   }
 
   .call a {
     color: red !important;
-  }
-
-  .cat a {
-    left: 20px !important;
-  }
-
-  .cat-bottom a {
-    bottom: 20px !important;
-    top: unset !important;
   }
 
   .akcijos a {
@@ -298,13 +316,21 @@ img:hover {
     margin-top: 20px;
   }
 
-  #categorys-container .col-md-12 + .col-md-6 {
+  #categorys-container .col-md-12+.col-md-6 {
     order: 3;
   }
 
   #categorys-container .col-md-12 {
     order: 5;
   }
+}
+
+.row {
+  margin-top: 0;
+}
+
+.col-md-6 {
+  margin-bottom: 20px !important;
 }
 
 .card {
@@ -350,6 +376,7 @@ footer {
 
 /* Define the animation */
 @keyframes bounce {
+
   0%,
   20%,
   50%,

@@ -107,7 +107,7 @@ require_once 'components/head.php';
             <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>
           <div style="margin-top: 20px;">
-            <a href="http://localhost/project/index.php">devėtas.lt</a>
+            <a href="http://localhost/devetas.lt/index.php">devėtas.lt</a>
             <!-- <a href="https://parduosiu.lt/devetas/">devėtas.lt</a> -->
           </div>
         </div>

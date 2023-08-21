@@ -10,7 +10,7 @@
 <body>
 
     <!-- <a href="https://parduosiu.lt/devetas/admin/" id="crud-link">Go to CRUD page</a> -->
-    <a href="http://localhost/project/admin/index.php" id="crud-link" target="_blank">Go to admin page</a>
+    <a href="http://localhost/devetas.lt/admin/index.php" id="crud-link" target="_blank">Go to admin page</a>
 
     <!-- db conn -->
     <?php
@@ -31,9 +31,9 @@
     ?>
 
     <!-- footer -->
-    <?php
+    <!-- <?php
     require_once 'components/assets/footer.php';
-    ?>
+    ?> -->
 
     <!-- close db conn -->
     <?php
