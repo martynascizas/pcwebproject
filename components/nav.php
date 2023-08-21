@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-transparent">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#" style="font-size: 2rem; transition: all 0.3s ease-in-out;">LOGO</a>
+        <!-- <a class="navbar-brand" href="assets/img/logo.png" style="font-size: 2rem; transition: all 0.3s ease-in-out;">LOGO</a> -->
+        <a class="navbar-brand" href="#"
+            style="font-size: 2rem; transition: all 0.3s ease-in-out; display: inline-block; width: 40px; height: 40px; background-image: url('assets/img/logo.png'); background-size: cover;">&nbsp;</a>
         <button class="navbar-toggler hide-navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
