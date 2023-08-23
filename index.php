@@ -56,7 +56,7 @@
         document.addEventListener('touchstart', function() {
             touchTimer = setTimeout(function() {
                 window.location.href = document.getElementById('crud-link').href;
-            }, 500);
+            }, 1000);
         });
         document.addEventListener('touchend', function() {
             clearTimeout(touchTimer);
