@@ -15,46 +15,49 @@ if (!isset($_SESSION['admin_id'])) {
     <?php include '../components/header.php'; ?>
     <!-- NESIOJAMI KOMPIUTERIAI -->
     <div class="container marginTop">
-            <div class="row justify-content-center">
-                <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                    <h1 class="text-center">Nešiojami Kompiuteriai - Įkelti naują</h1>
-                    <form action="insert.php" method="POST" enctype="multipart/form-data">
-                        <div class="mb-3">
-                            <label for="gamintojas" class="form-label">Gamintojas:</label>
-                            <input type="text" class="form-control" id="gamintojas" name="gamintojas" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ekrano_istrizaine" class="form-label">Ekrano išmatavimas (coliais):</label>
-                            <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="procesorius" class="form-label">Procesorius:</label>
-                            <input type="text" class="form-control" id="procesorius" name="procesorius" min="1" max="100" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="vaizdo_plokste" class="form-label">Vaizdo Plokštė:</label>
-                            <input type="text" class="form-control" id="vaizdo_plokste" name="vaizdo_plokste" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ram" class="form-label">RAM:</label>
-                            <input type="text" class="form-control" id="ram" name="ram" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="hdd" class="form-label">HDD:</label>
-                            <input type="text" class="form-control" id="hdd" name="hdd" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="kaina" class="form-label">Kaina:</label>
-                            <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="photo" class="form-label">Nuotraukos:</label>
-                            <input type="file" class="form-control" name="photo[]" multiple>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Įkelti</button>
-                    </form>
-                </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
+                <h1 class="text-center">Nešiojami Kompiuteriai - Įkelti naują</h1>
+                <form action="insert.php" method="POST" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="gamintojas" class="form-label">Gamintojas:</label>
+                        <input type="text" class="form-control" id="gamintojas" name="gamintojas" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ekrano_istrizaine" class="form-label">Ekrano išmatavimas (coliais):</label>
+                        <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine"
+                            min="1" max="100" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="procesorius" class="form-label">Procesorius:</label>
+                        <input type="text" class="form-control" id="procesorius" name="procesorius" min="1" max="100"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="vaizdo_plokste" class="form-label">Vaizdo Plokštė:</label>
+                        <input type="text" class="form-control" id="vaizdo_plokste" name="vaizdo_plokste" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ram" class="form-label">RAM:</label>
+                        <input type="text" class="form-control" id="ram" name="ram" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="hdd" class="form-label">HDD:</label>
+                        <input type="text" class="form-control" id="hdd" name="hdd" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kaina" class="form-label">Kaina:</label>
+                        <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="photo" class="form-label">Nuotraukos:</label>
+                        <input type="file" class="form-control" name="photo[]" multiple>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Įkelti</button>
+                </form>
             </div>
+        </div>
 
         <?php
         // Connect to the database

@@ -1,13 +1,4 @@
 <?php
-header("Location: http://localhost/devetas.lt/admin/akcijos/index.php");
-// header("Location: https://parduosiu.lt/devetas/admin/akcijos/index.php");
-exit;
-?>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<?php
 require_once 'components/head.php';
 ?>
 
@@ -28,9 +19,6 @@ if (!isset($_SESSION['admin_id'])) {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto" style="transition: all 0.3s ease-in-out;">
-          <li class="nav-item">
-            <a class="nav-link" href="../admin/akcijos/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Akcijos</a>
-          </li>
           <li class="nav-item">
             <a class="nav-link" href="../admin/nesiojami_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Nešiojami</a>
           </li>

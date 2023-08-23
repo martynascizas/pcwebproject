@@ -41,7 +41,8 @@ if (!isset($_SESSION['admin_id'])) {
                     </div>
                     <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
-                        <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
+                        <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Nuotraukos:</label>
