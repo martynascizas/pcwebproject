@@ -8,9 +8,9 @@
 </head>
 
 <body>
+    <!-- click filter -->
     <?php
     session_start();
-
     if (!isset($_SESSION['windowHasLoaded'])) {
         $_SESSION['windowHasLoaded'] = true;
     } else {
@@ -21,6 +21,7 @@
     <?php
     require_once 'assets/prodnav.php';
     ?>
+    <!-- database -->
     <?php
     require '../db.php';
     ?>
@@ -37,23 +38,20 @@
             die("Connection failed: " . mysqli_connect_error());
         }
         // Construct SQL query with the selected gamintojas value
-        $sql = "SELECT m.id, m.gamintojas, m.rezoliucija, m.lieciamas_ekranas, m.ekrano_istrizaine, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
+        $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, m.nauja_kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
-                    FROM monitoriai m 
-                    LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
-        if (!empty($gamintojas) || !empty($rezoliucija) || !empty($lieciamas_ekranas) || !empty($ekrano_istrizaine) || !empty($kaina)) {
+                    FROM akcijos m 
+                    LEFT JOIN akcijos_photos mp ON m.id = mp.akcijos_id";
+        if (!empty($gamintojas) || !empty($pavadinimas) || !empty($aprasymas) || !empty($kaina)) {
             $sql .= " WHERE ";
             if (!empty($gamintojas)) {
                 $sql .= "gamintojas = '$gamintojas' AND ";
             }
-            if (!empty($rezoliucija)) {
-                $sql .= "rezoliucija = '$rezoliucija' AND ";
+            if (!empty($pavadinimas)) {
+                $sql .= "pavadinimas = '$pavadinimas' AND ";
             }
-            if (!empty($lieciamas_ekranas)) {
-                $sql .= "lieciamas_ekranas = '$lieciamas_ekranas' AND ";
-            }
-            if (!empty($ekrano_istrizaine)) {
-                $sql .= "ekrano_istrizaine = '$ekrano_istrizaine' AND ";
+            if (!empty($aprasymas)) {
+                $sql .= "aprasymas = '$aprasymas' AND ";
             }
             if (!empty($kaina)) {
                 $sql .= "kaina <= '$kaina' AND ";
@@ -74,17 +72,16 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $rezoliucija = $_POST['rezoliucija'];
-                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
-                            if (!empty($rezoliucija) || !empty($lieciamas_ekranas) || !empty($ekrano_istrizaine))
+                            $pavadinimas = $_POST['pavadinimas'];
+                            $aprasymas = $_POST['aprasymas'];
+                            if (!empty($pavadinimas) || !empty($aprasymas))
                                 $sql = "SELECT gamintojas, COUNT(*) AS total 
-                                        FROM monitoriai 
-                                        WHERE  rezoliucija = '$rezoliucija' || lieciamas_ekranas = '$lieciamas_ekranas' || ekrano_istrizaine = '$ekrano_istrizaine'
+                                        FROM akcijos 
+                                        WHERE  pavadinimas = '$pavadinimas' || aprasymas = '$aprasymas'
                                         GROUP BY gamintojas 
                                         ORDER BY gamintojas ASC";
                             else {
-                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM monitoriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM akcijos GROUP BY gamintojas ORDER BY gamintojas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -100,98 +97,63 @@
                         </select>
                     </li>
                     <li>
-                        <!--Generate select options for rezoliucija-->
-                        <label for="rezoliucija" class="form-label">Rezoliucija</label>
-                        <select class="form-select" id="rezoliucija" name="rezoliucija">
+                        <!--Generate select options for pavadinimas-->
+                        <label for="pavadinimas" class="form-label">Pavadinimas</label>
+                        <select class="form-select" id="pavadinimas" name="pavadinimas">
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results       
                             $selected_gamintojas = $_POST['gamintojas'];
-                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
-                            if (!empty($selected_gamintojas) || !empty($lieciamas_ekranas) || !empty($ekrano_istrizaine))
-                                $sql = "SELECT rezoliucija, COUNT(*) AS total 
-                                        FROM monitoriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || lieciamas_ekranas = '$lieciamas_ekranas' || ekrano_istrizaine = '$ekrano_istrizaine'
-                                        GROUP BY rezoliucija 
-                                        ORDER BY rezoliucija ASC";
+                            $aprasymas = $_POST['aprasymas'];
+                            if (!empty($selected_gamintojas) || !empty($aprasymas))
+                                $sql = "SELECT pavadinimas, COUNT(*) AS total 
+                                        FROM akcijos 
+                                        WHERE gamintojas = '$selected_gamintojas' || aprasymas = '$aprasymas'
+                                        GROUP BY pavadinimas 
+                                        ORDER BY pavadinimas ASC";
                             else {
-                                $sql = "SELECT rezoliucija, COUNT(*) AS total FROM monitoriai GROUP BY rezoliucija ORDER BY rezoliucija ASC";
+                                $sql = "SELECT pavadinimas, COUNT(*) AS total FROM akcijos GROUP BY pavadinimas ORDER BY pavadinimas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
-                                if ($_POST['rezoliucija'] == $row['rezoliucija']) {
+                                if ($_POST['pavadinimas'] == $row['pavadinimas']) {
                                     $selected = 'selected';
                                 }
-                                echo '<option value="' . $row["rezoliucija"] . '" ' . $selected . '>' . $row["rezoliucija"] . ' (' . $row["total"] . ')</option>';
+                                echo '<option value="' . $row["pavadinimas"] . '" ' . $selected . '>' . $row["pavadinimas"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
                     </li>
                     <li>
-                        <!--Generate select options for lieciamas_ekranas-->
-                        <label for="lieciamas_ekranas" class="form-label">Liečiamas ekranas</label>
-                        <select class="form-select" id="lieciamas_ekranas" name="lieciamas_ekranas">
+                        <!--Generate select options for aprasymas-->
+                        <label for="aprasymas" class="form-label">Aprašymas</label>
+                        <select class="form-select" id="aprasymas" name="aprasymas">
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
                             $selected_gamintojas = $_POST['gamintojas'];
-                            $rezoliucija = $_POST['rezoliucija'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
-                            if (!empty($selected_gamintojas) || !empty($rezoliucija) || !empty($ekrano_istrizaine))
-                                $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total 
-                                        FROM monitoriai 
-                                        WHERE gamintojas = '$selected_gamintojas' ||  rezoliucija = '$rezoliucija' || ekrano_istrizaine = '$ekrano_istrizaine'
-                                        GROUP BY lieciamas_ekranas 
-                                        ORDER BY lieciamas_ekranas ASC";
+                            $pavadinimas = $_POST['pavadinimas'];
+                            if (!empty($selected_gamintojas) || !empty($pavadinimas))
+                                $sql = "SELECT aprasymas, COUNT(*) AS total 
+                                        FROM akcijos 
+                                        WHERE gamintojas = '$selected_gamintojas' ||  pavadinimas = '$pavadinimas'
+                                        GROUP BY aprasymas 
+                                        ORDER BY aprasymas ASC";
                             else {
-                                $sql = "SELECT lieciamas_ekranas, COUNT(*) AS total FROM monitoriai GROUP BY lieciamas_ekranas ORDER BY lieciamas_ekranas ASC";
+                                $sql = "SELECT aprasymas, COUNT(*) AS total FROM akcijos GROUP BY aprasymas ORDER BY aprasymas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
                             // Loop through result set and generate options
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $selected = '';
-                                if ($_POST['lieciamas_ekranas'] == $row['lieciamas_ekranas']) {
+                                if ($_POST['aprasymas'] == $row['aprasymas']) {
                                     $selected = 'selected';
                                 }
-                                echo '<option value="' . $row["lieciamas_ekranas"] . '" ' . $selected . '>' . $row["lieciamas_ekranas"] . ' (' . $row["total"] . ')</option>';
-                            }
-                            ?>
-                        </select>
-                    </li>
-                    <li>
-                        <!--Generate select options for ekrano_istrizaine-->
-                        <label for="ekrano_istrizaine" class="form-label">Ekrano Įstrižainė</label>
-                        <select class="form-select" id="ekrano_istrizaine" name="ekrano_istrizaine">
-                            <option value="">Visi</option>
-                            <?php
-                            // Execute query and fetch results
-                            // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
-                            $rezoliucija = $_POST['rezoliucija'];
-                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
-                            if (!empty($selected_gamintojas) || !empty($rezoliucija) || !empty($lieciamas_ekranas))
-                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
-                                        FROM monitoriai 
-                                        WHERE gamintojas = '$selected_gamintojas'|| rezoliucija = '$rezoliucija' || lieciamas_ekranas = '$lieciamas_ekranas'
-                                        GROUP BY ekrano_istrizaine 
-                                        ORDER BY ekrano_istrizaine ASC";
-                            else {
-                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM monitoriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
-                            }
-                            $result = mysqli_query($conn, $sql);
-
-                            // Loop through result set and generate options
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $selected = '';
-                                if ($_POST['ekrano_istrizaine'] == $row['ekrano_istrizaine']) {
-                                    $selected = 'selected';
-                                }
-                                echo '<option value="' . $row["ekrano_istrizaine"] . '" ' . $selected . '>' . $row["ekrano_istrizaine"] . ' (' . $row["total"] . ')</option>';
+                                echo '<option value="' . $row["aprasymas"] . '" ' . $selected . '>' . $row["aprasymas"] . ' (' . $row["total"] . ')</option>';
                             }
                             ?>
                         </select>
@@ -201,7 +163,7 @@
                         <div class="form-group">
                             <?php
                             // Get the minimum and maximum kaina values from the database
-                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM monitoriai";
+                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM akcijos";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
                             $min_kaina = $row['min_kaina'];
@@ -224,31 +186,22 @@
                         </div>
                     </li>
                     <li>
-                        <div style="display: block; text-align: center;">
-                            <button id="akcijos" type="button" class="btn btn-danger mb-4">Akcijos</button>
-                        </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
                                 name="filter_submit">Filtruoti</button>
                             <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function () {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("pavadinimas").value = "";
+                                    document.getElementById("aprasymas").value = "";
+                                    document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
+                                    document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
+                                    document.getElementById("submit_btn").click();
+                                });
+                            </script>
                         </div>
-                        <script>
-                        document.getElementById("clear_btn").addEventListener("click", function() {
-                            document.getElementById("gamintojas").value = "";
-                            document.getElementById("rezoliucija").value = "";
-                            document.getElementById("lieciamas_ekranas").value = "";
-                            document.getElementById("ekrano_istrizaine").value = "";
-                            document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
-                            document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
-                            document.getElementById("submit_btn").click();
-                        });
-
-                        document.getElementById("akcijos").addEventListener("click", function() {
-                            window.location.href = "akcijos_monitoriai.php";
-                        });
-                        </script>
                     </li>
-
                 </ul>
             </form>
         </div>
@@ -263,14 +216,14 @@
                 </button>
                 <div class="wrapper">
                     <div class="container products_section products-margin">
-                        <h3 id="monitoriai" class="text-center mb-5">Monitoriai</h3>
+                        <h3 id="akcijos" class="text-center mb-5">Mažesnė kaina</h3>
                         <?php
                         // Check if form has been submitted
                         if (!isset($_POST['filter_submit'])) {
                             // Perform the JOIN between the tables
                             $sql = "SELECT nk.*, GROUP_CONCAT(nkp.filename) AS photos
-                FROM monitoriai nk
-                LEFT JOIN monitoriai_photos nkp ON nk.id = nkp.monitoriai_id
+                FROM akcijos nk
+                LEFT JOIN akcijos_photos nkp ON nk.id = nkp.akcijos_id
                 GROUP BY nk.id
                 ORDER BY nk.timestamp DESC";
 
@@ -283,10 +236,9 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/monitoriai/uploads/' . $photo . '"><img src="../admin/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/akcijos/uploads/' . $photo . '"><img src="../admin/akcijos/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
-
                                 echo '<div class="col">';
                                 echo '<div class="card h-100">';
                                 echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -296,24 +248,22 @@
                                 echo '</div>';
                                 echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
-                                echo '<p class="card-text card-text-custom">' . "Rezoliucija: <b>" . $row["rezoliucija"] . '</b></p>';
-                                echo '<p class="card-text card-text-custom">' . "Liečiamas ekranas: <b>" . $row["lieciamas_ekranas"] . '</b></p>';
-                                echo '<p class="card-text card-text-custom">' . "Ekrano įstrižainė: <b>" . $row["ekrano_istrizaine"] . "\"" . '</b></p>';
-                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Pavadinimas: " . "<b>" . $row["pavadinimas"] . "</b>" . '</p>';
+                                echo '<p class="card-text card-text-custom">' . "Aprašymas: <b>" . $row["aprasymas"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>AKC00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
                             }
                             echo '</div>';
                         } else if (isset($_POST['filter_submit'])) {
-                            // Get the selected gamintojas and ekrano_istrizaine values from the form
+                            // Get the selected gamintojas ... values from the form
                             $gamintojas = $_POST['gamintojas'];
-                            $rezoliucija = $_POST['rezoliucija'];
-                            $lieciamas_ekranas = $_POST['lieciamas_ekranas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
+                            $pavadinimas = $_POST['pavadinimas'];
+                            $aprasymas = $_POST['aprasymas'];
                             if (isset($_POST['kaina_nuo'])) {
                                 $min_kaina = $_POST['kaina_nuo'];
                             }
@@ -321,29 +271,21 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.rezoliucija, m.lieciamas_ekranas, m.ekrano_istrizaine, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
-                FROM monitoriai m 
-                LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
+                            $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                FROM akcijos m 
+                LEFT JOIN akcijos_photos mp ON m.id = mp.akcijos_id";
 
                             // Loop all possible conditions
                             $where_conditions = [];
-
                             if (!empty($gamintojas)) {
                                 $where_conditions[] = "gamintojas = '$gamintojas'";
                             }
-
-                            if (!empty($rezoliucija)) {
-                                $where_conditions[] = "rezoliucija = '$rezoliucija'";
+                            if (!empty($pavadinimas)) {
+                                $where_conditions[] = "pavadinimas = '$pavadinimas'";
                             }
-
-                            if (!empty($lieciamas_ekranas)) {
-                                $where_conditions[] = "lieciamas_ekranas = '$lieciamas_ekranas'";
+                            if (!empty($aprasymas)) {
+                                $where_conditions[] = "aprasymas = '$aprasymas'";
                             }
-
-                            if (!empty($ekrano_istrizaine)) {
-                                $where_conditions[] = "ekrano_istrizaine = '$ekrano_istrizaine'";
-                            }
-
                             if (!empty($min_kaina) && !empty($max_kaina)) {
                                 $where_conditions[] = "kaina BETWEEN $min_kaina AND $max_kaina";
                             } elseif (!empty($min_kaina)) {
@@ -369,10 +311,9 @@
                                     foreach ($photos as $i => $photo) {
                                         $active_class = ($i == 0) ? 'active' : '';
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/monitoriai/uploads/' . $photo . '"><img src="../admin/monitoriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
+                                        $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/akcijos/uploads/' . $photo . '"><img src="../admin/akcijos/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
-
                                     echo '<div class="col">';
                                     echo '<div class="card h-100">';
                                     echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -382,10 +323,9 @@
                                     echo '</div>';
                                     echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
-                                    echo '<p class="card-text card-text-custom">' . "Rezoliucija: <b>" . $row["rezoliucija"] . '</b></p>';
-                                    echo '<p class="card-text card-text-custom">' . "Liečiamas ekranas: <b>" . $row["lieciamas_ekranas"] . '</b></p>';
-                                    echo '<p class="card-text card-text-custom">' . "Ekrano įstrižainė: <b>" . $row["ekrano_istrizaine"] . "\"" . '</b></p>';
-                                    echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Pavadinimas: " . "<b>" . $row["pavadinimas"] . "</b>" . '</p>';
+                                    echo '<p class="card-text card-text-custom">' . "Aprašymas: <b>" . $row["aprasymas"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>AKC00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';
                                     echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
@@ -406,114 +346,114 @@
         </div>
     </div>
 
+    <!-- footer -->
+    <?php
+    require_once 'assets/footer.php';
+    ?>
+
     <!-- fancybox -->
     <script>
-    $(document).ready(function() {
-        $('[data-fancybox="gallery1"]').fancybox({
-            loop: true,
-            buttons: [
-                "zoom",
-                "slideShow",
-                "fullScreen",
-                "thumbs",
-                "close"
-            ]
+        $(document).ready(function () {
+            $('[data-fancybox="gallery1"]').fancybox({
+                loop: true,
+                buttons: [
+                    "zoom",
+                    "slideShow",
+                    "fullScreen",
+                    "thumbs",
+                    "close"
+                ]
+            });
         });
-    });
     </script>
 
     <!--filter-->
     <script>
-    // Select the form and add an event listener to detect changes
-    const form = document.getElementById('filter-form');
-    form.addEventListener('change', handleFormChange);
+        // Select the form and add an event listener to detect changes
+        const form = document.getElementById('filter-form');
+        form.addEventListener('change', handleFormChange);
 
-    function handleFormChange(event) {
-        // Prevent the form from submitting
-        event.preventDefault();
+        function handleFormChange(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
 
-        // Get the form data and send an AJAX request
-        const formData = new FormData(form);
-        fetch('nesiojami.php', {
+            // Get the form data and send an AJAX request
+            const formData = new FormData(form);
+            fetch('akcijos.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(data => {
-                // Update the product list in the DOM with the new data
-                const productList = document.querySelector('.product-list');
-                productList.innerHTML = data;
-            })
-            .catch(error => console.error(error));
-    }
+                .then(response => response.text())
+                .then(data => {
+                    // Update the product list in the DOM with the new data
+                    const productList = document.querySelector('.product-list');
+                    productList.innerHTML = data;
+                })
+                .catch(error => console.error(error));
+        }
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const gamintojasSelect = document.getElementById('gamintojas');
-        const rezoliucijaSelect = document.getElementById('rezoliucija');
-        const lieciamasEkranasSelect = document.getElementById('lieciamas_ekranas');
-        const ekranoIstrizaineSelect = document.getElementById('ekrano_istrizaine');
-        const submitBtn = document.getElementById('submit_btn');
-        const kainaNuoInput = document.getElementById('kaina_nuo');
-        const kainaIkiInput = document.getElementById('kaina_iki');
-        let timeoutId;
+        document.addEventListener('DOMContentLoaded', function () {
+            const gamintojasSelect = document.getElementById('gamintojas');
+            const pavadinimasSelect = document.getElementById('pavadinimas');
+            const aprasymasSelect = document.getElementById('aprasymas');
+            const submitBtn = document.getElementById('submit_btn');
+            const kainaNuoInput = document.getElementById('kaina_nuo');
+            const kainaIkiInput = document.getElementById('kaina_iki');
+            let timeoutId;
 
-        gamintojasSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        rezoliucijaSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        lieciamasEkranasSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        ekranoIstrizaineSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        kainaNuoInput.addEventListener('input', function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
+            gamintojasSelect.addEventListener('change', function () {
                 submitBtn.click();
-            }, 500); // Wait for 500ms before submitting the form
-        });
+            });
 
-        kainaIkiInput.addEventListener('input', function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
+            pavadinimasSelect.addEventListener('change', function () {
                 submitBtn.click();
-            }, 500); // Wait for 500ms before submitting the form
+            });
+
+            aprasymasSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            kainaNuoInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
+
+            kainaIkiInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
         });
-    });
     </script>
 
     <!--price range-->
     <script>
-    // Get the range input elements
-    const kainaNuo = document.getElementById('kaina_nuo');
-    const kainaIki = document.getElementById('kaina_iki');
+        // Get the range input elements
+        const kainaNuo = document.getElementById('kaina_nuo');
+        const kainaIki = document.getElementById('kaina_iki');
 
-    // Get the span elements to display the selected values
-    const kainaNuoValue = document.getElementById('kaina_nuo_value');
-    const kainaIkiValue = document.getElementById('kaina_iki_value');
+        // Get the span elements to display the selected values
+        const kainaNuoValue = document.getElementById('kaina_nuo_value');
+        const kainaIkiValue = document.getElementById('kaina_iki_value');
 
-    // Add event listeners to update the span elements in real-time
-    kainaNuo.addEventListener('input', function() {
-        if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
-            kainaNuo.value = kainaIki.value;
-        }
-        kainaNuoValue.textContent = kainaNuo.value;
-    });
-    kainaIki.addEventListener('input', function() {
-        if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
-            kainaIki.value = kainaNuo.value;
-        }
-        kainaIkiValue.textContent = kainaIki.value;
-    });
+        // Add event listeners to update the span elements in real-time
+        kainaNuo.addEventListener('input', function () {
+            if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
+                kainaNuo.value = kainaIki.value;
+            }
+            kainaNuoValue.textContent = kainaNuo.value;
+        });
+        kainaIki.addEventListener('input', function () {
+            if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
+                kainaIki.value = kainaNuo.value;
+            }
+            kainaIkiValue.textContent = kainaIki.value;
+        });
     </script>
 </body>
 

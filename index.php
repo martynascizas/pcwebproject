@@ -45,22 +45,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'c') {
-                window.location.href = document.getElementById('crud-link').href;
-            }
-        });
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'c') {
+            window.location.href = document.getElementById('crud-link').href;
+        }
+    });
     </script>
     <script>
-        var touchTimer;
-        document.addEventListener('touchstart', function() {
-            touchTimer = setTimeout(function() {
-                window.location.href = document.getElementById('crud-link').href;
-            }, 1000);
-        });
-        document.addEventListener('touchend', function() {
-            clearTimeout(touchTimer);
-        });
+    var touchTimer;
+    document.addEventListener('touchstart', function() {
+        touchTimer = setTimeout(function() {
+            window.location.href = document.getElementById('crud-link').href;
+        }, 1000);
+    });
+    document.addEventListener('touchend', function() {
+        clearTimeout(touchTimer);
+    });
     </script>
 </body>
 

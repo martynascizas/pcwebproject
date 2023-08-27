@@ -306,32 +306,24 @@
                         </div>
                     </li>
                     <li>
-                        <div style="display: block; text-align: center;">
-                            <button id="akcijos" type="button" class="btn btn-danger mb-4">Akcijos</button>
-                        </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
                                 name="filter_submit">Filtruoti</button>
                             <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function () {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("ekrano_istrizaine").value = "";
+                                    document.getElementById("procesorius").value = "";
+                                    document.getElementById("vaizdo_plokste").value = "";
+                                    document.getElementById("ram").value = "";
+                                    document.getElementById("hdd").value = "";
+                                    document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
+                                    document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
+                                    document.getElementById("submit_btn").click();
+                                });
+                            </script>
                         </div>
-                        <script>
-                        document.getElementById("clear_btn").addEventListener("click", function() {
-                            document.getElementById("gamintojas").value = "";
-                            document.getElementById("ekrano_istrizaine").value = "";
-                            document.getElementById("procesorius").value = "";
-                            document.getElementById("vaizdo_plokste").value = "";
-                            document.getElementById("ram").value = "";
-                            document.getElementById("hdd").value = "";
-                            document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
-                            document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
-                            document.getElementById("submit_btn").click();
-                        });
-
-                        document.getElementById("akcijos").addEventListener("click", function() {
-                            window.location.href = "akcijos_nesiojami.php";
-                        });
-                        </script>
-
                     </li>
                 </ul>
             </form>
@@ -347,7 +339,7 @@
                 </button>
                 <div class="wrapper">
                     <div class="container products_section products-margin">
-                        <h3 id="nesiojami_kompiuteriai" class="text-center mb-5">Nešiojami Kompiuteriai</h3>
+                        <h3 id="nesiojami_kompiuteriai" class="text-center mb-5">Nešiojami Kompiuteriai - Akcijos</h3>
                         <?php
                         // Check if form has been submitted
                         if (!isset($_POST['filter_submit'])) {
@@ -502,125 +494,125 @@
             </div>
         </div>
     </div>
-
+    
     <!-- fancybox -->
     <script>
-    $(document).ready(function() {
-        $('[data-fancybox="gallery1"]').fancybox({
-            loop: true,
-            buttons: [
-                "zoom",
-                "slideShow",
-                "fullScreen",
-                "thumbs",
-                "close"
-            ]
+        $(document).ready(function () {
+            $('[data-fancybox="gallery1"]').fancybox({
+                loop: true,
+                buttons: [
+                    "zoom",
+                    "slideShow",
+                    "fullScreen",
+                    "thumbs",
+                    "close"
+                ]
+            });
         });
-    });
     </script>
 
     <!--filter-->
     <script>
-    // Select the form and add an event listener to detect changes
-    const form = document.getElementById('filter-form');
-    form.addEventListener('change', handleFormChange);
+        // Select the form and add an event listener to detect changes
+        const form = document.getElementById('filter-form');
+        form.addEventListener('change', handleFormChange);
 
-    function handleFormChange(event) {
-        // Prevent the form from submitting
-        event.preventDefault();
+        function handleFormChange(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
 
-        // Get the form data and send an AJAX request
-        const formData = new FormData(form);
-        fetch('nesiojami.php', {
+            // Get the form data and send an AJAX request
+            const formData = new FormData(form);
+            fetch('nesiojami.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
-            .then(data => {
-                // Update the product list in the DOM with the new data
-                const productList = document.querySelector('.product-list');
-                productList.innerHTML = data;
-            })
-            .catch(error => console.error(error));
-    }
+                .then(response => response.text())
+                .then(data => {
+                    // Update the product list in the DOM with the new data
+                    const productList = document.querySelector('.product-list');
+                    productList.innerHTML = data;
+                })
+                .catch(error => console.error(error));
+        }
     </script>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const gamintojasSelect = document.getElementById('gamintojas');
-        const ekranoIstrizaineSelect = document.getElementById('ekrano_istrizaine');
-        const procesoriusSelect = document.getElementById('procesorius');
-        const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
-        const ramSelect = document.getElementById('ram');
-        const hddSelect = document.getElementById('hdd');
-        const submitBtn = document.getElementById('submit_btn');
-        const kainaNuoInput = document.getElementById('kaina_nuo');
-        const kainaIkiInput = document.getElementById('kaina_iki');
-        let timeoutId;
+        document.addEventListener('DOMContentLoaded', function () {
+            const gamintojasSelect = document.getElementById('gamintojas');
+            const ekranoIstrizaineSelect = document.getElementById('ekrano_istrizaine');
+            const procesoriusSelect = document.getElementById('procesorius');
+            const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
+            const ramSelect = document.getElementById('ram');
+            const hddSelect = document.getElementById('hdd');
+            const submitBtn = document.getElementById('submit_btn');
+            const kainaNuoInput = document.getElementById('kaina_nuo');
+            const kainaIkiInput = document.getElementById('kaina_iki');
+            let timeoutId;
 
-        gamintojasSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-        ekranoIstrizaineSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        procesoriusSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        vaizdoPloksteSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        ramSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        hddSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-
-        kainaNuoInput.addEventListener('input', function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
+            gamintojasSelect.addEventListener('change', function () {
                 submitBtn.click();
-            }, 500); // Wait for 500ms before submitting the form
-        });
-
-        kainaIkiInput.addEventListener('input', function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
+            });
+            ekranoIstrizaineSelect.addEventListener('change', function () {
                 submitBtn.click();
-            }, 500); // Wait for 500ms before submitting the form
+            });
+
+            procesoriusSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            vaizdoPloksteSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            ramSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            hddSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+
+            kainaNuoInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
+
+            kainaIkiInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
         });
-    });
     </script>
 
     <!--price range-->
     <script>
-    // Get the range input elements
-    const kainaNuo = document.getElementById('kaina_nuo');
-    const kainaIki = document.getElementById('kaina_iki');
+        // Get the range input elements
+        const kainaNuo = document.getElementById('kaina_nuo');
+        const kainaIki = document.getElementById('kaina_iki');
 
-    // Get the span elements to display the selected values
-    const kainaNuoValue = document.getElementById('kaina_nuo_value');
-    const kainaIkiValue = document.getElementById('kaina_iki_value');
+        // Get the span elements to display the selected values
+        const kainaNuoValue = document.getElementById('kaina_nuo_value');
+        const kainaIkiValue = document.getElementById('kaina_iki_value');
 
-    // Add event listeners to update the span elements in real-time
-    kainaNuo.addEventListener('input', function() {
-        if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
-            kainaNuo.value = kainaIki.value;
-        }
-        kainaNuoValue.textContent = kainaNuo.value;
-    });
-    kainaIki.addEventListener('input', function() {
-        if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
-            kainaIki.value = kainaNuo.value;
-        }
-        kainaIkiValue.textContent = kainaIki.value;
-    });
+        // Add event listeners to update the span elements in real-time
+        kainaNuo.addEventListener('input', function () {
+            if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
+                kainaNuo.value = kainaIki.value;
+            }
+            kainaNuoValue.textContent = kainaNuo.value;
+        });
+        kainaIki.addEventListener('input', function () {
+            if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
+                kainaIki.value = kainaNuo.value;
+            }
+            kainaIkiValue.textContent = kainaIki.value;
+        });
     </script>
 
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">

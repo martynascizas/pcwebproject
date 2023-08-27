@@ -25,10 +25,12 @@
     require '../db.php';
     ?>
 
-    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
+        data-bs-backdrop="false">
         <div class="offcanvas-header">
             <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Filtrai</h6>
-            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <?php
         if (!$conn) {
@@ -246,30 +248,45 @@
                             $max_kaina = $row['max_kaina'];
 
                             ?>
-                            <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value"><?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?></span></label>
-                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
+                            <label for="kaina" class="form-label">Kaina nuo: <span
+                                    id="kaina_nuo_value"><?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?></span></label>
+                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo"
+                                min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1"
+                                value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
 
-                            <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
-                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
+                            <label for="kaina" class="form-label">Kaina iki: <span
+                                    id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
+                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki"
+                                min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1"
+                                value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
                         </div>
                     </li>
                     <li>
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none" name="filter_submit">Filtruoti</button>
-                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
-                            <script>
-                                document.getElementById("clear_btn").addEventListener("click", function() {
-                                    document.getElementById("gamintojas").value = "";
-                                    document.getElementById("procesorius").value = "";
-                                    document.getElementById("vaizdo_plokste").value = "";
-                                    document.getElementById("ram").value = "";
-                                    document.getElementById("hdd").value = "";
-                                    document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
-                                    document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
-                                    document.getElementById("submit_btn").click();
-                                });
-                            </script>
+                        <div style="display: block; text-align: center;">
+                            <button id="akcijos" type="button" class="btn btn-danger mb-4">Akcijos</button>
                         </div>
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
+                                name="filter_submit">Filtruoti</button>
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                        </div>
+                        <script>
+                        document.getElementById("clear_btn").addEventListener("click", function() {
+                            document.getElementById("gamintojas").value = "";
+                            document.getElementById("procesorius").value = "";
+                            document.getElementById("vaizdo_plokste").value = "";
+                            document.getElementById("ram").value = "";
+                            document.getElementById("hdd").value = "";
+                            document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
+                            document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
+                            document.getElementById("submit_btn").click();
+                        });
+
+                        document.getElementById("akcijos").addEventListener("click", function() {
+                            window.location.href = "akcijos_staliniai.php";
+                        });
+                        </script>
+
                     </li>
                 </ul>
             </form>
@@ -279,7 +296,8 @@
         <div class="row">
             <div class="col min-vh-100 py-3">
                 <!-- toggler -->
-                <button id="sid" class="btn sidebar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
+                <button id="sid" class="btn sidebar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                    role="button">
                     <i class="bi bi-filter fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
                 </button>
                 <div class="wrapper">
@@ -436,125 +454,120 @@
         </div>
     </div>
 
-    <!-- footer -->
-    <?php
-    require_once 'assets/footer.php';
-    ?>
-
     <!-- fancybox -->
     <script>
-        $(document).ready(function() {
-            $('[data-fancybox="gallery1"]').fancybox({
-                loop: true,
-                buttons: [
-                    "zoom",
-                    "slideShow",
-                    "fullScreen",
-                    "thumbs",
-                    "close"
-                ]
-            });
+    $(document).ready(function() {
+        $('[data-fancybox="gallery1"]').fancybox({
+            loop: true,
+            buttons: [
+                "zoom",
+                "slideShow",
+                "fullScreen",
+                "thumbs",
+                "close"
+            ]
         });
+    });
     </script>
 
     <!--filter-->
     <script>
-        // Select the form and add an event listener to detect changes
-        const form = document.getElementById('filter-form');
-        form.addEventListener('change', handleFormChange);
+    // Select the form and add an event listener to detect changes
+    const form = document.getElementById('filter-form');
+    form.addEventListener('change', handleFormChange);
 
-        function handleFormChange(event) {
-            // Prevent the form from submitting
-            event.preventDefault();
+    function handleFormChange(event) {
+        // Prevent the form from submitting
+        event.preventDefault();
 
-            // Get the form data and send an AJAX request
-            const formData = new FormData(form);
-            fetch('nesiojami.php', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.text())
-                .then(data => {
-                    // Update the product list in the DOM with the new data
-                    const productList = document.querySelector('.product-list');
-                    productList.innerHTML = data;
-                })
-                .catch(error => console.error(error));
-        }
+        // Get the form data and send an AJAX request
+        const formData = new FormData(form);
+        fetch('nesiojami.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Update the product list in the DOM with the new data
+                const productList = document.querySelector('.product-list');
+                productList.innerHTML = data;
+            })
+            .catch(error => console.error(error));
+    }
     </script>
 
-<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const gamintojasSelect = document.getElementById('gamintojas');
-            const procesoriusSelect = document.getElementById('procesorius');
-            const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
-            const ramSelect = document.getElementById('ram');
-            const hddSelect = document.getElementById('hdd');
-            const submitBtn = document.getElementById('submit_btn');
-            const kainaNuoInput = document.getElementById('kaina_nuo');
-            const kainaIkiInput = document.getElementById('kaina_iki');
-            let timeoutId;
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const gamintojasSelect = document.getElementById('gamintojas');
+        const procesoriusSelect = document.getElementById('procesorius');
+        const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
+        const ramSelect = document.getElementById('ram');
+        const hddSelect = document.getElementById('hdd');
+        const submitBtn = document.getElementById('submit_btn');
+        const kainaNuoInput = document.getElementById('kaina_nuo');
+        const kainaIkiInput = document.getElementById('kaina_iki');
+        let timeoutId;
 
-            gamintojasSelect.addEventListener('change', function () {
-                submitBtn.click();
-            });
-         
-            procesoriusSelect.addEventListener('change', function () {
-                submitBtn.click();
-            });
-
-            vaizdoPloksteSelect.addEventListener('change', function () {
-                submitBtn.click();
-            });
-
-            ramSelect.addEventListener('change', function () {
-                submitBtn.click();
-            });
-
-            hddSelect.addEventListener('change', function () {
-                submitBtn.click();
-            });
-
-
-            kainaNuoInput.addEventListener('input', function () {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(function () {
-                    submitBtn.click();
-                }, 500); // Wait for 500ms before submitting the form
-            });
-
-            kainaIkiInput.addEventListener('input', function () {
-                clearTimeout(timeoutId);
-                timeoutId = setTimeout(function () {
-                    submitBtn.click();
-                }, 500); // Wait for 500ms before submitting the form
-            });
+        gamintojasSelect.addEventListener('change', function() {
+            submitBtn.click();
         });
+
+        procesoriusSelect.addEventListener('change', function() {
+            submitBtn.click();
+        });
+
+        vaizdoPloksteSelect.addEventListener('change', function() {
+            submitBtn.click();
+        });
+
+        ramSelect.addEventListener('change', function() {
+            submitBtn.click();
+        });
+
+        hddSelect.addEventListener('change', function() {
+            submitBtn.click();
+        });
+
+
+        kainaNuoInput.addEventListener('input', function() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(function() {
+                submitBtn.click();
+            }, 500); // Wait for 500ms before submitting the form
+        });
+
+        kainaIkiInput.addEventListener('input', function() {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(function() {
+                submitBtn.click();
+            }, 500); // Wait for 500ms before submitting the form
+        });
+    });
     </script>
 
     <!--price range-->
     <script>
-        // Get the range input elements
-        const kainaNuo = document.getElementById('kaina_nuo');
-        const kainaIki = document.getElementById('kaina_iki');
+    // Get the range input elements
+    const kainaNuo = document.getElementById('kaina_nuo');
+    const kainaIki = document.getElementById('kaina_iki');
 
-        // Get the span elements to display the selected values
-        const kainaNuoValue = document.getElementById('kaina_nuo_value');
-        const kainaIkiValue = document.getElementById('kaina_iki_value');
+    // Get the span elements to display the selected values
+    const kainaNuoValue = document.getElementById('kaina_nuo_value');
+    const kainaIkiValue = document.getElementById('kaina_iki_value');
 
-        // Add event listeners to update the span elements in real-time
-        kainaNuo.addEventListener('input', function() {
-            if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
-                kainaNuo.value = kainaIki.value;
-            }
-            kainaNuoValue.textContent = kainaNuo.value;
-        });
-        kainaIki.addEventListener('input', function() {
-            if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
-                kainaIki.value = kainaNuo.value;
-            }
-            kainaIkiValue.textContent = kainaIki.value;
-        });
+    // Add event listeners to update the span elements in real-time
+    kainaNuo.addEventListener('input', function() {
+        if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
+            kainaNuo.value = kainaIki.value;
+        }
+        kainaNuoValue.textContent = kainaNuo.value;
+    });
+    kainaIki.addEventListener('input', function() {
+        if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
+            kainaIki.value = kainaNuo.value;
+        }
+        kainaIkiValue.textContent = kainaIki.value;
+    });
     </script>
 </body>
 

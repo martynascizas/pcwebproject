@@ -10,13 +10,25 @@
           <a class="nav-link" href="../nesiojami_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Nešiojami</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="../akcijos_nesiojami_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;" data-offset="80">Akcijos Nešiojami</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="../staliniai_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Staliniai</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../akcijos_staliniai_kompiuteriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Akcijos Staliniai</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../monitoriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Monitoriai</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="../akcijos_monitoriai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Akcijos Monitoriai</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="../kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Priedai</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="../kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Akcijos Priedai</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../logout.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Atsijungti</a>

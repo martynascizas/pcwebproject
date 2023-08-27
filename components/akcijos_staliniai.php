@@ -25,29 +25,24 @@
     require '../db.php';
     ?>
 
-    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false"
-        data-bs-backdrop="false">
+    <div id="offcanvas" class="offcanvas offcanvas-start w-25 p-3" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
         <div class="offcanvas-header">
             <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Filtrai</h6>
-            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+            <button id="clodeBtn" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <?php
         if (!$conn) {
             die("Connection failed: " . mysqli_connect_error());
         }
         // Construct SQL query with the selected gamintojas value
-        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
+        $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
-                    FROM nesiojami_kompiuteriai m 
-                    LEFT JOIN nesiojami_kompiuteriai_photos mp ON m.id = mp.nesiojami_kompiuteriai_id";
-        if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($kaina)) {
+                    FROM staliniai_kompiuteriai m 
+                    LEFT JOIN staliniai_kompiuteriai_photos mp ON m.id = mp.staliniai_kompiuteriai_id";
+        if (!empty($gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($kaina)) {
             $sql .= " WHERE ";
             if (!empty($gamintojas)) {
                 $sql .= "gamintojas = '$gamintojas' AND ";
-            }
-            if (!empty($ekrano_istrizaine)) {
-                $sql .= "ekrano_istrizaine = '$ekrano_istrizaine' AND ";
             }
             if (!empty($procesorius)) {
                 $sql .= "procesorius = '$procesorius' AND ";
@@ -80,19 +75,18 @@
                             <option value="">Visi</option>
                             <?php
                             // Execute query and fetch results
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
                             $hdd = $_POST['hdd'];
-                            if (!empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($hdd) || !empty($ram))
+                            if (!empty($procesorius) || !empty($vaizdo_plokste) || !empty($hdd) || !empty($ram))
                                 $sql = "SELECT gamintojas, COUNT(*) AS total 
-                                        FROM nesiojami_kompiuteriai 
-                                        WHERE ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
+                                        FROM staliniai_kompiuteriai 
+                                        WHERE  procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
                                         GROUP BY gamintojas 
                                         ORDER BY gamintojas ASC";
                             else {
-                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY gamintojas ORDER BY gamintojas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -108,40 +102,6 @@
                         </select>
                     </li>
                     <li>
-                        <!--Generate select options for ekrano_istrizaine-->
-                        <label for="ekrano_istrizaine" class="form-label">Ekrano įstrižainė</label>
-                        <select class="form-select" id="ekrano_istrizaine" name="ekrano_istrizaine">
-                            <option value="">Visi</option>
-                            <?php
-                            // Execute query and fetch results
-                            $selected_gamintojas = $_POST['gamintojas'];
-                            $procesorius = $_POST['procesorius'];
-                            $vaizdo_plokste = $_POST['vaizdo_plokste'];
-                            $ram = $_POST['ram'];
-                            $hdd = $_POST['hdd'];
-                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd))
-                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total 
-                                        FROM nesiojami_kompiuteriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
-                                        GROUP BY ekrano_istrizaine 
-                                        ORDER BY ekrano_istrizaine ASC";
-                            else {
-                                $sql = "SELECT ekrano_istrizaine, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ekrano_istrizaine ORDER BY ekrano_istrizaine ASC";
-                            }
-                            $result = mysqli_query($conn, $sql);
-
-                            // Loop through result set and generate options
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                $selected = '';
-                                if ($_POST['ekrano_istrizaine'] == $row['ekrano_istrizaine']) {
-                                    $selected = 'selected';
-                                }
-                                echo '<option value="' . $row["ekrano_istrizaine"] . '" ' . $selected . '>' . $row["ekrano_istrizaine"] . ' (' . $row["total"] . ')</option>';
-                            }
-                            ?>
-                        </select>
-                    </li>
-                    <li>
                         <!--Generate select options for procesorius-->
                         <label for="procesorius" class="form-label">Procesorius</label>
                         <select class="form-select" id="procesorius" name="procesorius">
@@ -149,18 +109,17 @@
                             <?php
                             // Execute query and fetch results       
                             $selected_gamintojas = $_POST['gamintojas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
                             $hdd = $_POST['hdd'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd))
+                            if (!empty($selected_gamintojas) ||  !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd))
                                 $sql = "SELECT procesorius, COUNT(*) AS total 
-                                        FROM nesiojami_kompiuteriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
+                                        FROM staliniai_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram' || hdd = '$hdd'
                                         GROUP BY procesorius 
                                         ORDER BY procesorius ASC";
                             else {
-                                $sql = "SELECT procesorius, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
+                                $sql = "SELECT procesorius, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY procesorius ORDER BY procesorius ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -183,18 +142,17 @@
                             <?php
                             // Execute query and fetch results
                             $selected_gamintojas = $_POST['gamintojas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
                             $ram = $_POST['ram'];
                             $hdd = $_POST['hdd'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($ram) || !empty($hdd))
+                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($ram) || !empty($hdd))
                                 $sql = "SELECT vaizdo_plokste, COUNT(*) AS total 
-                                        FROM nesiojami_kompiuteriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || ram = '$ram' || hdd = '$hdd'
+                                        FROM staliniai_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' ||  procesorius = '$procesorius' || ram = '$ram' || hdd = '$hdd'
                                         GROUP BY vaizdo_plokste 
                                         ORDER BY vaizdo_plokste ASC";
                             else {
-                                $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
+                                $sql = "SELECT vaizdo_plokste, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY vaizdo_plokste ORDER BY vaizdo_plokste ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -218,18 +176,17 @@
                             // Execute query and fetch results
                             // Execute query and fetch results
                             $selected_gamintojas = $_POST['gamintojas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $hdd = $_POST['hdd'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($hdd))
+                            if (!empty($selected_gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($hdd))
                                 $sql = "SELECT ram, COUNT(*) AS total 
-                                        FROM nesiojami_kompiuteriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || hdd = '$hdd'
+                                        FROM staliniai_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas'|| procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || hdd = '$hdd'
                                         GROUP BY ram 
                                         ORDER BY ram ASC";
                             else {
-                                $sql = "SELECT ram, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY ram ORDER BY ram ASC";
+                                $sql = "SELECT ram, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY ram ORDER BY ram ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -252,18 +209,17 @@
                             <?php
                             // Execute query and fetch results
                             $selected_gamintojas = $_POST['gamintojas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
-                            if (!empty($selected_gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram))
+                            if (!empty($selected_gamintojas) ||  !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram))
                                 $sql = "SELECT hdd, COUNT(*) AS total 
-                                        FROM nesiojami_kompiuteriai 
-                                        WHERE gamintojas = '$selected_gamintojas' || ekrano_istrizaine = '$ekrano_istrizaine' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram'
+                                        FROM staliniai_kompiuteriai 
+                                        WHERE gamintojas = '$selected_gamintojas' || procesorius = '$procesorius' || vaizdo_plokste = '$vaizdo_plokste' || ram = '$ram'
                                         GROUP BY hdd 
                                         ORDER BY hdd ASC";
                             else {
-                                $sql = "SELECT hdd, COUNT(*) AS total FROM nesiojami_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
+                                $sql = "SELECT hdd, COUNT(*) AS total FROM staliniai_kompiuteriai GROUP BY hdd ORDER BY hdd ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -283,55 +239,37 @@
                         <div class="form-group">
                             <?php
                             // Get the minimum and maximum kaina values from the database
-                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM nesiojami_kompiuteriai";
+                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM staliniai_kompiuteriai";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
                             $min_kaina = $row['min_kaina'];
                             $max_kaina = $row['max_kaina'];
 
                             ?>
-                            <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value">
-                                    <?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>
-                                </span></label>
-                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo"
-                                min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1"
-                                value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
+                            <label for="kaina" class="form-label">Kaina nuo: <span id="kaina_nuo_value"><?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?></span></label>
+                            <input type="range" class="form-range" id="kaina_nuo" name="kaina_nuo" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_nuo']) ? $_POST['kaina_nuo'] : $min_kaina; ?>">
 
-                            <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value">
-                                    <?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>
-                                </span></label>
-                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki"
-                                min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1"
-                                value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
+                            <label for="kaina" class="form-label">Kaina iki: <span id="kaina_iki_value"><?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?></span></label>
+                            <input type="range" class="form-range" id="kaina_iki" name="kaina_iki" min="<?php echo $min_kaina; ?>" max="<?php echo $max_kaina; ?>" step="1" value="<?php echo isset($_POST['kaina_iki']) ? $_POST['kaina_iki'] : $max_kaina; ?>">
                         </div>
                     </li>
                     <li>
-                        <div style="display: block; text-align: center;">
-                            <button id="akcijos" type="button" class="btn btn-danger mb-4">Akcijos</button>
-                        </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
-                                name="filter_submit">Filtruoti</button>
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none" name="filter_submit">Filtruoti</button>
                             <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <script>
+                                document.getElementById("clear_btn").addEventListener("click", function() {
+                                    document.getElementById("gamintojas").value = "";
+                                    document.getElementById("procesorius").value = "";
+                                    document.getElementById("vaizdo_plokste").value = "";
+                                    document.getElementById("ram").value = "";
+                                    document.getElementById("hdd").value = "";
+                                    document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
+                                    document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
+                                    document.getElementById("submit_btn").click();
+                                });
+                            </script>
                         </div>
-                        <script>
-                        document.getElementById("clear_btn").addEventListener("click", function() {
-                            document.getElementById("gamintojas").value = "";
-                            document.getElementById("ekrano_istrizaine").value = "";
-                            document.getElementById("procesorius").value = "";
-                            document.getElementById("vaizdo_plokste").value = "";
-                            document.getElementById("ram").value = "";
-                            document.getElementById("hdd").value = "";
-                            document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
-                            document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
-                            document.getElementById("submit_btn").click();
-                        });
-
-                        document.getElementById("akcijos").addEventListener("click", function() {
-                            window.location.href = "akcijos_nesiojami.php";
-                        });
-                        </script>
-
                     </li>
                 </ul>
             </form>
@@ -341,20 +279,19 @@
         <div class="row">
             <div class="col min-vh-100 py-3">
                 <!-- toggler -->
-                <button id="sid" class="btn sidebar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
-                    role="button">
+                <button id="sid" class="btn sidebar-toggler" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" role="button">
                     <i class="bi bi-filter fs-3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"></i>
                 </button>
                 <div class="wrapper">
                     <div class="container products_section products-margin">
-                        <h3 id="nesiojami_kompiuteriai" class="text-center mb-5">Nešiojami Kompiuteriai</h3>
+                        <h3 id="staliniai_kompiuteriai" class="text-center mb-5">Staliniai Kompiuteriai</h3>
                         <?php
                         // Check if form has been submitted
                         if (!isset($_POST['filter_submit'])) {
                             // Perform the JOIN between the tables
                             $sql = "SELECT nk.*, GROUP_CONCAT(nkp.filename) AS photos
-                FROM nesiojami_kompiuteriai nk
-                LEFT JOIN nesiojami_kompiuteriai_photos nkp ON nk.id = nkp.nesiojami_kompiuteriai_id
+                FROM staliniai_kompiuteriai nk
+                LEFT JOIN staliniai_kompiuteriai_photos nkp ON nk.id = nkp.staliniai_kompiuteriai_id
                 GROUP BY nk.id
                 ORDER BY nk.timestamp DESC";
 
@@ -367,7 +304,7 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '"><img src="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
 
@@ -380,12 +317,12 @@
                                 echo '</div>';
                                 echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
-                                echo '<p class="card-text card-text-custom">' . "Ekrano Įstrižainė: " . "<b>" . $row["ekrano_istrizaine"] . "\"" . "</b>" . '</p>';
+                               
                                 echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
-                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
                                 echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
@@ -397,7 +334,6 @@
                         } else if (isset($_POST['filter_submit'])) {
                             // Get the selected gamintojas and ekrano_istrizaine values from the form
                             $gamintojas = $_POST['gamintojas'];
-                            $ekrano_istrizaine = $_POST['ekrano_istrizaine'];
                             $procesorius = $_POST['procesorius'];
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
@@ -409,19 +345,15 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
-                FROM nesiojami_kompiuteriai m 
-                LEFT JOIN nesiojami_kompiuteriai_photos mp ON m.id = mp.nesiojami_kompiuteriai_id";
+                            $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                FROM staliniai_kompiuteriai m 
+                LEFT JOIN staliniai_kompiuteriai_photos mp ON m.id = mp.staliniai_kompiuteriai_id";
 
                             // Loop all possible conditions
                             $where_conditions = [];
 
                             if (!empty($gamintojas)) {
                                 $where_conditions[] = "gamintojas = '$gamintojas'";
-                            }
-
-                            if (!empty($ekrano_istrizaine)) {
-                                $where_conditions[] = "ekrano_istrizaine = '$ekrano_istrizaine'";
                             }
 
                             if (!empty($procesorius)) {
@@ -465,9 +397,10 @@
                                     foreach ($photos as $i => $photo) {
                                         $active_class = ($i == 0) ? 'active' : '';
                                         $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                        $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '"><img src="../admin/nesiojami_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
+                                        $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/staliniai_kompiuteriai/uploads/' . $photo . '"><img src="../admin/staliniai_kompiuteriai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                         $carousel_items .= '</div>';
                                     }
+    
                                     echo '<div class="col">';
                                     echo '<div class="card h-100">';
                                     echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -475,14 +408,14 @@
                                     echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
                                     echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                     echo '</div>';
-                                    echo '<div class="card-body card-body-custom d-flex flex-column justify-content-end">';
+                                    echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
-                                    echo '<p class="card-text card-text-custom">' . "Ekrano Įstrižainė: " . "<b>" . $row["ekrano_istrizaine"] . "\"" . "</b>" . '</p>';
+                                   
                                     echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
-                                    echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';
                                     echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
@@ -505,137 +438,119 @@
 
     <!-- fancybox -->
     <script>
-    $(document).ready(function() {
-        $('[data-fancybox="gallery1"]').fancybox({
-            loop: true,
-            buttons: [
-                "zoom",
-                "slideShow",
-                "fullScreen",
-                "thumbs",
-                "close"
-            ]
+        $(document).ready(function() {
+            $('[data-fancybox="gallery1"]').fancybox({
+                loop: true,
+                buttons: [
+                    "zoom",
+                    "slideShow",
+                    "fullScreen",
+                    "thumbs",
+                    "close"
+                ]
+            });
         });
-    });
     </script>
 
     <!--filter-->
     <script>
-    // Select the form and add an event listener to detect changes
-    const form = document.getElementById('filter-form');
-    form.addEventListener('change', handleFormChange);
+        // Select the form and add an event listener to detect changes
+        const form = document.getElementById('filter-form');
+        form.addEventListener('change', handleFormChange);
 
-    function handleFormChange(event) {
-        // Prevent the form from submitting
-        event.preventDefault();
+        function handleFormChange(event) {
+            // Prevent the form from submitting
+            event.preventDefault();
 
-        // Get the form data and send an AJAX request
-        const formData = new FormData(form);
-        fetch('nesiojami.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                // Update the product list in the DOM with the new data
-                const productList = document.querySelector('.product-list');
-                productList.innerHTML = data;
-            })
-            .catch(error => console.error(error));
-    }
+            // Get the form data and send an AJAX request
+            const formData = new FormData(form);
+            fetch('nesiojami.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.text())
+                .then(data => {
+                    // Update the product list in the DOM with the new data
+                    const productList = document.querySelector('.product-list');
+                    productList.innerHTML = data;
+                })
+                .catch(error => console.error(error));
+        }
     </script>
 
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const gamintojasSelect = document.getElementById('gamintojas');
-        const ekranoIstrizaineSelect = document.getElementById('ekrano_istrizaine');
-        const procesoriusSelect = document.getElementById('procesorius');
-        const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
-        const ramSelect = document.getElementById('ram');
-        const hddSelect = document.getElementById('hdd');
-        const submitBtn = document.getElementById('submit_btn');
-        const kainaNuoInput = document.getElementById('kaina_nuo');
-        const kainaIkiInput = document.getElementById('kaina_iki');
-        let timeoutId;
+<script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const gamintojasSelect = document.getElementById('gamintojas');
+            const procesoriusSelect = document.getElementById('procesorius');
+            const vaizdoPloksteSelect = document.getElementById('vaizdo_plokste');
+            const ramSelect = document.getElementById('ram');
+            const hddSelect = document.getElementById('hdd');
+            const submitBtn = document.getElementById('submit_btn');
+            const kainaNuoInput = document.getElementById('kaina_nuo');
+            const kainaIkiInput = document.getElementById('kaina_iki');
+            let timeoutId;
 
-        gamintojasSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-        ekranoIstrizaineSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        procesoriusSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        vaizdoPloksteSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        ramSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-        hddSelect.addEventListener('change', function() {
-            submitBtn.click();
-        });
-
-
-        kainaNuoInput.addEventListener('input', function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
+            gamintojasSelect.addEventListener('change', function () {
                 submitBtn.click();
-            }, 500); // Wait for 500ms before submitting the form
-        });
-
-        kainaIkiInput.addEventListener('input', function() {
-            clearTimeout(timeoutId);
-            timeoutId = setTimeout(function() {
+            });
+         
+            procesoriusSelect.addEventListener('change', function () {
                 submitBtn.click();
-            }, 500); // Wait for 500ms before submitting the form
+            });
+
+            vaizdoPloksteSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            ramSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+            hddSelect.addEventListener('change', function () {
+                submitBtn.click();
+            });
+
+
+            kainaNuoInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
+
+            kainaIkiInput.addEventListener('input', function () {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(function () {
+                    submitBtn.click();
+                }, 500); // Wait for 500ms before submitting the form
+            });
         });
-    });
     </script>
 
     <!--price range-->
     <script>
-    // Get the range input elements
-    const kainaNuo = document.getElementById('kaina_nuo');
-    const kainaIki = document.getElementById('kaina_iki');
+        // Get the range input elements
+        const kainaNuo = document.getElementById('kaina_nuo');
+        const kainaIki = document.getElementById('kaina_iki');
 
-    // Get the span elements to display the selected values
-    const kainaNuoValue = document.getElementById('kaina_nuo_value');
-    const kainaIkiValue = document.getElementById('kaina_iki_value');
+        // Get the span elements to display the selected values
+        const kainaNuoValue = document.getElementById('kaina_nuo_value');
+        const kainaIkiValue = document.getElementById('kaina_iki_value');
 
-    // Add event listeners to update the span elements in real-time
-    kainaNuo.addEventListener('input', function() {
-        if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
-            kainaNuo.value = kainaIki.value;
-        }
-        kainaNuoValue.textContent = kainaNuo.value;
-    });
-    kainaIki.addEventListener('input', function() {
-        if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
-            kainaIki.value = kainaNuo.value;
-        }
-        kainaIkiValue.textContent = kainaIki.value;
-    });
+        // Add event listeners to update the span elements in real-time
+        kainaNuo.addEventListener('input', function() {
+            if (parseInt(kainaNuo.value) > parseInt(kainaIki.value)) {
+                kainaNuo.value = kainaIki.value;
+            }
+            kainaNuoValue.textContent = kainaNuo.value;
+        });
+        kainaIki.addEventListener('input', function() {
+            if (parseInt(kainaIki.value) < parseInt(kainaNuo.value)) {
+                kainaIki.value = kainaNuo.value;
+            }
+            kainaIkiValue.textContent = kainaIki.value;
+        });
     </script>
-
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel">Image</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <img src="" class="img-fluid" id="zoomImage">
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
