@@ -45,6 +45,11 @@ if (!isset($_SESSION['admin_id'])) {
                             required>
                     </div>
                     <div class="mb-3">
+                        <label for="nauja_kaina" class="form-label">Nauja Kaina:</label>
+                        <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" min="0.01"
+                            step="0.01" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="photo" class="form-label">Nuotraukos:</label>
                         <input type="file" class="form-control" name="photo[]" multiple>
                     </div>
@@ -62,18 +67,18 @@ if (!isset($_SESSION['admin_id'])) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
-    // Check if a staliniai_kompiuteriai was deleted
+    // Check if a akcijos_staliniai_kompiuteriai was deleted
     if (isset($_POST['delete'])) {
         $id = $_POST['id'];
 
-        // Get the filenames of the photos for the staliniai_kompiuteriai
-        $sql = "SELECT `filename` FROM `staliniai_kompiuteriai_photos` WHERE `staliniai_kompiuteriai_id` = '$id'";
+        // Get the filenames of the photos for the akcijos_staliniai_kompiuteriai
+        $sql = "SELECT `filename` FROM `akcijos_staliniai_kompiuteriai_photos` WHERE `akcijos_staliniai_kompiuteriai_id` = '$id'";
         $result = mysqli_query($conn, $sql);
 
-        // Delete the staliniai_kompiuteriai and staliniai_kompiuteriai_photos from the database
-        $sql = "DELETE FROM `staliniai_kompiuteriai` WHERE `id` = '$id'";
+        // Delete the akcijos_staliniai_kompiuteriai and akcijos_staliniai_kompiuteriai_photos from the database
+        $sql = "DELETE FROM `akcijos_staliniai_kompiuteriai` WHERE `id` = '$id'";
         mysqli_query($conn, $sql);
-        $sql = "DELETE FROM `staliniai_kompiuteriai_photos` WHERE `staliniai_kompiuteriai_id` = '$id'";
+        $sql = "DELETE FROM `akcijos_staliniai_kompiuteriai_photos` WHERE `akcijos_staliniai_kompiuteriai_id` = '$id'";
         mysqli_query($conn, $sql);
 
         // Delete the photo files from the server
@@ -86,18 +91,18 @@ if (!isset($_SESSION['admin_id'])) {
         }
     }
 
-    // Retrieve staliniai_kompiuteriai data from the database
-    // $sql = "SELECT * FROM `staliniai_kompiuteriai`";
+    // Retrieve akcijos_staliniai_kompiuteriai data from the database
+    // $sql = "SELECT * FROM `akcijos_staliniai_kompiuteriai`";
     $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
-    FROM staliniai_kompiuteriai m 
-    LEFT JOIN staliniai_kompiuteriai_photos mp ON m.id = mp.staliniai_kompiuteriai_id 
+    FROM akcijos_staliniai_kompiuteriai m 
+    LEFT JOIN akcijos_staliniai_kompiuteriai_photos mp ON m.id = mp.akcijos_staliniai_kompiuteriai_id 
     GROUP BY m.id";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            // Display staliniai_kompiuteriai info
-            echo "<h3>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
+            // Display akcijos_staliniai_kompiuteriai info
+            echo "<h3>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " akcijos_staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
 
             // Display photos
             $photos = explode(",", $row["photos"]);

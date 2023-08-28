@@ -17,11 +17,13 @@ if (!$conn) {
 
 // Get form data
 $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
+$ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
 $procesorius = mysqli_real_escape_string($conn, $_POST['procesorius']);
 $vaizdo_plokste = mysqli_real_escape_string($conn, $_POST['vaizdo_plokste']);
 $ram = mysqli_real_escape_string($conn, $_POST['ram']);
 $hdd = mysqli_real_escape_string($conn, $_POST['hdd']);
 $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
+$nauja_kaina = mysqli_real_escape_string($conn, $_POST['nauja_kaina']);
 $filename = '';
 
 // Check if a photo was uploaded
@@ -33,9 +35,12 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     // Move file to uploads directory
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
         // Insert data into table
-        $sql = "INSERT INTO `staliniai_kompiuteriai` (`gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES ('$gamintojas', '$procesorius', '$vaizdo_plokste', '$ram', '$hdd', '$kaina', '$filename')";
+        $sql = "INSERT INTO `akcijos_nesiojami_kompiuteriai` (`gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina` , `nauja_kaina`, `photo`) VALUES ('$gamintojas', '$ekrano_istrizaine', '$procesorius', '$vaizdo_plokste', '$ram', '$hdd', '$kaina', '$nauja_kaina', '$filename')";
+
+
+
         if (mysqli_query($conn, $sql)) {
-            echo "New staliniai_kompiuteriai added successfully.";
+            echo "New akcijos_nesiojami_kompiuteriai added successfully.";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -44,15 +49,15 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     }
 } else {
     // Insert data into table without photo
-    $sql = "INSERT INTO `staliniai_kompiuteriai` (`gamintojas`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `photo`) VALUES ('$gamintojas', '$procesorius', '$vaizdo_plokste', '$ram', '$hdd', '$kaina', '$filename')";
+    $sql = "INSERT INTO `akcijos_nesiojami_kompiuteriai` (`gamintojas`, `ekrano_istrizaine`, `procesorius`, `vaizdo_plokste`, `ram`, `hdd`, `kaina`, `nauja_kaina`, `photo`) VALUES ('$gamintojas', '$ekrano_istrizaine', '$procesorius', '$vaizdo_plokste', '$ram', '$hdd', '$kaina', '$nauja_kaina', '$filename')";
     if (mysqli_query($conn, $sql)) {
-        $staliniai_kompiuteriai_id = mysqli_insert_id($conn); // Get the ID of the inserted staliniai_kompiuteriai
-        // Insert photos into `staliniai_kompiuteriai_photos` table
+        $akcijos_nesiojami_kompiuteriai_id = mysqli_insert_id($conn); // Get the ID of the inserted akcijos_nesiojami_kompiuteriai
+        // Insert photos into `akcijos_nesiojami_kompiuteriai_photos` table
         foreach ($_FILES['photo']['name'] as $i => $filename) {
             if ($_FILES['photo']['error'][$i] == 0) {
                 $filepath = "uploads/" . basename($filename);
                 if (move_uploaded_file($_FILES['photo']['tmp_name'][$i], $filepath)) {
-                    $sql = "INSERT INTO `staliniai_kompiuteriai_photos` (`staliniai_kompiuteriai_id`, `filename`) VALUES ($staliniai_kompiuteriai_id, '$filename')";
+                    $sql = "INSERT INTO `akcijos_nesiojami_kompiuteriai_photos` (`akcijos_nesiojami_kompiuteriai_id`, `filename`) VALUES ($akcijos_nesiojami_kompiuteriai_id, '$filename')";
                     mysqli_query($conn, $sql);
                     echo "New photo uploaded successfully.";
                 } else {
@@ -60,8 +65,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
                 }
             }
         }
-        echo "New item to staliniai_kompiuteriai added successfully.";
-        // Redirect back to the staliniai_kompiuteriai list
+        echo "New item to akcijos_nesiojami_kompiuteriai added successfully.";
+        // Redirect back to the akcijos_nesiojami_kompiuteriai list
         header("Location: index.php");
         exit();
     } else {

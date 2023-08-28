@@ -380,7 +380,7 @@
                                     echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';
-                                    echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
+                                    echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</div>';

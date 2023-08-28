@@ -17,7 +17,7 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="container marginTop">
         <div class="row justify-content-center">
             <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                <h1 class="text-center">Kompiuterių Priedai - Įkelti naują</h1>
+                <h1 class="text-center">Kompiuterių Priedai - Akcijos - Įkelti naują</h1>
                 <form action="insert.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="gamintojas" class="form-label">Gamintojas:</label>
@@ -34,6 +34,11 @@ if (!isset($_SESSION['admin_id'])) {
                     <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
                         <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nauja_kaina" class="form-label">Nauja Kaina:</label>
+                        <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" min="0.01"
+                            step="0.01" required>
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Photo:</label>
@@ -53,18 +58,18 @@ if (!isset($_SESSION['admin_id'])) {
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        // Check if a kompiuteriu_priedai was deleted
+        // Check if a akcijos_kompiuteriu_priedai was deleted
         if (isset($_POST['delete'])) {
             $id = $_POST['id'];
 
             // Get the filenames of the photos for the monitor
-            $sql = "SELECT `filename` FROM `kompiuteriu_priedai_photos` WHERE `kompiuteriu_priedai_id` = '$id'";
+            $sql = "SELECT `filename` FROM `akcijos_kompiuteriu_priedai_photos` WHERE `akcijos_kompiuteriu_priedai_id` = '$id'";
             $result = mysqli_query($conn, $sql);
 
-            // Delete the kompiuteriu_priedai and kompiuteriu_priedai_photos from the database
-            $sql = "DELETE FROM `kompiuteriu_priedai` WHERE `id` = '$id'";
+            // Delete the akcijos_kompiuteriu_priedai and akcijos_kompiuteriu_priedai_photos from the database
+            $sql = "DELETE FROM `akcijos_kompiuteriu_priedai` WHERE `id` = '$id'";
             mysqli_query($conn, $sql);
-            $sql = "DELETE FROM `kompiuteriu_priedai_photos` WHERE `kompiuteriu_priedai_id` = '$id'";
+            $sql = "DELETE FROM `akcijos_kompiuteriu_priedai_photos` WHERE `akcijos_kompiuteriu_priedai_id` = '$id'";
             mysqli_query($conn, $sql);
 
             // Delete the photo files from the server
@@ -77,18 +82,18 @@ if (!isset($_SESSION['admin_id'])) {
             }
         }
 
-        // Retrieve kompiuteriu_priedai data from the database
-        // $sql = "SELECT * FROM `kompiuteriu_priedai`";
+        // Retrieve akcijos_kompiuteriu_priedai data from the database
+        // $sql = "SELECT * FROM `akcijos_kompiuteriu_priedai`";
         $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
-    FROM kompiuteriu_priedai m 
-    LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id 
+    FROM akcijos_kompiuteriu_priedai m 
+    LEFT JOIN akcijos_kompiuteriu_priedai_photos mp ON m.id = mp.akcijos_kompiuteriu_priedai_id 
     GROUP BY m.id";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>" . $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " akcijos_kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);

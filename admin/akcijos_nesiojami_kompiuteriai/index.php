@@ -17,7 +17,7 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="container marginTop">
         <div class="row justify-content-center">
             <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                <h1 class="text-center">Nešiojami Kompiuteriai - Įkelti naują</h1>
+                <h1 class="text-center">Akcijos - Nešiojami Kompiuteriai - Įkelti naują</h1>
                 <form action="insert.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="gamintojas" class="form-label">Gamintojas:</label>
@@ -51,6 +51,11 @@ if (!isset($_SESSION['admin_id'])) {
                             required>
                     </div>
                     <div class="mb-3">
+                        <label for="nauja_kaina" class="form-label">Nauja Kaina:</label>
+                        <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" min="0.01"
+                            step="0.01" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="photo" class="form-label">Nuotraukos:</label>
                         <input type="file" class="form-control" name="photo[]" multiple>
                     </div>
@@ -68,18 +73,18 @@ if (!isset($_SESSION['admin_id'])) {
             die("Connection failed: " . mysqli_connect_error());
         }
 
-        // Check if a nesiojami_kompiuteriai was deleted
+        // Check if a akcijos_nesiojami_kompiuteriai was deleted
         if (isset($_POST['delete'])) {
             $id = $_POST['id'];
 
-            // Get the filenames of the photos for the nesiojami_kompiuteriai
-            $sql = "SELECT `filename` FROM `nesiojami_kompiuteriai_photos` WHERE `nesiojami_kompiuteriai_id` = '$id'";
+            // Get the filenames of the photos for the akcijos_nesiojami_kompiuteriai
+            $sql = "SELECT `filename` FROM `akcijos_nesiojami_kompiuteriai_photos` WHERE `akcijos_nesiojami_kompiuteriai_id` = '$id'";
             $result = mysqli_query($conn, $sql);
 
-            // Delete the nesiojami_kompiuteriai and nesiojami_kompiuteriai_photos from the database
-            $sql = "DELETE FROM `nesiojami_kompiuteriai` WHERE `id` = '$id'";
+            // Delete the akcijos_nesiojami_kompiuteriai and akcijos_nesiojami_kompiuteriai_photos from the database
+            $sql = "DELETE FROM `akcijos_nesiojami_kompiuteriai` WHERE `id` = '$id'";
             mysqli_query($conn, $sql);
-            $sql = "DELETE FROM `nesiojami_kompiuteriai_photos` WHERE `nesiojami_kompiuteriai_id` = '$id'";
+            $sql = "DELETE FROM `akcijos_nesiojami_kompiuteriai_photos` WHERE `akcijos_nesiojami_kompiuteriai_id` = '$id'";
             mysqli_query($conn, $sql);
 
             // Delete the photo files from the server
@@ -92,23 +97,23 @@ if (!isset($_SESSION['admin_id'])) {
             }
         }
 
-        // Retrieve nesiojami_kompiuteriai data from the database
-        // $sql = "SELECT * FROM `nesiojami_kompiuteriai`";
+        // Retrieve akcijos_nesiojami_kompiuteriai data from the database
+        // $sql = "SELECT * FROM `akcijos_nesiojami_kompiuteriai`";
         $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
-    FROM nesiojami_kompiuteriai m 
-    LEFT JOIN nesiojami_kompiuteriai_photos mp ON m.id = mp.nesiojami_kompiuteriai_id 
+    FROM akcijos_nesiojami_kompiuteriai m 
+    LEFT JOIN akcijos_nesiojami_kompiuteriai_photos mp ON m.id = mp.akcijos_nesiojami_kompiuteriai_id 
     GROUP BY m.id";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                // Display nesiojami_kompiuteriai info
+                // Display akcijos_nesiojami_kompiuteriai info
                 echo "<h3>" .
                     "Gamintojas: " . $row["gamintojas"] . " <br> " .
                     "Ekrano Įstrižainė: " . $row["ekrano_istrizaine"] . "\" " . "<br>" .
                     "Procesorius: " . $row["procesorius"] . " <br>" . " Vaizdo Plokštė: " . $row["vaizdo_plokste"] . "<br> " .
                     "Atmintis (RAM): " . $row["ram"]  . "<br> " .
-                    "Kiestasis diskas (HDD): " . $row["hdd"]  . "<br> " . "Prekių kategorija: " . " nesiojami_kompiuteriai" . "<br>" .
+                    "Kiestasis diskas (HDD): " . $row["hdd"]  . "<br> " . "Prekių kategorija: " . " akcijos_nesiojami_kompiuteriai" . "<br>" .
                     "Kaina: " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos

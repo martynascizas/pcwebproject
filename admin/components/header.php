@@ -28,7 +28,7 @@
           <a class="nav-link" href="../kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Priedai</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Akcijos Priedai</a>
+          <a class="nav-link" href="../akcijos_kompiuteriu_priedai/index.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Akcijos Priedai</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="../logout.php" style="font-size: 1rem; transition: all 0.3s ease-in-out;">Atsijungti</a>

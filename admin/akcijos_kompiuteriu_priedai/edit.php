@@ -30,15 +30,16 @@ if (!isset($_SESSION['admin_id'])) {
         $pavadinimas = mysqli_real_escape_string($conn, $_POST['pavadinimas']);
         $aprasymas = mysqli_real_escape_string($conn, $_POST['aprasymas']);
         $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
+        $nauja_kaina = mysqli_real_escape_string($conn, $_POST['nauja_kaina']);
 
-        // Update the kompiuteriu_priedai data
-        $sql = "UPDATE kompiuteriu_priedai SET gamintojas='$gamintojas', pavadinimas='$pavadinimas', kaina='$kaina', aprasymas='$aprasymas' WHERE id='$id'";
+        // Update the akcijos_kompiuteriu_priedai data
+        $sql = "UPDATE akcijos_kompiuteriu_priedai SET gamintojas='$gamintojas', pavadinimas='$pavadinimas', kaina='$kaina', aprasymas='$aprasymas', nauja_kaina='$nauja_kaina' WHERE id='$id'";
         mysqli_query($conn, $sql);
 
         // Check if new photos were uploaded
         if (!empty($_FILES["photos"]["name"][0])) {
             // Remove old photos from the database
-            $sql = "DELETE FROM kompiuteriu_priedai_photos WHERE kompiuteriu_priedai_id='$id'";
+            $sql = "DELETE FROM akcijos_kompiuteriu_priedai_photos WHERE akcijos_kompiuteriu_priedai_id='$id'";
             mysqli_query($conn, $sql);
 
             // Upload new photos
@@ -50,19 +51,19 @@ if (!isset($_SESSION['admin_id'])) {
                 move_uploaded_file($tmp_name, "uploads/" . $filename);
 
                 // Add the photo to the database
-                $sql = "INSERT INTO kompiuteriu_priedai_photos (kompiuteriu_priedai_id, filename) VALUES ('$id', '$filename')";
+                $sql = "INSERT INTO akcijos_kompiuteriu_priedai_photos (akcijos_kompiuteriu_priedai_id, filename) VALUES ('$id', '$filename')";
                 mysqli_query($conn, $sql);
             }
         }
 
-        // Redirect back to the kompiuteriu_priedai list
+        // Redirect back to the akcijos_kompiuteriu_priedai list
         header("Location: index.php");
         exit();
     }
 
-    // Get the kompiuteriu_priedai data
+    // Get the akcijos_kompiuteriu_priedai data
     $id = $_GET["id"];
-    $sql = "SELECT * FROM kompiuteriu_priedai WHERE id='$id'";
+    $sql = "SELECT * FROM akcijos_kompiuteriu_priedai WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     ?>
@@ -90,6 +91,11 @@ if (!isset($_SESSION['admin_id'])) {
                             <input type="number" class="form-control" id="kaina" name="kaina" value="<?php echo $row['kaina']; ?>" min="0.01" step="0.01" required>
                         </div>
                         <div class="mb-3">
+                            <label for="nauja_kaina" class="form-label">Nauja kaina:</label>
+                            <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina"
+                                value="<?php echo $row['nauja_kaina']; ?>" min="0.01" step="0.01" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="photos" class="form-label">Photo:</label>
                             <input type="file" class="form-control" name="photos[]" multiple>
                         </div>
@@ -100,7 +106,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <?php
         // Display the current photos
-        $sql = "SELECT * FROM kompiuteriu_priedai_photos WHERE kompiuteriu_priedai_id='$id'";
+        $sql = "SELECT * FROM akcijos_kompiuteriu_priedai_photos WHERE akcijos_kompiuteriu_priedai_id='$id'";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<img src='uploads/" . $row["filename"] . "' width='200'>";

@@ -10,7 +10,6 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 ?>
-
 <body>
     <?php include '../components/header.php'; ?>
     <!-- akcijos_monitoriai -->

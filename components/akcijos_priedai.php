@@ -39,8 +39,8 @@
         // Construct SQL query with the selected gamintojas value
         $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
-                    FROM kompiuteriu_priedai m 
-                    LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id";
+                    FROM akcijos_kompiuteriu_priedai m 
+                    LEFT JOIN akcijos_kompiuteriu_priedai_photos mp ON m.id = mp.akcijos_kompiuteriu_priedai_id";
         if (!empty($gamintojas) || !empty($pavadinimas) || !empty($aprasymas) || !empty($kaina)) {
             $sql .= " WHERE ";
             if (!empty($gamintojas)) {
@@ -75,12 +75,12 @@
                             $aprasymas = $_POST['aprasymas'];
                             if (!empty($pavadinimas) || !empty($aprasymas))
                                 $sql = "SELECT gamintojas, COUNT(*) AS total 
-                                        FROM kompiuteriu_priedai 
+                                        FROM akcijos_kompiuteriu_priedai 
                                         WHERE  pavadinimas = '$pavadinimas' || aprasymas = '$aprasymas'
                                         GROUP BY gamintojas 
                                         ORDER BY gamintojas ASC";
                             else {
-                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
+                                $sql = "SELECT gamintojas, COUNT(*) AS total FROM akcijos_kompiuteriu_priedai GROUP BY gamintojas ORDER BY gamintojas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -106,12 +106,12 @@
                             $aprasymas = $_POST['aprasymas'];
                             if (!empty($selected_gamintojas) || !empty($aprasymas))
                                 $sql = "SELECT pavadinimas, COUNT(*) AS total 
-                                        FROM kompiuteriu_priedai 
+                                        FROM akcijos_kompiuteriu_priedai 
                                         WHERE gamintojas = '$selected_gamintojas' || aprasymas = '$aprasymas'
                                         GROUP BY pavadinimas 
                                         ORDER BY pavadinimas ASC";
                             else {
-                                $sql = "SELECT pavadinimas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY pavadinimas ORDER BY pavadinimas ASC";
+                                $sql = "SELECT pavadinimas, COUNT(*) AS total FROM akcijos_kompiuteriu_priedai GROUP BY pavadinimas ORDER BY pavadinimas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -137,12 +137,12 @@
                             $pavadinimas = $_POST['pavadinimas'];
                             if (!empty($selected_gamintojas) || !empty($pavadinimas))
                                 $sql = "SELECT aprasymas, COUNT(*) AS total 
-                                        FROM kompiuteriu_priedai 
+                                        FROM akcijos_kompiuteriu_priedai 
                                         WHERE gamintojas = '$selected_gamintojas' ||  pavadinimas = '$pavadinimas'
                                         GROUP BY aprasymas 
                                         ORDER BY aprasymas ASC";
                             else {
-                                $sql = "SELECT aprasymas, COUNT(*) AS total FROM kompiuteriu_priedai GROUP BY aprasymas ORDER BY aprasymas ASC";
+                                $sql = "SELECT aprasymas, COUNT(*) AS total FROM akcijos_kompiuteriu_priedai GROUP BY aprasymas ORDER BY aprasymas ASC";
                             }
                             $result = mysqli_query($conn, $sql);
 
@@ -162,7 +162,7 @@
                         <div class="form-group">
                             <?php
                             // Get the minimum and maximum kaina values from the database
-                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM kompiuteriu_priedai";
+                            $sql = "SELECT MIN(nauja_kaina) AS min_kaina, MAX(nauja_kaina) AS max_kaina FROM akcijos_kompiuteriu_priedai";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
                             $min_kaina = $row['min_kaina'];
@@ -215,14 +215,14 @@
                 </button>
                 <div class="wrapper">
                     <div class="container products_section products-margin">
-                        <h3 id="kompiuteriu_priedai" class="text-center mb-5">Kompiuterių priedai</h3>
+                        <h3 id="akcijos_kompiuteriu_priedai" class="text-center mb-5">Kompiuterių priedai - Akcijos</h3>
                         <?php
                         // Check if form has been submitted
                         if (!isset($_POST['filter_submit'])) {
                             // Perform the JOIN between the tables
                             $sql = "SELECT nk.*, GROUP_CONCAT(nkp.filename) AS photos
-                FROM kompiuteriu_priedai nk
-                LEFT JOIN kompiuteriu_priedai_photos nkp ON nk.id = nkp.kompiuteriu_priedai_id
+                FROM akcijos_kompiuteriu_priedai nk
+                LEFT JOIN akcijos_kompiuteriu_priedai_photos nkp ON nk.id = nkp.akcijos_kompiuteriu_priedai_id
                 GROUP BY nk.id
                 ORDER BY nk.timestamp DESC";
 
@@ -235,7 +235,7 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/kompiuteriu_priedai/uploads/' . $photo . '"><img src="../admin/kompiuteriu_priedai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/akcijos_kompiuteriu_priedai/uploads/' . $photo . '"><img src="../admin/akcijos_kompiuteriu_priedai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
 
@@ -253,7 +253,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>PRI00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -272,8 +272,8 @@
                             }
 
                             $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
-                FROM kompiuteriu_priedai m 
-                LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id";
+                FROM akcijos_kompiuteriu_priedai m 
+                LEFT JOIN akcijos_kompiuteriu_priedai_photos mp ON m.id = mp.akcijos_kompiuteriu_priedai_id";
 
                             // Loop all possible conditions
                             $where_conditions = [];
@@ -315,7 +315,7 @@
                                 foreach ($photos as $i => $photo) {
                                     $active_class = ($i == 0) ? 'active' : '';
                                     $carousel_items .= '<div class="carousel-item ' . $active_class . '">';
-                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/kompiuteriu_priedai/uploads/' . $photo . '"><img src="../admin/kompiuteriu_priedai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
+                                    $carousel_items .= '<div><a data-fancybox="gallery" href="../admin/akcijos_kompiuteriu_priedai/uploads/' . $photo . '"><img src="../admin/akcijos_kompiuteriu_priedai/uploads/' . $photo . '" class="d-block w-100 zoomable carousel-image" alt="Product Image"></a></div>';
                                     $carousel_items .= '</div>';
                                 }
 
@@ -333,7 +333,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>PRI00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
