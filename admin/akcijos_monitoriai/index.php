@@ -26,6 +26,7 @@ if (!isset($_SESSION['admin_id'])) {
                         <label for="ekrano_istrizaine" class="form-label">Ekrano išmatavimas (coliais):</label>
                         <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine"
                             min="1" max="100" required>
+                            <!-- <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" pattern="^\d+(\.\d{1})?$" required> -->
                     </div>
                     <div class="mb-3">
                         <label for="rezoliucija" class="form-label">Rezoliucija:</label>
