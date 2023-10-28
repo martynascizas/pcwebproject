@@ -37,11 +37,11 @@
             die("Connection failed: " . mysqli_connect_error());
         }
         // Construct SQL query with the selected gamintojas value
-        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
+        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
                     FROM nesiojami_kompiuteriai m 
                     LEFT JOIN nesiojami_kompiuteriai_photos mp ON m.id = mp.nesiojami_kompiuteriai_id";
-        if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($kaina)) {
+        if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($papildoma_informacija) || !empty($kaina)) {
             $sql .= " WHERE ";
             if (!empty($gamintojas)) {
                 $sql .= "gamintojas = '$gamintojas' AND ";
@@ -60,6 +60,9 @@
             }
             if (!empty($hdd)) {
                 $sql .= "hdd = '$hdd' AND ";
+            }
+            if (!empty($papildoma_informacija)) {
+                $sql .= "papildoma_informacija = '$papildoma_informacija' AND ";
             }
             if (!empty($kaina)) {
                 $sql .= "kaina <= '$kaina' AND ";
@@ -385,6 +388,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -402,6 +406,7 @@
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
                             $hdd = $_POST['hdd'];
+                            $papildoma_informacija = $_POST['papildoma_informacija'];
                             if (isset($_POST['kaina_nuo'])) {
                                 $min_kaina = $_POST['kaina_nuo'];
                             }
@@ -438,6 +443,10 @@
 
                             if (!empty($hdd)) {
                                 $where_conditions[] = "hdd = '$hdd'";
+                            }
+
+                            if (!empty($papildoma_informacija)) {
+                                $where_conditions[] = "papildoma_informacija = '$papildoma_informacija'";
                             }
 
                             if (!empty($min_kaina) && !empty($max_kaina)) {
@@ -482,6 +491,7 @@
                                     echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';
