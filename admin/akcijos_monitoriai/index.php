@@ -40,6 +40,12 @@ if (!isset($_SESSION['admin_id'])) {
                         </select>
                     </div>
                     <div class="mb-3">
+                        <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
+                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija"
+                            min="1" max="100" required>
+                            <!-- <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" pattern="^\d+(\.\d{1})?$" required> -->
+                    </div>
+                    <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
                         <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01"
                             required>
@@ -93,7 +99,7 @@ if (!isset($_SESSION['admin_id'])) {
 
         // Retrieve akcijos_monitoriai data from the database
         // $sql = "SELECT * FROM `akcijos_monitoriai`";
-        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.lieciamas_ekranas, m.rezoliucija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.papildoma_informacija, m.lieciamas_ekranas, m.rezoliucija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
     FROM akcijos_monitoriai m 
     LEFT JOIN akcijos_monitoriai_photos mp ON m.id = mp.akcijos_monitoriai_id 
     GROUP BY m.id";
@@ -102,7 +108,7 @@ if (!isset($_SESSION['admin_id'])) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . " Lieciamas: " . $row["lieciamas_ekranas"] . " Rezoliucija: " . $row["rezoliucija"] . " monitor - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . " Lieciamas: " . $row["lieciamas_ekranas"] . $row["papildoma_informacija"]. " Rezoliucija: " . $row["rezoliucija"] . " monitor - " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);

@@ -28,12 +28,13 @@ if (!isset($_SESSION['admin_id'])) {
         $id = $_POST["id"];
         $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
         $ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
+        $papildoma_informacija = mysqli_real_escape_string($conn, $_POST['papildoma_informacija']);
         $rezoliucija = mysqli_real_escape_string($conn, $_POST['rezoliucija']);
         $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
         $nauja_kaina = mysqli_real_escape_string($conn, $_POST['nauja_kaina']);
 
         // Update the akcijos_monitoriai data
-        $sql = "UPDATE akcijos_monitoriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine', kaina='$kaina', rezoliucija='$rezoliucija', nauja_kaina='$nauja_kaina' WHERE id='$id'";
+        $sql = "UPDATE akcijos_monitoriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine',papildoma_informacija='$papildoma_informacija', kaina='$kaina', rezoliucija='$rezoliucija', nauja_kaina='$nauja_kaina' WHERE id='$id'";
         mysqli_query($conn, $sql);
 
         // Check if new photos were uploaded
@@ -80,11 +81,15 @@ if (!isset($_SESSION['admin_id'])) {
                         </div>
                         <div class="mb-3">
                             <label for="ekrano_istrizaine" class="form-label">Ekrano įstrižainė:</label>
-                            <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" value="<?php echo $row['ekrano_istrizaine']; ?>" required>
+                            <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" value="<?php echo $row['ekrano_istrizaine']; ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="rezoliucija" class="form-label">Rezoliucija:</label>
                             <input type="text" class="form-control" id="rezoliucija" name="rezoliucija" value="<?php echo $row['rezoliucija']; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="papildoma_informacija" class="form-label">papildoma informacija:</label>
+                            <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" value="<?php echo $row['papildoma_informacija']; ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="kaina" class="form-label">Kaina:</label>

@@ -37,11 +37,11 @@
             die("Connection failed: " . mysqli_connect_error());
         }
         // Construct SQL query with the selected gamintojas value
-        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
+        $sql = "SELECT m.id, m.gamintojas, m.ekrano_istrizaine, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
                     FROM nesiojami_kompiuteriai m 
                     LEFT JOIN nesiojami_kompiuteriai_photos mp ON m.id = mp.nesiojami_kompiuteriai_id";
-        if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($papildoma_informacija) || !empty($kaina)) {
+        if (!empty($gamintojas) || !empty($ekrano_istrizaine) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($kaina)) {
             $sql .= " WHERE ";
             if (!empty($gamintojas)) {
                 $sql .= "gamintojas = '$gamintojas' AND ";
@@ -60,9 +60,6 @@
             }
             if (!empty($hdd)) {
                 $sql .= "hdd = '$hdd' AND ";
-            }
-            if (!empty($papildoma_informacija)) {
-                $sql .= "papildoma_informacija = '$papildoma_informacija' AND ";
             }
             if (!empty($kaina)) {
                 $sql .= "kaina <= '$kaina' AND ";
@@ -406,7 +403,6 @@
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
                             $hdd = $_POST['hdd'];
-                            $papildoma_informacija = $_POST['papildoma_informacija'];
                             if (isset($_POST['kaina_nuo'])) {
                                 $min_kaina = $_POST['kaina_nuo'];
                             }

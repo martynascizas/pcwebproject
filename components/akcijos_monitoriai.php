@@ -55,6 +55,7 @@
             if (!empty($ekrano_istrizaine)) {
                 $sql .= "ekrano_istrizaine = '$ekrano_istrizaine' AND ";
             }
+
             if (!empty($kaina)) {
                 $sql .= "kaina <= '$kaina' AND ";
             }
@@ -291,6 +292,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Rezoliucija: <b>" . $row["rezoliucija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Liečiamas ekranas: <b>" . $row["lieciamas_ekranas"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Ekrano įstrižainė: <b>" . $row["ekrano_istrizaine"] . "\"" . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] .'</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -377,6 +379,7 @@
                                     echo '<p class="card-text card-text-custom">' . "Rezoliucija: <b>" . $row["rezoliucija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Liečiamas ekranas: <b>" . $row["lieciamas_ekranas"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Ekrano įstrižainė: <b>" . $row["ekrano_istrizaine"] . "\"" . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';

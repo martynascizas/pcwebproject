@@ -32,10 +32,11 @@ if (!isset($_SESSION['admin_id'])) {
         $ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
         $ram = mysqli_real_escape_string($conn, $_POST['ram']);
         $hdd = mysqli_real_escape_string($conn, $_POST['hdd']);
+        $papildoma_informacija = mysqli_real_escape_string($conn, $_POST['papildoma_informacija']);
         $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
 
         // Update the monitoriai data
-        $sql = "UPDATE nesiojami_kompiuteriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine', kaina='$kaina', procesorius='$procesorius', vaizdo_plokste='$vaizdo_plokste', ram='$ram', hdd='$hdd' WHERE id='$id'";
+        $sql = "UPDATE nesiojami_kompiuteriai SET gamintojas='$gamintojas', ekrano_istrizaine='$ekrano_istrizaine', kaina='$kaina', procesorius='$procesorius', vaizdo_plokste='$vaizdo_plokste', ram='$ram', hdd='$hdd', papildoma_informacija='$papildoma_informacija' WHERE id='$id'";
         mysqli_query($conn, $sql);
 
         // Check if new photos were uploaded
@@ -100,6 +101,10 @@ if (!isset($_SESSION['admin_id'])) {
                         <div class="mb-3">
                             <label for="hdd" class="form-label">HDD:</label>
                             <input type="text" class="form-control" id="hdd" name="hdd" value="<?php echo $row['hdd']; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
+                            <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" value="<?php echo $row['papildoma_informacija']; ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="kaina" class="form-label">Kaina:</label>

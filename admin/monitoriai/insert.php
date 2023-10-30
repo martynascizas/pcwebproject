@@ -18,6 +18,7 @@ if (!$conn) {
 // Get form data
 $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
 $ekrano_istrizaine = mysqli_real_escape_string($conn, $_POST['ekrano_istrizaine']);
+$papildoma_informacija = mysqli_real_escape_string($conn, $_POST['papildoma_informacija']);
 $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
 $lieciamas_ekranas = mysqli_real_escape_string($conn, $_POST['touchscreen']);
 $rezoliucija = mysqli_real_escape_string($conn, $_POST['rezoliucija']);
@@ -32,8 +33,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     // Move file to uploads directory
     if (move_uploaded_file($_FILES['photo']['tmp_name'], $filepath)) {
         // Insert data into table
-        $sql = "INSERT INTO `monitoriai` (`gamintojas`, `ekrano_istrizaine`, `lieciamas_ekranas`, `rezoliucija`, `kaina`, `photo`) 
-        VALUES ('$gamintojas', '$ekrano_istrizaine', '$lieciamas_ekranas', '$rezoliucija', '$kaina', '$filename')";
+        $sql = "INSERT INTO `monitoriai` (`gamintojas`, `ekrano_istrizaine`, `papildoma_informacija`, `lieciamas_ekranas`, `rezoliucija`, `kaina`, `photo`) 
+        VALUES ('$gamintojas', '$ekrano_istrizaine', '$papildoma_informacija', '$lieciamas_ekranas', '$rezoliucija', '$kaina', '$filename')";
 
         if (mysqli_query($conn, $sql)) {
             echo "New monitor added successfully.";
@@ -45,8 +46,8 @@ if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
     }
 } else {
     // Insert data into table without photo
-    $sql = "INSERT INTO `monitoriai` (`gamintojas`, `ekrano_istrizaine`, `lieciamas_ekranas`, `rezoliucija`, `kaina`, `photo`) 
-        VALUES ('$gamintojas', '$ekrano_istrizaine', '$lieciamas_ekranas', '$rezoliucija', '$kaina', '$filename')";
+    $sql = "INSERT INTO `monitoriai` (`gamintojas`, `ekrano_istrizaine`, `papildoma_informacija`, `lieciamas_ekranas`, `rezoliucija`, `kaina`, `photo`) 
+        VALUES ('$gamintojas', '$ekrano_istrizaine', '$papildoma_informacija','$lieciamas_ekranas', '$rezoliucija', '$kaina', '$filename')";
 
 
     if (mysqli_query($conn, $sql)) {

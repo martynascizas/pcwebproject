@@ -31,17 +31,18 @@ if (!isset($_SESSION['admin_id'])) {
         $vaizdo_plokste = mysqli_real_escape_string($conn, $_POST['vaizdo_plokste']);
         $ram = mysqli_real_escape_string($conn, $_POST['ram']);
         $hdd = mysqli_real_escape_string($conn, $_POST['hdd']);
+        $papildoma_informacija = mysqli_real_escape_string($conn, $_POST['papildoma_informacija']);
         $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
         $nauja_kaina = mysqli_real_escape_string($conn, $_POST['nauja_kaina']);
 
         // Update the monitoriai data
-        $sql = "UPDATE staliniai_kompiuteriai SET gamintojas='$gamintojas',  kaina='$kaina', nauja_kaina='$nauja_kaina', procesorius='$procesorius', vaizdo_plokste='$vaizdo_plokste', ram='$ram', hdd='$hdd' WHERE id='$id'";
+        $sql = "UPDATE akcijos_staliniai_kompiuteriai SET gamintojas='$gamintojas',  kaina='$kaina', nauja_kaina='$nauja_kaina', procesorius='$procesorius', vaizdo_plokste='$vaizdo_plokste', ram='$ram', hdd='$hdd', papildoma_informacija='$papildoma_informacija' WHERE id='$id'";
         mysqli_query($conn, $sql);
 
         // Check if new photos were uploaded
         if (!empty($_FILES["photos"]["name"][0])) {
             // Remove old photos from the database
-            $sql = "DELETE FROM staliniai_kompiuteriai_photos WHERE staliniai_kompiuteriai_id='$id'";
+            $sql = "DELETE FROM akcijos_staliniai_kompiuteriai_photos WHERE akcijos_staliniai_kompiuteriai_id='$id'";
             mysqli_query($conn, $sql);
 
             // Upload new photos
@@ -53,19 +54,19 @@ if (!isset($_SESSION['admin_id'])) {
                 move_uploaded_file($tmp_name, "uploads/" . $filename);
 
                 // Add the photo to the database
-                $sql = "INSERT INTO staliniai_kompiuteriai_photos (staliniai_kompiuteriai_id, filename) VALUES ('$id', '$filename')";
+                $sql = "INSERT INTO akcijos_staliniai_kompiuteriai_photos (akcijos_staliniai_kompiuteriai_id, filename) VALUES ('$id', '$filename')";
                 mysqli_query($conn, $sql);
             }
         }
 
-        // Redirect back to the staliniai_kompiuteriai list
+        // Redirect back to the akcijos_staliniai_kompiuteriai list
         header("Location: index.php");
         exit();
     }
 
-    // Get the staliniai_kompiuteriai data
+    // Get the akcijos_staliniai_kompiuteriai data
     $id = $_GET["id"];
-    $sql = "SELECT * FROM staliniai_kompiuteriai WHERE id='$id'";
+    $sql = "SELECT * FROM akcijos_staliniai_kompiuteriai WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
     ?>
@@ -97,6 +98,10 @@ if (!isset($_SESSION['admin_id'])) {
                             <input type="text" class="form-control" id="hdd" name="hdd" value="<?php echo $row['hdd']; ?>" required>
                         </div>
                         <div class="mb-3">
+                            <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
+                            <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" value="<?php echo $row['papildoma_informacija']; ?>" required>
+                        </div>
+                        <div class="mb-3">
                             <label for="kaina" class="form-label">Kaina:</label>
                             <input type="number" class="form-control" id="kaina" name="kaina" value="<?php echo $row['kaina']; ?>" min="0.01" step="0.01" required>
                         </div>
@@ -116,7 +121,7 @@ if (!isset($_SESSION['admin_id'])) {
         </div>
         <?php
         // Display the current photos
-        $sql = "SELECT * FROM staliniai_kompiuteriai_photos WHERE staliniai_kompiuteriai_id='$id'";
+        $sql = "SELECT * FROM akcijos_staliniai_kompiuteriai_photos WHERE akcijos_staliniai_kompiuteriai_id='$id'";
         $result = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<img src='uploads/" . $row["filename"] . "' width='200'>";

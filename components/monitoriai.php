@@ -299,6 +299,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Rezoliucija: <b>" . $row["rezoliucija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Liečiamas ekranas: <b>" . $row["lieciamas_ekranas"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Ekrano įstrižainė: <b>" . $row["ekrano_istrizaine"] . "\"" . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -321,7 +322,7 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.rezoliucija, m.lieciamas_ekranas, m.ekrano_istrizaine, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                            $sql = "SELECT m.id, m.gamintojas, m.rezoliucija, m.lieciamas_ekranas, m.ekrano_istrizaine, m.papildoma_informacija,  m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
                 FROM monitoriai m 
                 LEFT JOIN monitoriai_photos mp ON m.id = mp.monitoriai_id";
 
@@ -342,6 +343,9 @@
 
                             if (!empty($ekrano_istrizaine)) {
                                 $where_conditions[] = "ekrano_istrizaine = '$ekrano_istrizaine'";
+                            }
+                            if (!empty($papildoma_informacija)) {
+                                $where_conditions[] = "papildoma_informacija = '$papildoma_informacija'";
                             }
 
                             if (!empty($min_kaina) && !empty($max_kaina)) {
@@ -385,6 +389,7 @@
                                     echo '<p class="card-text card-text-custom">' . "Rezoliucija: <b>" . $row["rezoliucija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Liečiamas ekranas: <b>" . $row["lieciamas_ekranas"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Ekrano įstrižainė: <b>" . $row["ekrano_istrizaine"] . "\"" . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>MON00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';

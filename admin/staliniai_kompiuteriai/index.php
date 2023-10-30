@@ -40,6 +40,10 @@ if (!isset($_SESSION['admin_id'])) {
                         <input type="text" class="form-control" id="hdd" name="hdd" required>
                     </div>
                     <div class="mb-3">
+                        <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
+                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
                         <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01"
                             required>
@@ -88,7 +92,7 @@ if (!isset($_SESSION['admin_id'])) {
 
     // Retrieve staliniai_kompiuteriai data from the database
     // $sql = "SELECT * FROM `staliniai_kompiuteriai`";
-    $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+    $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
     FROM staliniai_kompiuteriai m 
     LEFT JOIN staliniai_kompiuteriai_photos mp ON m.id = mp.staliniai_kompiuteriai_id 
     GROUP BY m.id";
@@ -97,7 +101,7 @@ if (!isset($_SESSION['admin_id'])) {
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             // Display staliniai_kompiuteriai info
-            echo "<h3>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
+            echo "<h3>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]   . " " . $row["papildoma_informacija"] . " " . $row["hdd"]  . " " . " staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
 
             // Display photos
             $photos = explode(",", $row["photos"]);

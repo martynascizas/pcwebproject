@@ -39,7 +39,7 @@
                     AS photos
                     FROM akcijos_staliniai_kompiuteriai m 
                     LEFT JOIN akcijos_staliniai_kompiuteriai_photos mp ON m.id = mp.akcijos_staliniai_kompiuteriai_id";
-        if (!empty($gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) || !empty($kaina)) {
+        if (!empty($gamintojas) || !empty($procesorius) || !empty($vaizdo_plokste) || !empty($ram) || !empty($hdd) ||!empty($kaina)) {
             $sql .= " WHERE ";
             if (!empty($gamintojas)) {
                 $sql .= "gamintojas = '$gamintojas' AND ";
@@ -322,6 +322,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -338,6 +339,7 @@
                             $vaizdo_plokste = $_POST['vaizdo_plokste'];
                             $ram = $_POST['ram'];
                             $hdd = $_POST['hdd'];
+                    
                             if (isset($_POST['kaina_nuo'])) {
                                 $min_kaina = $_POST['kaina_nuo'];
                             }
@@ -345,7 +347,7 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                            $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
                 FROM akcijos_staliniai_kompiuteriai m 
                 LEFT JOIN akcijos_staliniai_kompiuteriai_photos mp ON m.id = mp.akcijos_staliniai_kompiuteriai_id";
 
@@ -370,6 +372,10 @@
 
                             if (!empty($hdd)) {
                                 $where_conditions[] = "hdd = '$hdd'";
+                            }
+
+                            if (!empty($papildoma_informacija)) {
+                                $where_conditions[] = "papildoma_informacija = '$papildoma_informacija'";
                             }
 
                             if (!empty($min_kaina) && !empty($max_kaina)) {
@@ -415,6 +421,7 @@
                                     echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';

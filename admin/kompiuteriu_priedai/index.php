@@ -32,6 +32,10 @@ if (!isset($_SESSION['admin_id'])) {
                         <input type="text" class="form-control" id="aprasymas" name="aprasymas" required>
                     </div>
                     <div class="mb-3">
+                        <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
+                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" required>
+                    </div>
+                    <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
                         <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
                     </div>
@@ -79,7 +83,7 @@ if (!isset($_SESSION['admin_id'])) {
 
         // Retrieve kompiuteriu_priedai data from the database
         // $sql = "SELECT * FROM `kompiuteriu_priedai`";
-        $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+        $sql = "SELECT m.id, m.pavadinimas, m.aprasymas, m.papildoma_informacija, m.kaina, m.gamintojas, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
     FROM kompiuteriu_priedai m 
     LEFT JOIN kompiuteriu_priedai_photos mp ON m.id = mp.kompiuteriu_priedai_id 
     GROUP BY m.id";
@@ -88,7 +92,7 @@ if (!isset($_SESSION['admin_id'])) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>" . $row["gamintojas"] . " "  . $row["pavadinimas"] . " " . $row["aprasymas"] . " kompiuteriu_priedai - " .  $row["papildoma_informacija"] . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);

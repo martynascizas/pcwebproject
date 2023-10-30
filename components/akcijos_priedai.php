@@ -37,7 +37,7 @@
             die("Connection failed: " . mysqli_connect_error());
         }
         // Construct SQL query with the selected gamintojas value
-        $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
+        $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.papildoma_informacija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') 
                     AS photos
                     FROM akcijos_kompiuteriu_priedai m 
                     LEFT JOIN akcijos_kompiuteriu_priedai_photos mp ON m.id = mp.akcijos_kompiuteriu_priedai_id";
@@ -250,6 +250,7 @@
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
                                 echo '<p class="card-text card-text-custom">' . "Pavadinimas: <b>" . $row["pavadinimas"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Aprašymas: <b>" . $row["aprasymas"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>PRI00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
@@ -271,7 +272,7 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                            $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.papildoma_informacija, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
                 FROM akcijos_kompiuteriu_priedai m 
                 LEFT JOIN akcijos_kompiuteriu_priedai_photos mp ON m.id = mp.akcijos_kompiuteriu_priedai_id";
 
@@ -288,6 +289,10 @@
 
                             if (!empty($aprasymas)) {
                                 $where_conditions[] = "aprasymas = '$aprasymas'";
+                            }
+
+                            if (!empty($papildoma_informacija)) {
+                                $where_conditions[] = "papildoma_informacija = '$papildoma_informacija'";
                             }
 
                             if (!empty($min_kaina) && !empty($max_kaina)) {

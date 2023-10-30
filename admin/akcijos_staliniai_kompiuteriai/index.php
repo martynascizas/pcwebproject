@@ -17,7 +17,7 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="container marginTop">
         <div class="row justify-content-center">
             <div class="col-md-6 shadow p-3 mb-5 bg-body rounded">
-                <h1 class="text-center">Staliniai Kompiuteriai - Įkelti naują</h1>
+                <h1 class="text-center">Akcijos - Staliniai Kompiuteriai - Įkelti naują</h1>
                 <form action="insert.php" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="gamintojas" class="form-label">Gamintojas:</label>
@@ -38,6 +38,10 @@ if (!isset($_SESSION['admin_id'])) {
                     <div class="mb-3">
                         <label for="hdd" class="form-label">HDD:</label>
                         <input type="text" class="form-control" id="hdd" name="hdd" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
+                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" required>
                     </div>
                     <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
@@ -93,7 +97,7 @@ if (!isset($_SESSION['admin_id'])) {
 
     // Retrieve akcijos_staliniai_kompiuteriai data from the database
     // $sql = "SELECT * FROM `akcijos_staliniai_kompiuteriai`";
-    $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
+    $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos 
     FROM akcijos_staliniai_kompiuteriai m 
     LEFT JOIN akcijos_staliniai_kompiuteriai_photos mp ON m.id = mp.akcijos_staliniai_kompiuteriai_id 
     GROUP BY m.id";
@@ -102,7 +106,7 @@ if (!isset($_SESSION['admin_id'])) {
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             // Display akcijos_staliniai_kompiuteriai info
-            echo "<h3>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . " akcijos_staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
+            echo "<h3>" . $row["gamintojas"] . " " . " " . $row["procesorius"] . " " . $row["vaizdo_plokste"] . " " . $row["ram"]  . " " . $row["hdd"]  . " " . $row["papildoma_informacija"] . " " . " akcijos_staliniai_kompiuteriai - " . $row["kaina"] . " EUR</h3>";
 
             // Display photos
             $photos = explode(",", $row["photos"]);

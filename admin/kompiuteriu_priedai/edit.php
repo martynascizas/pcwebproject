@@ -29,10 +29,11 @@ if (!isset($_SESSION['admin_id'])) {
         $gamintojas = mysqli_real_escape_string($conn, $_POST['gamintojas']);
         $pavadinimas = mysqli_real_escape_string($conn, $_POST['pavadinimas']);
         $aprasymas = mysqli_real_escape_string($conn, $_POST['aprasymas']);
+        $papildoma_informacija = mysqli_real_escape_string($conn, $_POST['papildoma_informacija']);
         $kaina = mysqli_real_escape_string($conn, $_POST['kaina']);
 
         // Update the kompiuteriu_priedai data
-        $sql = "UPDATE kompiuteriu_priedai SET gamintojas='$gamintojas', pavadinimas='$pavadinimas', kaina='$kaina', aprasymas='$aprasymas' WHERE id='$id'";
+        $sql = "UPDATE kompiuteriu_priedai SET gamintojas='$gamintojas', pavadinimas='$pavadinimas', kaina='$kaina', aprasymas='$aprasymas', papildoma_informacija='$papildoma_informacija' WHERE id='$id'";
         mysqli_query($conn, $sql);
 
         // Check if new photos were uploaded
@@ -84,6 +85,10 @@ if (!isset($_SESSION['admin_id'])) {
                         <div class="mb-3">
                             <label for="aprasymas" class="form-label">Aprasymas:</label>
                             <input type="text" class="form-control" id="aprasymas" name="aprasymas" value="<?php echo $row['aprasymas']; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="papildoma_informacija" class="form-label">Papildoma informacia:</label>
+                            <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" value="<?php echo $row['papildoma_informacija']; ?>" required>
                         </div>
                         <div class="mb-3">
                             <label for="kaina" class="form-label">Kaina:</label>
