@@ -239,7 +239,7 @@
                         <div class="form-group">
                             <?php
                             // Get the minimum and maximum kaina values from the database
-                            $sql = "SELECT MIN(nauja_kaina) AS min_kaina, MAX(nauja_kaina) AS max_kaina FROM akcijos_staliniai_kompiuteriai";
+                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM akcijos_staliniai_kompiuteriai";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
                             $min_kaina = $row['min_kaina'];
@@ -347,7 +347,7 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                            $sql = "SELECT m.id, m.gamintojas, m.procesorius, m.vaizdo_plokste, m.ram, m.hdd, m.papildoma_informacija, m.kaina, m.nauja_kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
                 FROM akcijos_staliniai_kompiuteriai m 
                 LEFT JOIN akcijos_staliniai_kompiuteriai_photos mp ON m.id = mp.akcijos_staliniai_kompiuteriai_id";
 

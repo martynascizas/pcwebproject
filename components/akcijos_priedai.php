@@ -5,8 +5,7 @@
     <?php
     require_once 'assets/prodhead.php';
     ?>
-</head>
-
+</head> 
 <body>
     <?php
     session_start();
@@ -162,7 +161,7 @@
                         <div class="form-group">
                             <?php
                             // Get the minimum and maximum kaina values from the database
-                            $sql = "SELECT MIN(nauja_kaina) AS min_kaina, MAX(nauja_kaina) AS max_kaina FROM akcijos_kompiuteriu_priedai";
+                            $sql = "SELECT MIN(kaina) AS min_kaina, MAX(kaina) AS max_kaina FROM akcijos_kompiuteriu_priedai";
                             $result = mysqli_query($conn, $sql);
                             $row = mysqli_fetch_assoc($result);
                             $min_kaina = $row['min_kaina'];
@@ -272,7 +271,7 @@
                                 $max_kaina = $_POST['kaina_iki'];
                             }
 
-                            $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.papildoma_informacija, m.kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
+                            $sql = "SELECT m.id, m.gamintojas, m.pavadinimas, m.aprasymas, m.papildoma_informacija, m.kaina, m.nauja_kaina, m.timestamp, GROUP_CONCAT(mp.filename SEPARATOR ',') AS photos
                 FROM akcijos_kompiuteriu_priedai m 
                 LEFT JOIN akcijos_kompiuteriu_priedai_photos mp ON m.id = mp.akcijos_kompiuteriu_priedai_id";
 
