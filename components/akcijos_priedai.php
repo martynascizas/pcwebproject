@@ -334,6 +334,7 @@
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
                                 echo '<p class="card-text card-text-custom">' . "Pavadinimas: <b>" . $row["pavadinimas"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Aprašymas: <b>" . $row["aprasymas"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>PRI00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';

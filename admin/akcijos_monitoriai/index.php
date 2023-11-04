@@ -10,6 +10,7 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 ?>
+
 <body>
     <?php include '../components/header.php'; ?>
     <!-- akcijos_monitoriai -->
@@ -24,9 +25,8 @@ if (!isset($_SESSION['admin_id'])) {
                     </div>
                     <div class="mb-3">
                         <label for="ekrano_istrizaine" class="form-label">Ekrano išmatavimas (coliais):</label>
-                        <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine"
-                            min="1" max="100" required>
-                            <!-- <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" pattern="^\d+(\.\d{1})?$" required> -->
+                        <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" min="1" max="100" required>
+                        <!-- <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" pattern="^\d+(\.\d{1})?$" required> -->
                     </div>
                     <div class="mb-3">
                         <label for="rezoliucija" class="form-label">Rezoliucija:</label>
@@ -41,19 +41,16 @@ if (!isset($_SESSION['admin_id'])) {
                     </div>
                     <div class="mb-3">
                         <label for="papildoma_informacija" class="form-label">Papildoma informacija:</label>
-                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija"
-                            min="1" max="100" required>
-                            <!-- <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" pattern="^\d+(\.\d{1})?$" required> -->
+                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" min="1" max="100" required>
+                        <!-- <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine" pattern="^\d+(\.\d{1})?$" required> -->
                     </div>
                     <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>
-                        <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01"
-                            required>
+                        <input type="number" class="form-control" id="kaina" name="kaina" min="0.01" step="0.01" required>
                     </div>
                     <div class="mb-3">
                         <label for="nauja_kaina" class="form-label">Nauja Kaina:</label>
-                        <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" min="0.01"
-                            step="0.01" required>
+                        <input type="number" class="form-control" id="nauja_kaina" name="nauja_kaina" min="0.01" step="0.01" required>
                     </div>
                     <div class="mb-3">
                         <label for="photo" class="form-label">Nuotraukos:</label>
@@ -108,7 +105,7 @@ if (!isset($_SESSION['admin_id'])) {
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
                 // Display monitor info
-                echo "<h3>" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . " Lieciamas: " . $row["lieciamas_ekranas"] . $row["papildoma_informacija"]. " Rezoliucija: " . $row["rezoliucija"] . " monitor - " . $row["kaina"] . " EUR</h3>";
+                echo "<h3>" . $row["gamintojas"] . " " . $row["ekrano_istrizaine"] . "\" " . " Lieciamas: " . $row["lieciamas_ekranas"] . $row["papildoma_informacija"] . " Rezoliucija: " . $row["rezoliucija"] . " monitor - " . $row["kaina"] . " EUR</h3>";
 
                 // Display photos
                 $photos = explode(",", $row["photos"]);
