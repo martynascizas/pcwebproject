@@ -307,27 +307,46 @@
                     </li>
                     <li>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none common-btn"
                                 name="filter_submit">Filtruoti</button>
-                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
-                            <script>
-                            document.getElementById("clear_btn").addEventListener("click", function() {
-                                document.getElementById("gamintojas").value = "";
-                                document.getElementById("ekrano_istrizaine").value = "";
-                                document.getElementById("procesorius").value = "";
-                                document.getElementById("vaizdo_plokste").value = "";
-                                document.getElementById("ram").value = "";
-                                document.getElementById("hdd").value = "";
-                                document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
-                                document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
-                                document.getElementById("submit_btn").click();
-                            });
-                            </script>
+                            <button id="clear_btn" type="button"
+                                class="btn btn-secondary mb-4 common-btn">Išvalyti</button>
                         </div>
-                    </li>
-                </ul>
-            </form>
+
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                            <button id="atgal_btn" type="button" class="btn btn-primary common-btn">Atgal</button>
+                        </div>
+
+                        <style>
+                        .common-btn {
+                            width: 150px;
+                            /* Set the desired width for the buttons */
+                        }
+                        </style>
+
+
+                        <script>
+                        document.getElementById("clear_btn").addEventListener("click", function() {
+                            document.getElementById("gamintojas").value = "";
+                            document.getElementById("ekrano_istrizaine").value = "";
+                            document.getElementById("procesorius").value = "";
+                            document.getElementById("vaizdo_plokste").value = "";
+                            document.getElementById("ram").value = "";
+                            document.getElementById("hdd").value = "";
+                            document.getElementById("kaina_nuo").value = <?php echo $min_kaina; ?>;
+                            document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
+                            document.getElementById("submit_btn").click();
+                        });
+
+                        document.getElementById("atgal_btn").addEventListener("click", function() {
+                            window.location.href = 'http://localhost/devetas.lt/components/nesiojami.php';
+                        });
+                        </script>
         </div>
+        </li>
+        </ul>
+        </form>
+    </div>
     </div>
     <div class="container-fluid">
         <div class="row">
@@ -480,7 +499,7 @@
                                     echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
-                                            echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
+                                    echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
                                     echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
                                     echo '</div>';
                                     echo '<div class="card-footer">';

@@ -306,14 +306,14 @@
                         </div>
                     </li>
                     <li>
-                        <div style="display: block; text-align: center;">
-                            <button id="akcijos" type="button" class="btn btn-danger mb-4">Akcijos</button>
-                        </div>
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
-                                name="filter_submit">Filtruoti</button>
-                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
-                        </div>
+                    <div style="display: block; text-align: center;">
+    <button id="akcijos" type="button" class="btn btn-danger mb-4" style="width: 150px;">Akcijos</button>
+</div>
+<div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+    <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none" name="filter_submit" style="width: 150px;">Filtruoti</button>
+    <button id="clear_btn" type="button" class="btn btn-secondary mb-4" style="width: 150px;">Išvalyti</button>
+</div>
+
                         <script>
                         document.getElementById("clear_btn").addEventListener("click", function() {
                             document.getElementById("gamintojas").value = "";
