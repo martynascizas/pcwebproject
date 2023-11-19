@@ -306,24 +306,25 @@
                         </div>
                     </li>
                     <li>
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                        <!-- <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none common-btn"
                                 name="filter_submit">Filtruoti</button>
-                            <button id="clear_btn" type="button"
-                                class="btn btn-secondary mb-4 common-btn">Išvalyti</button>
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-2 common-btn">Išvalyti
+                            </button>
                         </div>
 
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="atgal_btn" type="button" class="btn btn-primary common-btn">Atgal</button>
+                        </div> -->
+
+                        <div style="display: block; text-align: center;">
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-2">Išvalyti</button>
                         </div>
-
-                        <style>
-                        .common-btn {
-                            width: 150px;
-                            /* Set the desired width for the buttons */
-                        }
-                        </style>
-
+                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
+                                name="filter_submit">Filtruoti</button>
+                            <button id="atgal_btn" type="button" class="btn btn-success mb-4">Grįžti</button>
+                        </div>
 
                         <script>
                         document.getElementById("clear_btn").addEventListener("click", function() {
@@ -383,14 +384,15 @@
                                     $carousel_items .= '</div>';
                                 }
 
+                               
                                 echo '<div class="col">';
                                 echo '<div class="card h-100">';
                                 echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
                                 echo '<div class="carousel-inner">' . $carousel_items . '</div>';
                                 echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
-                                echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
+                                echo '<button class="carousel-control-next" type="button" dfdata-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                 echo '</div>';
-                                echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
+                                echo '<div class="card-body card-body-custom d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
                                 echo '<p class="card-text card-text-custom">' . "Ekrano Įstrižainė: " . "<b>" . $row["ekrano_istrizaine"] . "\"" . "</b>" . '</p>';
                                 echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';
@@ -401,7 +403,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
+                                echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
@@ -640,6 +642,12 @@
         kainaIkiValue.textContent = kainaIki.value;
     });
     </script>
+
+    <style>
+    button {
+        width: 80px;
+    }
+    </style>
 
     <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">

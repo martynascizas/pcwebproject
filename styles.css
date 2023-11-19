@@ -243,7 +243,6 @@ img:hover {
 .card-body-custom {
   border: none !important;
   font-size: 0.8em !important;
-  background-color: #fafafa !important;
   padding: 6px;
 }
 
@@ -428,5 +427,5 @@ footer {
 }
 
 .clickable-div:hover .card {
-  border-radius: 15px!important;
+  border-radius: 15px !important;
 }

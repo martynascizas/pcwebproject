@@ -25,8 +25,8 @@ if (!isset($_SESSION['admin_id'])) {
                     </div>
                     <div class="mb-3">
                         <label for="ekrano_istrizaine" class="form-label">Ekrano išmatavimas (coliais):</label>
-                        <input type="number" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine"
-                            min="1" max="100" required>
+                        <input type="text" class="form-control" id="ekrano_istrizaine" name="ekrano_istrizaine"
+                            pattern="^\d+(\.\d{1})?$" required>
                     </div>
                     <div class="mb-3">
                         <label for="procesorius" class="form-label">Procesorius:</label>
@@ -47,7 +47,8 @@ if (!isset($_SESSION['admin_id'])) {
                     </div>
                     <div class="mb-3">
                         <label for="ram" class="form-label">Papildoma informacija:</label>
-                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija" required>
+                        <input type="text" class="form-control" id="papildoma_informacija" name="papildoma_informacija"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label for="kaina" class="form-label">Kaina:</label>

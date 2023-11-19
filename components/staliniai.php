@@ -333,21 +333,21 @@
                                 echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
                                 echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                 echo '</div>';
-                                echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
+                                echo '<div class="card-body card-body-custom d-flex flex-column justify-content-end">';
                                 echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
-                               
                                 echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Vaizdo plokštė: <b>" . $row["vaizdo_plokste"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Operatyvioji atmintis (RAM): <b>" . $row["ram"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Kietasis diskas: <b>" . $row["hdd"] . '</b></p>';
                                 echo '<p class="card-text card-text-custom">' . "Papildoma informacija: <b>" . $row["papildoma_informacija"] . '</b></p>';
-                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>STA00" . $row["id"] . '</b></p>';
+                                echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
                                 echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
+                                
                             }
                             echo '</div>';
                         } else if (isset($_POST['filter_submit'])) {
@@ -431,7 +431,7 @@
                                     echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>';
                                     echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls' . $row["id"] . '" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>';
                                     echo '</div>';
-                                    echo '<div class="card-bodyc d-flex flex-column justify-content-end">';
+                                    echo '<div class="card-body card-body-custom d-flex flex-column justify-content-end">';
                                     echo '<h5 class="card-title">' . "<b>" . $row["gamintojas"] . "</b>" . '</h5>';
                                    
                                     echo '<p class="card-text card-text-custom">' . "Procesorius: <b>" . $row["procesorius"] . '</b></p>';

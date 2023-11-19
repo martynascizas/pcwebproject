@@ -46,7 +46,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
     document.addEventListener('keydown', function(event) {
-        if (event.key === 'c') {
+        if (event.key === 'a') {
             window.location.href = document.getElementById('crud-link').href;
         }
     });
