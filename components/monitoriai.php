@@ -227,7 +227,7 @@
                     </li>
                     <li>
                         <div style="display: block; text-align: center;">
-                            <button id="akcijos" type="button" class="btn btn-danger mb-4">Akcijos</button>
+                            <button id="akcijos" type="button" class="btn btn-danger mb-2">Akcijos</button>
                         </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"

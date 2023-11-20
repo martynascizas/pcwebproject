@@ -184,10 +184,14 @@
                         </div>
                     </li>
                     <li>
+                        <div style="display: block; text-align: center;">
+                            <button id="clear_btn" type="button" class="btn btn-secondary mb-2">Išvalyti</button>
+                        </div>
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none"
                                 name="filter_submit">Filtruoti</button>
-                            <button id="clear_btn" type="button" class="btn btn-secondary mb-4">Išvalyti</button>
+                            <button id="atgal_btn" type="button" class="btn btn-success mb-4">Grįžti</button>
+                        </div>
                             <script>
                                 document.getElementById("clear_btn").addEventListener("click", function () {
                                     document.getElementById("gamintojas").value = "";
@@ -197,6 +201,9 @@
                                     document.getElementById("kaina_iki").value = <?php echo $max_kaina; ?>;
                                     document.getElementById("submit_btn").click();
                                 });
+                                document.getElementById("atgal_btn").addEventListener("click", function() {
+                            window.location.href = 'http://localhost/devetas.lt/components/priedai.php';
+                        });
                             </script>
                         </div>
                     </li>
@@ -460,6 +467,12 @@
             kainaIkiValue.textContent = kainaIki.value;
         });
     </script>
+
+<style>
+    button {
+        width: 80px;
+    }
+    </style>
 </body>
 
 </html>

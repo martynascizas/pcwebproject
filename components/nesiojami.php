@@ -300,7 +300,7 @@
                         </div>
                     </li>
                     <li>
-
+                        
                         <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
                             <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none" name="filter_submit">Filtruoti</button>
                             <button id="clear_btn" type="button" class="btn btn-secondary mb-2">Išvalyti</button>

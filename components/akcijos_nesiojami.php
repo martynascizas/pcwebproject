@@ -306,17 +306,6 @@
                         </div>
                     </li>
                     <li>
-                        <!-- <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="submit_btn" type="submit" class="btn btn-primary mb-4 d-none common-btn"
-                                name="filter_submit">Filtruoti</button>
-                            <button id="clear_btn" type="button" class="btn btn-secondary mb-2 common-btn">Išvalyti
-                            </button>
-                        </div>
-
-                        <div style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                            <button id="atgal_btn" type="button" class="btn btn-primary common-btn">Atgal</button>
-                        </div> -->
-
                         <div style="display: block; text-align: center;">
                             <button id="clear_btn" type="button" class="btn btn-secondary mb-2">Išvalyti</button>
                         </div>
@@ -384,7 +373,7 @@
                                     $carousel_items .= '</div>';
                                 }
 
-                               
+
                                 echo '<div class="col">';
                                 echo '<div class="card h-100">';
                                 echo '<div id="carouselExampleControls' . $row["id"] . '" class="carousel slide" data-bs-ride="carousel">';
@@ -403,7 +392,7 @@
                                 echo '<p class="card-text card-text-custom">' . "Prekės kodas: <b>NES00" . $row["id"] . '</b></p>';
                                 echo '</div>';
                                 echo '<div class="card-footer">';
-                                echo '<p class="card-text">' . $row["kaina"] . "Eur" . '</p>';
+                                echo '<p class="card-text"><span style="text-decoration: line-through;">' . $row["kaina"] . '</span> <span>' . $row["nauja_kaina"] . '</span> Eur</p>';
                                 echo '</div>';
                                 echo '</div>';
                                 echo '</div>';
