@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 05, 2023 at 06:45 PM
+-- Generation Time: Nov 20, 2023 at 08:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -38,25 +38,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`) VALUES
-(9, 'admin', '$2y$10$Q5PhGK963Xn5HzM5G0mAm.CuNX8ycUkqqzMa6Vl259CTqU0hcoDEG'),
-(14, 'labas', '$2y$10$I6tGNDF/nUKxf/gkaMDC8OmSOwGTapUCsRhfbS0rzDcOIL3Emmfo.');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `akcijos`
---
-
-CREATE TABLE `akcijos` (
-  `id` int(11) NOT NULL,
-  `pavadinimas` varchar(50) NOT NULL,
-  `kaina` decimal(10,2) NOT NULL,
-  `nauja_kaina` decimal(10,2) NOT NULL,
-  `aprasymas` text DEFAULT NULL,
-  `photo` varchar(255) DEFAULT NULL,
-  `gamintojas` varchar(50) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+(9, 'admin', '$2y$10$Q5PhGK963Xn5HzM5G0mAm.CuNX8ycUkqqzMa6Vl259CTqU0hcoDEG');
 
 -- --------------------------------------------------------
 
@@ -87,14 +69,6 @@ CREATE TABLE `akcijos_kompiuteriu_priedai_photos` (
   `akcijos_kompiuteriu_priedai_id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `akcijos_kompiuteriu_priedai_photos`
---
-
-INSERT INTO `akcijos_kompiuteriu_priedai_photos` (`id`, `akcijos_kompiuteriu_priedai_id`, `filename`) VALUES
-(81, 0, 'accessories.png'),
-(82, 0, 'aoc mon.png');
 
 -- --------------------------------------------------------
 
@@ -337,12 +311,6 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `akcijos`
---
-ALTER TABLE `akcijos`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `akcijos_kompiuteriu_priedai`
 --
 ALTER TABLE `akcijos_kompiuteriu_priedai`
@@ -447,49 +415,43 @@ ALTER TABLE `staliniai_kompiuteriai`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT for table `akcijos`
---
-ALTER TABLE `akcijos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(6) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `akcijos_kompiuteriu_priedai`
 --
 ALTER TABLE `akcijos_kompiuteriu_priedai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `akcijos_kompiuteriu_priedai_photos`
 --
 ALTER TABLE `akcijos_kompiuteriu_priedai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `akcijos_monitoriai`
 --
 ALTER TABLE `akcijos_monitoriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `akcijos_monitoriai_photos`
 --
 ALTER TABLE `akcijos_monitoriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `akcijos_nesiojami_kompiuteriai`
 --
 ALTER TABLE `akcijos_nesiojami_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `akcijos_nesiojami_kompiuteriai_photos`
 --
 ALTER TABLE `akcijos_nesiojami_kompiuteriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `akcijos_photos`
@@ -501,49 +463,49 @@ ALTER TABLE `akcijos_photos`
 -- AUTO_INCREMENT for table `akcijos_staliniai_kompiuteriai`
 --
 ALTER TABLE `akcijos_staliniai_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `akcijos_staliniai_kompiuteriai_photos`
 --
 ALTER TABLE `akcijos_staliniai_kompiuteriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `kompiuteriu_priedai`
 --
 ALTER TABLE `kompiuteriu_priedai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `kompiuteriu_priedai_photos`
 --
 ALTER TABLE `kompiuteriu_priedai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `monitoriai`
 --
 ALTER TABLE `monitoriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `monitoriai_photos`
 --
 ALTER TABLE `monitoriai_photos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 
 --
 -- AUTO_INCREMENT for table `nesiojami_kompiuteriai`
 --
 ALTER TABLE `nesiojami_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `staliniai_kompiuteriai`
 --
 ALTER TABLE `staliniai_kompiuteriai`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
