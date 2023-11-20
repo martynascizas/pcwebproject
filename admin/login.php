@@ -108,7 +108,6 @@ require_once 'components/head.php';
           </form>
           <div style="margin-top: 20px;">
             <a href="http://localhost/devetas.lt/index.php">devėtas.lt</a>
-            <!-- <a href="https://parduosiu.lt/devetas/">devėtas.lt</a> -->
           </div>
         </div>
       </div>
